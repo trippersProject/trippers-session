@@ -80,6 +80,8 @@ class Main extends CI_Controller {
 	//글 좋아요
 	public function like_post() {
         check_login(); // 로그인 여부 체크
+
+		$response = array();
         
         $a_id = $this->input->post('post_id');
         $u_id = $this->session->userdata('user_id');
@@ -95,15 +97,22 @@ class Main extends CI_Controller {
             //저장성공시 포인트 지급 헬퍼 함수 호출
 			$point_given = change_user_point($u_id, $a_id, "E", "글 좋아요");
 
-			if($point_given == true){
-				echo json_encode(['status' => 'success']);
+			if($point_given == 1){
+				$response['status'] = 'success';
+
+			}elseif($point_given === 'already'){
+				$response['status'] = 'already';
+
 			}else{
-				echo json_encode(['status' => 'error']);
+				$response['status'] = 'error';
 			}
-			
+
         } else {
-            echo json_encode(['status' => 'error']);
+            $response['status'] = 'error';
         }
+
+		echo json_encode($response);
+		exit;
     }
 
 	//글 스크랩
@@ -123,14 +132,21 @@ class Main extends CI_Controller {
             //저장성공시 포인트 지급 헬퍼 함수 호출
 			$point_given = change_user_point($u_id, $a_id, "E", "글 스크랩");
 
-			if($point_given == true){
-				echo json_encode(['status' => 'success']);
+			if($point_given == 1){
+				$response['status'] = 'success';
+
+			}elseif($point_given == 'already'){
+				$response['status'] = 'already';
+
 			}else{
-				echo json_encode(['status' => 'error']);
+				$response['status'] = 'error';
 			}
 
         } else {
-            echo json_encode(['status' => 'error']);
+            $response['status'] = 'error';
         }
+
+		echo json_encode($response);
+		exit;
     }
 }

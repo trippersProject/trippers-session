@@ -21,7 +21,7 @@
             <div class="container mt-5">
                 <h5>프로필 이미지</h5>
                 <p><?= $info['banner_image'];?></p>
-                <img src="<?= base_url(get_creator_upload_path().$info['banner_image']);?>" class="img-fluid" style="max-width: 30%;">
+                <img src="<?= base_url(get_creator_upload_path().$info['profile_image']);?>" class="img-fluid" style="max-width: 30%;">
             </div>
 
             <h4>대표 이미지</h4>

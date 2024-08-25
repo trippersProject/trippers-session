@@ -95,6 +95,20 @@ function change_user_point($u_id, $a_id, $gubun, $path) {
     $CI =& get_instance();
     $CI->load->database();  
 
+    if($gubun == 'E'){
+        // 이미 포인트가 지급되었는지 확인
+        $CI->db->where('u_id', $u_id);
+        $CI->db->where('a_id', $a_id);
+        $CI->db->where('point_gubun', $gubun);
+        $CI->db->where('point_path', $path);
+        $CI->db->from('tp_point_use_log');
+        $exists = $CI->db->count_all_results();
+
+        if ($exists > 0) {
+            return "already"; // 이미 포인트가 지급된 경우
+        }
+    }
+
     $point_amount = 1;
 
     // 포인트 로그 기록
@@ -112,6 +126,7 @@ function change_user_point($u_id, $a_id, $gubun, $path) {
     // 현재 사용자 포인트 가져오기
     $CI->db->where('id', $u_id);
     $user = $CI->db->get('tp_users')->row();
+
     
     if ($user) {
         // 사용자 포인트 업데이트
@@ -127,14 +142,14 @@ function change_user_point($u_id, $a_id, $gubun, $path) {
 
         if ($CI->db->trans_status() === FALSE) {
             $CI->db->trans_rollback(); // 오류 발생 시 롤백
-            return false;
+            return -1;
         } else {
             $CI->db->trans_commit(); // 성공 시 커밋
-            return true;
+            return 1;
         }
     } else {
-        return false; // 유저를 찾지 못했을 경우 false 반환
+        return -1; // 유저를 찾지 못했을 경우 false 반환
     }
 
-    return true; // 모든 작업이 성공적으로 완료되었을 경우 true 반환
+    return 1;
 }

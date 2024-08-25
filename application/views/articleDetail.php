@@ -466,12 +466,15 @@
           type: 'POST',
           url: '/main/like_post', // 좋아요 처리 컨트롤러의 경로
           data: {post_id: article_id},
+          dataType: 'json',
           success: function(response) {
-              if (response.status === 'success') {             
-                  //TODO:좋아요 아이콘 빨간색으로 변경
-                  alert('좋아요 1포인트 적립되었습니다');
+              if (response.status == "success") {             
+                //TODO:좋아요 아이콘 빨간색으로 변경
+                alert('좋아요 1포인트 적립되었습니다');
+              } else if (response.status == 'already') {
+                alert('이미 포인트가 지급되었습니다.');
               } else {
-                  alert('오류가 발생했습니다.');
+                alert('오류가 발생했습니다.');
               }
           },
           error: function() {
@@ -488,12 +491,15 @@
           type: 'POST',
           url: '/main/scrap_post', // 스크랩 처리 컨트롤러의 경로
           data: {post_id: article_id},
+          dataType: 'json',
           success: function(response) {
-              if (response.status === 'success') {
-                  alert('글 스크랩 1포인트 지급되었습니다.');
-                  //??
+
+              if (response.status == 'success') {
+                alert('글 스크랩 1포인트 지급되었습니다.');
+              } else if (response.status == 'already') {
+                alert('이미 포인트가 지급되었습니다.');
               } else {
-                  alert('오류가 발생했습니다.');
+                alert('오류가 발생했습니다.');
               }
           },
           error: function() {
