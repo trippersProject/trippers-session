@@ -1,0 +1,482 @@
+.main-container {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.main-container .main-contents {
+  background-color: #ffffff;
+  overflow: hidden;
+  width: 1728px;
+  height: 6080px;
+  position: relative;
+}
+
+/* 상단 menu탭 */
+.main-container .header-menu {
+  position: absolute;
+  width: 870px;
+  height: 49px;
+  top: 46px;
+  left: 38px;
+}
+
+.main-container .header-menu-all-area {
+  position: relative;
+  width: 872px;
+  height: 49px;
+}
+
+.main-container .header-menu-all-area-logo {
+  width: 88px;
+  height: 28px;
+  left: 782px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+}
+
+.main-container .header-menu-all-area-text {
+  position: absolute;
+  width: 79px;
+  top: 13px;
+  left: 0;
+  font-family: "Pretendard Variable-Medium", Helvetica;
+  font-weight: 500;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+/* 상단 [검색], [로그인] 아이콘 표시 */
+.main-container .user {
+  position: absolute;
+  width: 21px;
+  height: 21px;
+  top: 54px;
+  left: 1670px;
+}
+
+.main-container .search {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 53px;
+  left: 1640px;
+}
+
+.main-container .main-contents .main-contents-area {
+  position: absolute;
+  width: 1731px;
+  height: 4054px;
+  top: 110px;
+  left: -1px;
+}
+
+
+
+
+
+
+/* ################################################## [시작] 크리에이터 추천 공간 ################################################### */
+.main-container .main-contents-area .creator-suggestion .creator-suggestion-slide-area .article-slide .article-swiper {
+  width: 391px;
+  height: 823px;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.main-container .main-contents-area .creator-suggestion .creator-suggestion-slide-area .article-slide .article-swiper .article-swiper-contents {
+  width: 385px;
+  height: 536px;
+  left: 0;
+  object-fit: cover;
+  top: 0;
+}
+
+.main-container .main-contents-area .creator-suggestion .creator-suggestion-slide-area .article-slide .article-swiper .article-swiper-contents .article-title {
+  width: 385px;
+  top: 608px;
+  left: 0;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-weight: 600;
+  font-size: 24px;
+  text-align: center;
+  line-height: normal;
+  position: absolute;
+  color: #000000;
+  letter-spacing: 0;
+}
+
+.main-container .main-contents-area .creator-suggestion .creator-suggestion-slide-area .article-slide .article-swiper .article-swiper-contents .article-name {
+  top: 576px;
+  position: absolute;
+  width: 385px;
+  left: 0;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  font-size: 15px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.main-container .main-contents-area .creator-suggestion .creator-suggestion-slide-area .article-slide .article-swiper .article-swiper-contents .article-contents-group {
+  position: absolute;
+  width: 385px;
+  height: 159px;
+  top: 664px;
+  left: 0;
+}
+
+.main-container .main-contents-area .creator-suggestion .creator-suggestion-slide-area .article-slide .article-swiper .article-swiper-contents .article-contents-group .article-contents {
+  width: 385px;
+  top: 0;
+  left: 0;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  line-height: 27px;
+  position: absolute;
+  color: #000000;
+  letter-spacing: 0;
+}
+
+.main-container .main-contents-area .creator-suggestion .creator-suggestion-slide-area .article-slide .article-swiper .article-swiper-contents .article-contents-group .article-tag {
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  top: 130px;
+  left: 115px;
+}
+
+/* 크리에이터 슬라이드 영역 */
+.main-container .main-contents .main-contents-area .creator-suggestion-slide-area {
+  position: absolute;
+  width: 1641px;
+  height: 829px;
+  top: 130px;
+}
+
+/* 크리에이터 추천 공간 타이틀 */
+.main-container .main-contents .main-contents-area .creator-suggestion .creator-suggestion-title {
+  width: 1728px;
+  height: 52px;
+  top: 0;
+  left: 0;
+  font-family: "Pretendard Variable-ExtraBold", Helvetica;
+  font-weight: 800;
+  font-size: 24px;
+  text-align: center;
+  line-height: normal;
+  position: absolute;
+  color: #000000;
+  letter-spacing: 0;
+}
+
+/* 크리에이터 추천 공간 밑줄 */
+.main-container .main-contents .main-contents-area .creator-suggestion .creator-suggestion-underline {
+  position: absolute;
+  width: 198px;
+  height: 6px;
+  top: 49px;
+  left: 765px;
+  background-color: #000000;
+}
+
+.main-container .main-contents .main-contents-area .creator-suggestion {
+  position: absolute;
+  width: 1730px;
+  height: 965px;
+  top: 974px;
+  left: 1px;
+}
+/* ################################################## [끝] 크리에이터 추천 공간 ################################################### */
+
+
+
+
+/* ################################################## [시작] 이번 주 우리동네 ################################################### */
+/* 이번 주 우리동네 */
+.main-container .main-contents-area .this-week-our-area {
+  position: absolute;
+  width: 1731px;
+  height: 1157px;
+  top: 2897px;
+  left: 0;
+}
+
+.main-container .main-contents-area .this-week-our-area .this-week-our-area-title {
+  width: 1728px;
+  height: 52px;
+  top: 175px;
+  left: 1px;
+  font-family: "Pretendard Variable-Black", Helvetica;
+  font-weight: 900;
+  font-size: 24px;
+  text-align: center;
+  line-height: normal;
+  position: absolute;
+  color: #000000;
+  letter-spacing: 0;
+}
+
+.main-container .main-contents-area .this-week-our-area .this-week-our-area-underline {
+  position: absolute;
+  width: 157px;
+  height: 6px;
+  top: 227px;
+  left: 786px;
+  background-color: #000000;
+}
+
+.main-container .main-contents-area .this-week-our-area .this-week-our-slide-area {
+  position: absolute;
+  width: 1641px;
+  height: 829px;
+  top: 328px;
+}
+
+.main-container .main-contents-area .this-week-our-area .this-week-our-slide-area .article-slide .article-swiper .article-swiper-contents .article-title {
+  width: 385px;
+  top: 609px;
+  left: 0;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-weight: 600;
+  font-size: 24px;
+  text-align: center;
+  line-height: normal;
+  position: absolute;
+  color: #000000;
+  letter-spacing: 0;
+}
+
+.main-container .main-contents-area .this-week-our-area .this-week-our-slide-area .article-slide .article-swiper .article-swiper-contents .article-name {
+  top: 577px;
+  position: absolute;
+  width: 385px;
+  left: 0;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  font-size: 15px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.main-container .main-contents-area .this-week-our-area .this-week-our-slide-area .article-slide .article-swiper {
+  width: 391px;
+  height: 823px;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.main-container .main-contents-area .this-week-our-area .this-week-our-slide-area .article-slide .article-swiper .article-swiper-contents {
+  width: 385px;
+  height: 536px;
+  left: 0;
+  object-fit: cover;
+  top: 0;
+}
+
+.main-container .main-contents-area .main-contents-area .this-week-our-area .this-week-our-slide-area .article-slide .article-swiper .article-swiper-contents .article-contents-group {
+  position: absolute;
+  width: 385px;
+  height: 160px;
+  top: 664px;
+  left: 0;
+}
+
+.main-container .main-contents-area .this-week-our-area .this-week-our-slide-area .article-slide .article-swiper .article-swiper-contents .article-contents-group {
+  position: absolute;
+  width: 385px;
+  height: 159px;
+  top: 664px;
+  left: 0;
+}
+
+.main-container .main-contents-area .this-week-our-area .this-week-our-slide-area .article-slide .article-swiper .article-swiper-contents .article-contents-group .article-contents {
+  width: 385px;
+  top: 0;
+  left: 0;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  line-height: 27px;
+  position: absolute;
+  color: #000000;
+  letter-spacing: 0;
+}
+
+.main-container .main-contents-area .this-week-our-area .this-week-our-slide-area .article-slide .article-swiper .article-swiper-contents .article-contents-group .article-tag {
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  top: 130px;
+  left: 115px;
+}
+
+.main-container .main-contents-area .this-week-our-area .this-week-our-slide-area .article-slide .article-swiper .article-swiper-contents .article-name {
+  left: 0;
+  font-size: 16px;
+  position: absolute;
+  width: 385px;
+  top: 573px;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+/* ################################################## [끝] 이번 주 우리동네 ################################################### */
+
+
+/* 하단 슬라이드 영역 */
+.main-container .main-contents-area .bottom-slide-section {
+  position: absolute;
+  width: 1729px;
+  height: 900px;
+  top: 2081px;
+  left: 0;
+}
+
+.main-container .main-contents-area .chevron-left {
+  top: 3px;
+  left: 0;
+  position: absolute;
+  width: 48px;
+  height: 48px;
+}
+
+.main-container .main-contents-area .chevron-right {
+  top: 0;
+  left: 1548px;
+  position: absolute;
+  width: 48px;
+  height: 48px;
+}
+
+/* 상단 슬라이드 영역 */
+.main-container .main-contents .main-contents-area .top-slide-section {
+  position: absolute;
+  width: 100%;
+  height: 900px;
+  top: 0;
+  left: 1px;
+  object-fit: cover;
+}
+
+/* 메일 구독 이미지 영역 */
+.main-container .mail-subscribe {
+  position: absolute;
+  width: 1430px;
+  height: 256px;
+  top: 5424px;
+  left: 149px;
+}
+
+/* FIND 아이템 이미지 영역 */
+.main-container .find-item {
+  position: absolute;
+  width: 1728px;
+  height: 864px;
+  top: 4362px;
+  left: 0;
+}
+
+/* 하단 회사 정보 */
+.main-container .footer-company-info {
+  position: absolute;
+  width: 1451px;
+  height: 182px;
+  top: 5852px;
+  left: 155px;
+}
+
+.main-container .footer-company-info .company-logo {
+  position: absolute;
+  width: 64px;
+  height: 21px;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+
+.main-container .footer-company-info .company-text {
+  width: 598px;
+  height: 112px;
+  top: 70px;
+  left: 0;
+  font-family: "Pretendard Variable-SemiBold", Helvetica;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26.7px;
+  position: absolute;
+  color: #000000;
+  letter-spacing: 0;
+}
+
+.main-container .footer-company-info .company-name {
+  font-weight: 600;
+}
+
+.main-container .footer-company-info .company-address {
+  font-family: "Pretendard Variable-Light", Helvetica;
+  font-weight: 300;
+}
+
+.main-container .footer-company-info .company-direct-link {
+  position: absolute;
+  width: 424px;
+  height: 26px;
+  top: 99px;
+  left: 1023px;
+  font-family: "Pretendard Variable-Black", Helvetica;
+  font-weight: 900;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 26.7px;
+  white-space: nowrap;
+}
+
+.main-container .footer-company-info .company-logo-underline {
+  position: absolute;
+  width: 41px;
+  height: 6px;
+  top: 48px;
+  left: 0;
+  background-color: #000000;
+}
+
+.banner-swiper {
+  height: 900px;
+  object-fit: cover;
+}
+
+/* 페이지네이션 스타일 */
+.swiper-pagination-bullet {
+  background-color: gray; /* 비선택 시 회색 */
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: white; /* 선택 시 흰색 */
+  opacity: 1;
+}
+
+/* 네비게이션 화살표 스타일 */
+.swiper-button-next,
+.swiper-button-prev {
+  color: black; /* 화살표 색상 검정 */
+}
