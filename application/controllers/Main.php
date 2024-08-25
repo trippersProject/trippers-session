@@ -76,4 +76,61 @@ class Main extends CI_Controller {
 
 		$this->load->view('findTripperGoods.php',$data);
 	}
+
+	//글 좋아요
+	public function like_post() {
+        check_login(); // 로그인 여부 체크
+        
+        $a_id = $this->input->post('post_id');
+        $u_id = $this->session->userdata('user_id');
+
+		$data = array(
+            'u_id' => $u_id,
+            'a_id' => $a_id,
+            'regdate' => date("Y-m-d H:i:s")
+        );
+
+        if ($this->Main_mdl->like_post($data)) {
+
+            //저장성공시 포인트 지급 헬퍼 함수 호출
+			$point_given = change_user_point($u_id, $a_id, "E", "글 좋아요");
+
+			if($point_given == true){
+				echo json_encode(['status' => 'success']);
+			}else{
+				echo json_encode(['status' => 'error']);
+			}
+			
+        } else {
+            echo json_encode(['status' => 'error']);
+        }
+    }
+
+	//글 스크랩
+    public function scrap_post() {
+        check_login(); // 로그인 여부 체크
+        
+        $a_id = $this->input->post('post_id');
+        $u_id = $this->session->userdata('user_id');
+
+		$data = array(
+            'u_id' => $u_id,
+            'a_id' => $a_id,
+            'regdate' => date("Y-m-d H:i:s")
+        );
+
+        if ($this->Main_mdl->scrap_post($data)) {
+            //저장성공시 포인트 지급 헬퍼 함수 호출
+			$point_given = change_user_point($u_id, $a_id, "E", "글 스크랩");
+
+			if($point_given == true){
+				echo json_encode(['status' => 'success']);
+			}else{
+				echo json_encode(['status' => 'error']);
+			}
+
+        } else {
+            echo json_encode(['status' => 'error']);
+        }
+    }
 }

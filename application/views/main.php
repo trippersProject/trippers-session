@@ -221,11 +221,7 @@
 
     <div class="centered-text-container">
       <div class="centered-text">크리에이터 추천 공간</div>
-    </div>
-
-    <?= "session1 : "; ?>
-    <?= print_r($this->session->userdata()); ?>
-    
+    </div>  
 
     <!-- Slider main container -->
     <div class="mt-5 w-95 swiper creator-swiper">

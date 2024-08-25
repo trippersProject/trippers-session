@@ -360,9 +360,9 @@
       </div>
 
       <ul class="mt-6 hero-icon">
-        <li><img src="/assets/img/favorite.svg" alt=""></li>
-        <li><img src="/assets/img/stars.svg" alt=""></li>
-        <li><img src="/assets/img/upload.svg" alt=""></li>
+        <li><img src="/assets/img/favorite.svg" alt="좋아요" onclick="like_article()"></li>
+        <li><img src="/assets/img/stars.svg" alt="스크랩" onclick="scrap_article()"></li>
+        <li><img src="/assets/img/upload.svg" alt="공유하기" onclick=""></li>
       </ul>
 
       <div class="row mt-2">
@@ -389,7 +389,6 @@
     <div class="centered-text-container mt-8">
       <div class="centered-text">연관 콘텐츠</div>
     </div>
-    
 
    <!-- Slider main container -->
     <div class="mt-5 w-95 swiper related-swiper">
@@ -422,10 +421,13 @@
       </div>
     </div>
 
+    <input type="hidden" name="a_id" id="a_id" value="<?= $info['id']?>">
+
   <?php include_once("layout/footer_company_info.php")?>
 
   <!-- 스크립트 위치를 body 태그 안으로 이동 -->
   <script src="/assets/js/swiper.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     const swiper = new Swiper('.swiper-container', {
       pagination: false, // Pagination disabled
@@ -455,6 +457,50 @@
         }
       }
     });
+
+    //글 좋아요
+    function like_article() {
+      var article_id = $('#a_id').val(); // hidden input에서 article ID 값을 가져옵니다.
+
+      $.ajax({
+          type: 'POST',
+          url: '/main/like_post', // 좋아요 처리 컨트롤러의 경로
+          data: {post_id: article_id},
+          success: function(response) {
+              if (response.status === 'success') {             
+                  //TODO:좋아요 아이콘 빨간색으로 변경
+                  alert('좋아요 1포인트 적립되었습니다');
+              } else {
+                  alert('오류가 발생했습니다.');
+              }
+          },
+          error: function() {
+              alert('서버와의 통신 중 문제가 발생했습니다.');
+          }
+      });
+    }
+
+    //글 스크랩
+    function scrap_article() {
+      var article_id = $('#a_id').val(); // hidden input에서 article ID 값을 가져옵니다.
+
+      $.ajax({
+          type: 'POST',
+          url: '/main/scrap_post', // 스크랩 처리 컨트롤러의 경로
+          data: {post_id: article_id},
+          success: function(response) {
+              if (response.status === 'success') {
+                  alert('글 스크랩 1포인트 지급되었습니다.');
+                  //??
+              } else {
+                  alert('오류가 발생했습니다.');
+              }
+          },
+          error: function() {
+              alert('서버와의 통신 중 문제가 발생했습니다.');
+          }
+      });
+    }
   </script>
   <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>

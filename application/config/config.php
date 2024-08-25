@@ -515,13 +515,13 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 //업로드 이미지경로
-$config['article_upload_path'] = 'images/article/';
-$config['banner_upload_path'] = 'images/banner/';
-$config['creator_upload_path'] = 'images/creator/';
-$config['goods_upload_path'] = 'images/goods/';
-$config['etc_upload_path'] = 'images/etc/';
-$config['find_item_upload_path'] = 'images/find_item/';
-$config['place_upload_path'] = 'images/place/';
+$config['article_upload_path'] = '/images/article/';
+$config['banner_upload_path'] = '/images/banner/';
+$config['creator_upload_path'] = '/images/creator/';
+$config['goods_upload_path'] = '/images/goods/';
+$config['etc_upload_path'] = '/images/etc/';
+$config['find_item_upload_path'] = '/images/find_item/';
+$config['place_upload_path'] = '/images/place/';
 
 //배너분류
 $config['banner_category']['MT'] = "메인페이지 상단";

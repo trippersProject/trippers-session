@@ -92,4 +92,34 @@ class Main_mdl extends CI_Model {
         return $query->row_array();
     }
 
+    public function like_post($data) {
+        $this->db->trans_start(); // 트랜잭션 시작
+
+        $this->db->insert('tp_like', $data); // 데이터 삽입
+
+        $this->db->trans_complete(); // 트랜잭션 종료
+
+        // 트랜잭션 상태 확인
+        if ($this->db->trans_status() === FALSE) {
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+    }
+
+    public function scrap_post($data) {
+        $this->db->trans_start(); // 트랜잭션 시작
+
+        $this->db->insert('tp_scrap', $data); // 데이터 삽입
+
+        $this->db->trans_complete(); // 트랜잭션 종료
+
+        // 트랜잭션 상태 확인
+        if ($this->db->trans_status() === FALSE) {
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+    }
+
 }
