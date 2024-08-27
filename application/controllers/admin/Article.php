@@ -157,7 +157,7 @@ class Article extends CI_Controller {
             $banner_image = null;
             if (!empty($_FILES['banner_image']['name'])) 
             { 
-                $config['upload_path'] = 'images/article/';
+                $config['upload_path']   = FCPATH . 'images/article/';
                 $config['allowed_types'] = 'jpg|jpeg|png|gif';
                 $config['file_name']     = $this->generate_unique_filename(); // 파일명 생성 함수 호출
                 $config['overwrite']     = TRUE; // 기존 파일 덮어쓰기
@@ -174,7 +174,7 @@ class Article extends CI_Controller {
                     $banner_image = $banner['file_name'];
 
                 } else {
-                    $result['msg'] = "이미지 업로드에 실패하였습니다";
+                    $result['msg'] = $this->upload->display_errors();
                     echo json_encode($result);
                     return;
                 }
@@ -188,7 +188,7 @@ class Article extends CI_Controller {
             $thumbnail_file = null;
             if (!empty($_FILES['thumbnail']['name'])) 
             { 
-                $config['upload_path'] = 'images/article/';
+                $config['upload_path']   = FCPATH . 'images/article/';
                 $config['allowed_types'] = 'jpg|jpeg|png|gif';
                 $config['file_name']     = $this->generate_unique_filename(); // 파일명 생성 함수 호출
                 $config['overwrite']     = TRUE; // 기존 파일 덮어쓰기
@@ -219,7 +219,7 @@ class Article extends CI_Controller {
             $event_banner_img = null;
             if (!empty($_FILES['event_banner_img']['name'])) 
             { 
-                $config['upload_path'] = 'images/article/';
+                $config['upload_path']   = FCPATH . 'images/article/';
                 $config['allowed_types'] = 'jpg|jpeg|png|gif';
                 $config['file_name']     = $this->generate_unique_filename(); // 파일명 생성 함수 호출
                 $config['overwrite']     = TRUE; // 기존 파일 덮어쓰기

@@ -37,10 +37,59 @@ class User_mdl extends CI_Model {
     }
 
     //  로그인 사용자 정보 조회
-    public function get_user_by_email($email) {
+    public function get_user_by_email($email)
+    {
         $this->db->where('email', $email);
+        $this->db->where('status', 'Y');
         $query = $this->db->get('tp_users');
-        return $query->row();
+        return $query->row_array();
+    }
+
+    //좋아요 지정 게시글 조회
+    public function get_user_like_article($id)
+    {
+        $this->db->select('ta.*, tc.name as category');
+
+        $this->db->from('tp_like tl');
+        $this->db->join('tp_articles ta', 'ta.id = tl.a_id');
+        $this->db->join('tp_category tc', 'tc.id = ta.category1');
+
+        $this->db->where('u_id', $id);
+
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
+    //스크랩 게시글 조회
+    public function get_user_scrap_article($id)
+    {
+        $this->db->select('ta.*, tc.name as category');
+
+        $this->db->from('tp_scrap ts');
+        $this->db->join('tp_articles ta', 'ta.id = ts.a_id');
+        $this->db->join('tp_category tc', 'tc.id = ta.category1');
+
+        $this->db->where('u_id', $id);
+
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
+    //포인트 사용횟수 조회
+    public function get_user_use_point($id)
+    {
+        $this->db->select('count(1) as cnt');
+
+        $this->db->from('tp_point_use_log');
+
+        $this->db->where('u_id', $id);
+        $this->db->where('point_gubun', 'U');
+
+        $query = $this->db->get();
+
+        return $query->row_array();
     }
 
 }
