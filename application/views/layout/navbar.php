@@ -172,18 +172,23 @@
     left: 0;
   }
 
-  /* 중앙의 화살표 스타일 */
-  .arrow-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 30vh; /* 화면 높이에 맞추기 */
+  #menuTripperLogo {
+    margin-right: auto; /* Push the logo to the left */
   }
 
-  .arrow-container img {
-    max-width: 100%; /* 이미지 크기 조정 */
-    height: auto; /* 비율 유지 */
-    cursor: pointer;
+  #upperArrow {
+    margin: 0 auto;
+  }
+
+  .icons-container {
+    display: flex;
+    gap: 10px;
+  }
+
+  #searchIcon, #userIcon {
+    width: 22px;
+    height: 22px;
+    margin: 0;
   }
 
   /* 내비게이션 바의 스타일 */
@@ -208,6 +213,15 @@
       margin-left: 0; /* 작은 화면에서는 간격 제거 */
       margin-bottom: 10px; /* 메뉴 아이템 간격 조정 */
     }
+  }
+
+  .menu-group {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 수직 중앙 정렬 */
+    margin-top: 0; /* 초기 마진 제거 */
+    margin-bottom: 0; /* 초기 마진 제거 */
   }
 
   .menu-group ul {
@@ -242,6 +256,13 @@
     border: none;
     margin: 0 auto; /* 중앙 정렬 */
     opacity: 1; /* 완전히 흰색으로 설정 */
+  }
+
+  .menu-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* 공간을 균등하게 분배 */
+    height: 100vh;
   }
 </style>
 
@@ -278,7 +299,7 @@
 <!-- 메뉴 오버레이 -->
 <div id="menu-overlay" class="menu-overlay">
   <div class="menu-box">
-    <div class="menu-group mt-5">
+    <div class="menu-group">
       <ul class="site-menu">
         <li><a href="/main" class="text-light text-uppercase">home</a></li>
         <li><a href="/main/archiveTripper" class="text-light text-uppercase">archive</a></li>
@@ -295,9 +316,22 @@
         <li><a href="" class="text-light text-uppercase">youtube</a></li>
       </ul>
     </div>
+  </div>
 
-    <div class="arrow-container">
-      <img src="/assets/img/upperArrow.svg" alt="Upper Arrow" id="close-menu-overlay">
+  <div class="container d-flex align-items-center justify-content-between" style="height: 30vh;">
+    <a class="me-auto" href="/main">
+      <img src="/assets/img/menuTripperLogo.svg" alt="Logo" style="width: 88px; height: 28px;">
+    </a>
+    <div class="d-flex align-items-center flex-grow-1 justify-content-center pe-5" style="cursor: pointer;">
+      <img src="/assets/img/upperArrow.svg" alt="Upper Arrow" id="upperArrow">
+    </div>
+    <div class="d-flex align-items-center">
+      <a class="me-auto" href="#">
+        <img src="/assets/img/search.svg" alt="Search" id="searchIcon" class="me-2">
+      </a>
+      <a class="me-auto" href="/login">
+        <img src="/assets/img/user.svg" alt="User" id="userIcon">
+      </a>
     </div>
   </div>
 </div>
@@ -472,6 +506,11 @@
     if (event.target === this) {
       this.style.display = 'none'; // 오버레이 숨김
     }
+  });
+
+  // SVG 클릭 시 오버레이 숨기기
+  document.getElementById('upperArrow').addEventListener('click', function() {
+    document.getElementById('menu-overlay').style.display = 'none'; // 오버레이 숨김
   });
 
   // SVG 클릭 시 오버레이 숨기기
