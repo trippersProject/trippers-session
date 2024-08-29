@@ -40,7 +40,7 @@
   /* 중앙의 검색창 스타일 */
   .search-box {
     width: 80%;
-    height: 100vh;
+    height: 100%;
     max-width: 500px;
   }
 
@@ -487,8 +487,21 @@
       <div class="swiper-pagination views-pagination"></div>
     </div>
 
-    <div class="arrow-container">
-      <img src="/assets/img/upperArrow.svg" alt="Upper Arrow" id="close-overlay">
+    <div class="container d-flex align-items-center justify-content-between" style="height: 30vh;">
+      <a class="me-auto" href="/main">
+        <img src="/assets/img/menuTripperLogo.svg" alt="Logo" style="width: 88px; height: 28px;">
+      </a>
+      <div class="d-flex align-items-center flex-grow-1 justify-content-center pe-5" style="cursor: pointer;">
+        <img src="/assets/img/upperArrow.svg" alt="Upper Arrow" id="upperArrow">
+      </div>
+      <div class="d-flex align-items-center">
+        <a class="me-auto" href="#">
+          <img src="/assets/img/search.svg" alt="Search" id="searchIcon" class="me-2">
+        </a>
+        <a class="me-auto" href="/login">
+          <img src="/assets/img/user.svg" alt="User" id="userIcon">
+        </a>
+      </div>
     </div>
   </div>
 </div>
@@ -496,50 +509,44 @@
 <script src="/assets/js/swiper.js"></script>
 <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 <script>
-  // menu 클릭 이벤트
+  // 메뉴 버튼 클릭 이벤트
   document.querySelector('.pc-mo-menu').addEventListener('click', function() {
-    document.getElementById('menu-overlay').style.display = 'flex'; // 오버레이 표시
+    document.getElementById('menu-overlay').style.display = 'flex'; // 메뉴 오버레이 표시
   });
 
-  // 오버레이 클릭 시 숨기기
+  // 메뉴 오버레이에서 바깥 영역 클릭 시 숨기기
   document.getElementById('menu-overlay').addEventListener('click', function(event) {
     if (event.target === this) {
-      this.style.display = 'none'; // 오버레이 숨김
+      this.style.display = 'none'; // 메뉴 오버레이 숨김
     }
   });
 
-  // SVG 클릭 시 오버레이 숨기기
+  // 메뉴 오버레이 내부 화살표 클릭 시 오버레이 숨기기
   document.getElementById('upperArrow').addEventListener('click', function() {
-    document.getElementById('menu-overlay').style.display = 'none'; // 오버레이 숨김
+    document.getElementById('menu-overlay').style.display = 'none'; // 메뉴 오버레이 숨김
   });
 
-  // SVG 클릭 시 오버레이 숨기기
-  document.getElementById('close-menu-overlay').addEventListener('click', function() {
-    document.getElementById('menu-overlay').style.display = 'none'; // 오버레이 숨김
-  });
-
-
-  // PC - 검색 아이콘 클릭 이벤트
+  // 검색 버튼 클릭 이벤트 (PC)
   document.querySelector('.pc-search').addEventListener('click', function() {
-    document.getElementById('search-overlay').style.display = 'flex'; // 오버레이 표시
+    document.getElementById('search-overlay').style.display = 'flex'; // 검색 오버레이 표시
   });
 
-  // 모바일 - 검색 아이콘 클릭 이벤트
+  // 검색 버튼 클릭 이벤트 (모바일)
   document.querySelector('.mo-search').addEventListener('click', function() {
-    document.getElementById('search-overlay').style.display = 'flex'; // 오버레이 표시
+    document.getElementById('search-overlay').style.display = 'flex'; // 검색 오버레이 표시
   });
 
-  // 오버레이 클릭 시 숨기기
+  // 검색 오버레이에서 바깥 영역 클릭 시 숨기기
   document.getElementById('search-overlay').addEventListener('click', function(event) {
     if (event.target === this) {
-      this.style.display = 'none'; // 오버레이 숨김
+      this.style.display = 'none'; // 검색 오버레이 숨김
     }
   });
 
-  // SVG 클릭 시 오버레이 숨기기
-  document.getElementById('close-overlay').addEventListener('click', function() {
-    document.getElementById('search-overlay').style.display = 'none'; // 오버레이 숨김
-  });
+  // 검색 오버레이 내부 화살표 클릭 시 오버레이 숨기기
+  // document.getElementById('close-overlay').addEventListener('click', function() {
+  //   document.getElementById('search-overlay').style.display = 'none'; // 검색 오버레이 숨김
+  // });
 
   let recentSwiper = new Swiper('.recent-swiper', {
     slidesPerView: 1,
