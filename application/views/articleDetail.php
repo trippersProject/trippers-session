@@ -14,6 +14,14 @@
   <link rel="stylesheet" href="/assets/css/swiper.css" />
 
   <style>
+    .article-truncate {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3; /* 최대 줄 수 */
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     .mt-8 {
       margin-top: 8rem !important;
     }
@@ -335,7 +343,7 @@
                 $tags = explode("#", $info['tag']);
                 for($i = 1; $i < count($tags); $i++): 
               ?>
-                <h6><span class="badge bg-secondary"><?= $tags[$i]; ?></span></h6>
+                <h6><span class="badge"><?= $tags[$i]; ?></span></h6>
               <?php endfor; ?>
             </div>
           </div>
@@ -402,7 +410,7 @@
               <div class="card-body">
                 <h6 class="card-title"><?= $list['name']; ?></h6>
                 <h4 class="card-title"><?= $list['title']; ?></h4>
-                <p class="card-text"><?= strip_tags($list['content']); ?></p>
+                <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
                 <div class="badge-container">
                   <?php 
                     $tags = explode("#", $list['tag']);
