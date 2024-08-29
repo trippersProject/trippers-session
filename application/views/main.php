@@ -1,5 +1,12 @@
 <?php include_once("layout/header.php");?>
 <style>
+  .article-truncate {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* 최대 줄 수 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   .custom-btn {
     background-color: #000; /* Black background */
@@ -235,7 +242,7 @@
             <div class="card-body">
               <h6 class="card-title"><?= $list['name']; ?></h6>
               <h4 class="card-title"><?= $list['title']; ?></h4>
-              <p class="card-text"><?= strip_tags($list['content']); ?></p>
+              <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
               <div class="badge-container">
                 <?php 
                   $tags = explode("#", $list['tag']);
@@ -287,7 +294,7 @@
             <div class="card-body">
               <h6 class="card-title"><?= $list['name']; ?></h6>
               <h4 class="card-title"><?= $list['title']; ?></h4>
-              <p class="card-text"><?= strip_tags($list['content']); ?></p>
+              <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
               <div class="badge-container">
                 <?php 
                   $tags = explode("#", $list['tag']);
