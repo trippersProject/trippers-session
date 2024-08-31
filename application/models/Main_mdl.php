@@ -3,13 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Main_mdl extends CI_Model {
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->load->database();
     }
 
     //배너목록 조회
-    public function get_banners($category) {
+    public function get_banners($category)
+    {
         $this->db->select('*');
         $this->db->from('tp_banner');
         $this->db->where('category', $category);
@@ -22,7 +24,8 @@ class Main_mdl extends CI_Model {
     }
 
     //글 목록 조회
-    public function get_article_list($category='', $c_id='', $p_id='') {
+    public function get_article_list($category='', $c_id='', $p_id='')
+    {
         $this->db->select('*');
         $this->db->from('tp_articles');
         $this->db->join('tp_category', 'tp_category.id = tp_articles.category1');
@@ -44,12 +47,16 @@ class Main_mdl extends CI_Model {
     }
 
     //FIND ITEM 리스트 조회
-    public function get_find_item_list($main='') {
+    public function get_find_item_list($main='')
+    {
         $this->db->select('*');
         $this->db->from('tp_find_item');
-        if($main != ''){
+        if($main != '')
+        {
             $this->db->where('main_use_yn', 'Y');
-        }else{
+        }
+        else
+        {
             $this->db->where('use_yn', 'Y');
         }
         $this->db->order_by('sort', 'ASC');
@@ -59,8 +66,23 @@ class Main_mdl extends CI_Model {
         return $query->result_array();
     }
 
+    //굿즈 리스트 조회
+    public function get_goods_list()
+    {
+        $this->db->select('*');
+        $this->db->from('tp_goods');
+        $this->db->where('use_yn', 'Y');
+
+        $this->db->order_by('sort', 'ASC');
+
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
     //글 정보 조회
-    public function get_article_info($id) {
+    public function get_article_info($id)
+    {
         $this->db->select('*');
         $this->db->from('tp_articles');
         $this->db->where('id', $id);
@@ -71,7 +93,8 @@ class Main_mdl extends CI_Model {
     }
 
     //크리에이터 정보 조회
-    public function get_creator_info($id) {
+    public function get_creator_info($id)
+    {
         $this->db->select('*');
         $this->db->from('tp_creator');
         $this->db->where('id', $id);
@@ -82,7 +105,8 @@ class Main_mdl extends CI_Model {
     }
 
     //매장 정보 조회
-    public function get_place_info($id) {
+    public function get_place_info($id)
+    {
         $this->db->select('*');
         $this->db->from('tp_place');
         $this->db->where('id', $id);
@@ -92,7 +116,8 @@ class Main_mdl extends CI_Model {
         return $query->row_array();
     }
 
-    public function like_post($data) {
+    public function like_post($data)
+    {
         $this->db->trans_start(); // 트랜잭션 시작
 
         $this->db->insert('tp_like', $data); // 데이터 삽입
@@ -100,14 +125,16 @@ class Main_mdl extends CI_Model {
         $this->db->trans_complete(); // 트랜잭션 종료
 
         // 트랜잭션 상태 확인
-        if ($this->db->trans_status() === FALSE) {
+        if ($this->db->trans_status() === FALSE)
+        {
             return FALSE;
         } else {
             return TRUE;
         }
     }
 
-    public function scrap_post($data) {
+    public function scrap_post($data)
+    {
         $this->db->trans_start(); // 트랜잭션 시작
 
         $this->db->insert('tp_scrap', $data); // 데이터 삽입
@@ -115,7 +142,8 @@ class Main_mdl extends CI_Model {
         $this->db->trans_complete(); // 트랜잭션 종료
 
         // 트랜잭션 상태 확인
-        if ($this->db->trans_status() === FALSE) {
+        if ($this->db->trans_status() === FALSE)
+        {
             return FALSE;
         } else {
             return TRUE;

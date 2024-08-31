@@ -315,10 +315,10 @@
       <hr class="custom-hr mt-5 mb-5">
 
       <ul class="sns-menu">
-        <li><a href="" class="text-light text-uppercase">shop</a></li>
-        <li><a href="" class="text-light text-uppercase">newsletter</a></li>
-        <li><a href="" class="text-light text-uppercase">instagram</a></li>
-        <li><a href="" class="text-light text-uppercase">youtube</a></li>
+        <li><a href="https://smartstore.naver.com/tripper_lounge" class="text-light text-uppercase">shop</a></li>
+        <li><a href="https://page.stibee.com/subscriptions/240273" class="text-light text-uppercase">newsletter</a></li>
+        <li><a href="https://www.instagram.com/trippers_me/" class="text-light text-uppercase">instagram</a></li>
+        <li><a href="https://www.youtube.com/channel/UCqKnJKhEXwjd0_oXRtFCD2g" class="text-light text-uppercase">youtube</a></li>
       </ul>
     </div>
   </div>

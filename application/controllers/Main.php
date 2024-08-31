@@ -41,6 +41,12 @@ class Main extends CI_Controller {
 		//글 상세 정보
 		$data['info'] = $this->Main_mdl->get_article_info($id);
 
+		//조회수 증가
+		if(!empty($data['info']))
+		{
+			update_article_hit($data['info']['id'], $data['info']['hit'] + 1);
+		}
+
 		//c_id(크리에이터 아이디)가 있으면
 		if($data['info']['c_id'] != '0'){
 			//글 크리에이터 정보 조회
@@ -68,11 +74,31 @@ class Main extends CI_Controller {
 	public function archiveTripper() {
 		$data = array();
 
+		//배너목록
+		$data['banner'] = $this->Main_mdl->get_banners('AC');
+
+		//글목록
+		$data['article'] = $this->Main_mdl->get_article_list();
+
+		//크리에이터 글목록
+		$data['article_creator'] = $this->Main_mdl->get_article_list('1');
+		
+		//우리동네 글목록
+		$data['article_dongnae'] = $this->Main_mdl->get_article_list('2');
+
+
 		$this->load->view('archiveTripper.php',$data);
 	}
 
+	//find_item, goods 페이지
 	public function findTripperGoods() {
 		$data = array();
+
+		//find_item 리스트 조회
+		$data['find_item'] = $this->Main_mdl->get_find_item_list();
+
+		//굿즈 리스트 조회
+		$data['goods'] = $this->Main_mdl->get_goods_list();
 
 		$this->load->view('findTripperGoods.php',$data);
 	}

@@ -102,6 +102,13 @@ $(document).ready(function () {
                     회원 관리
                 </a>
             </li>
+            <li>
+                <a href="/admin/member/point_log" class="nav-link text-white">
+                    <svg class="bi pe-none me-2" width="16" height="16">
+                        <use xlink:href="member/point_log" /></svg>
+                    포인트 내역 조회
+                </a>
+            </li>
         </ul>
         <hr>
         <div class="dropdown">

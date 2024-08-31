@@ -217,7 +217,7 @@
         <!-- Slides -->
         <?php foreach($mt_banners as $list): ?>
           <div class="swiper-slide">
-            <img class="w-100 d-block fixed-size" src="<?= get_banner_upload_path() . $list['filename_pc']; ?>" alt="Slide Image" />
+            <img class="w-100 d-block fixed-size" src="<?= get_banner_upload_path() . ($this->agent->is_mobile() ? $list['filename_mobile'] : $list['filename_pc']); ?>" alt="Slide Image" />
           </div>
         <?php endforeach; ?>
       </div>
@@ -268,7 +268,7 @@
         <!-- Slides -->
         <?php foreach($mb_banners as $list): ?>
         <div class="swiper-slide">
-          <img class="w-100 d-block fixed-size" src="<?= get_banner_upload_path() . $list['filename_pc']; ?>" alt="Slide Image" />
+          <img class="w-100 d-block fixed-size" src="<?= get_banner_upload_path() . ($this->agent->is_mobile() ? $list['filename_mobile'] : $list['filename_pc']); ?>" alt="Slide Image" />
         </div>
         <?php endforeach; ?>
       </div>

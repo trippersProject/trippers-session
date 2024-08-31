@@ -153,3 +153,16 @@ function change_user_point($u_id, $a_id, $gubun, $path) {
 
     return 1;
 }
+
+
+//글 조회수 업데이트
+function update_article_hit($id, $hit) {
+    $CI =& get_instance();
+
+    // 배너의 사용여부 업데이트 로직
+    $CI->db->where('id', $id);
+    $CI->db->update('tp_articles', array('hit' => $hit));
+
+    return true;
+
+}

@@ -14,6 +14,7 @@
                 <option value="">---선택---</option>
                 <option value="MT">메인페이지 상단</option>
                 <option value="MB">메인페이지 하단</option>
+                <option value="AC">ARCHIVE 페이지</option>
             </select>
 
             <hr>

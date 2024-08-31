@@ -526,6 +526,7 @@ $config['place_upload_path'] = '/images/place/';
 //배너분류
 $config['banner_category']['MT'] = "메인페이지 상단";
 $config['banner_category']['MB'] = "메인페이지 하단";
+$config['banner_category']['AC'] = "ARCHIVE 페이지";
 
 //회원등급
 $config['auth_level']['99'] = "매니저"; //슈퍼관리자

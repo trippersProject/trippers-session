@@ -14,6 +14,7 @@
                 <option value="">---선택---</option>
                 <option value="MT" <?= ($info['category'] == 'MT')? "selected" : ""; ?>>메인페이지 상단</option>
                 <option value="MB" <?= ($info['category'] == 'MB')? "selected" : ""; ?>>메인페이지 하단</option>
+                <option value="AC" <?= ($info['category'] == 'AC')? "selected" : ""; ?>>ARCHIVE 페이지</option>
             </select>
 
             <hr>

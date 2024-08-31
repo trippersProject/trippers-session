@@ -128,4 +128,25 @@ class Member extends CI_Controller {
         echo json_encode($result);
         exit;
     }
+
+    //포인트내역 조회
+    public function point_log()
+    {
+        $data = array();
+
+        $list = $this->member_mdl->list_point_log();
+
+        if(!$list)
+        {
+            $data['code'] = '9999';
+            $data['msg'] = '조회된 포인트 내역이 없습니다';
+            echo json_encode($data);
+            exit;
+        }
+
+        $data['list'] = $list;
+        
+        $this->load->view('admin/layout/header.php');
+        $this->load->view('admin/point_log.php', $data);
+    }
 }

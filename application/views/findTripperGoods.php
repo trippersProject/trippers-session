@@ -182,81 +182,27 @@
       </div>
     </div>
 
-    <div class="d-flex justify-content-center align-items-center mt-5" style="background-color: #F5F5F5;">
-      <div class="row w-100">
-        <div class="col-md-6">
-          <img src="/assets/img/findItem.png" alt="" class="rounded img-fluid w-100 fit-cover" style="min-height: 300px;">
-        </div>
-        <div class="col-md-6 d-md-flex align-items-md-center flex-start ps-5">
-          <div style="max-width: 900px;">
-            <h2 class="fw-bold">어텀제주 머모리퍼퓸</h2>
-            <p class="my-3 lh-lg">
-              제주에서의 소중한 추억들을 듬뿍 담은 향기로 만나보는 내 손 안에 작은 제주
-              <br />
-              제주를 닮은 향기로 나만의 공간을 채워보세요
-            </p>
-            <a href="" class="btn custom-btn btn-lg me-2">자세히보기</a>
+    <!-- FIND ITEM 리스트 -->
+    <?php foreach($find_item as $item): ?>
+      <div class="d-flex justify-content-center align-items-center mt-5" style="background-color: #F5F5F5;">
+        <div class="row w-100">
+          <div class="col-md-6">
+            <img src="<?= get_find_item_upload_path() .$item['thumbnail']?>" alt="" class="rounded img-fluid w-100 fit-cover" style="min-height: 300px;">
+          </div>
+          <div class="col-md-6 d-md-flex align-items-md-center flex-start ps-5">
+            <div style="max-width: 900px;">
+              <h2 class="fw-bold"><?= $item['name']?></h2>
+              <p class="my-3 lh-lg">
+                <?= $item['content_sub']?>
+              </p>
+              <a href="" class="btn custom-btn btn-lg me-2">자세히보기</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    <?php endforeach; ?>
+    <!-- //FIND ITEM 리스트 -->
     
-    <div class="d-flex justify-content-center align-items-center mt-5" style="background-color: #F5F5F5;">
-      <div class="row w-100">
-        <div class="col-md-6">
-          <img src="/assets/img/findItem.png" alt="" class="rounded img-fluid w-100 fit-cover" style="min-height: 300px;">
-        </div>
-        <div class="col-md-6 d-md-flex align-items-md-center flex-start ps-5">
-          <div style="max-width: 900px;">
-            <h2 class="fw-bold">어텀제주 머모리퍼퓸</h2>
-            <p class="my-3 lh-lg">
-              제주에서의 소중한 추억들을 듬뿍 담은 향기로 만나보는 내 손 안에 작은 제주
-              <br />
-              제주를 닮은 향기로 나만의 공간을 채워보세요
-            </p>
-            <a href="" class="btn custom-btn btn-lg me-2">자세히보기</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="d-flex justify-content-center align-items-center mt-5" style="background-color: #F5F5F5;">
-      <div class="row w-100">
-        <div class="col-md-6">
-          <img src="/assets/img/findItem.png" alt="" class="rounded img-fluid w-100 fit-cover" style="min-height: 300px;">
-        </div>
-        <div class="col-md-6 d-md-flex align-items-md-center flex-start ps-5">
-          <div style="max-width: 900px;">
-            <h2 class="fw-bold">어텀제주 머모리퍼퓸</h2>
-            <p class="my-3 lh-lg">
-              제주에서의 소중한 추억들을 듬뿍 담은 향기로 만나보는 내 손 안에 작은 제주
-              <br />
-              제주를 닮은 향기로 나만의 공간을 채워보세요
-            </p>
-            <a href="" class="btn custom-btn btn-lg me-2">자세히보기</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="d-flex justify-content-center align-items-center mt-5" style="background-color: #F5F5F5;">
-      <div class="row w-100">
-        <div class="col-md-6">
-          <img src="/assets/img/findItem.png" alt="" class="rounded img-fluid w-100 fit-cover" style="min-height: 300px;">
-        </div>
-        <div class="col-md-6 d-md-flex align-items-md-center flex-start ps-5">
-          <div style="max-width: 900px;">
-            <h2 class="fw-bold">어텀제주 머모리퍼퓸</h2>
-            <p class="my-3 lh-lg">
-              제주에서의 소중한 추억들을 듬뿍 담은 향기로 만나보는 내 손 안에 작은 제주
-              <br />
-              제주를 닮은 향기로 나만의 공간을 채워보세요
-            </p>
-            <a href="" class="btn custom-btn btn-lg me-2">자세히보기</a>
-          </div>
-        </div>
-      </div>
-    </div>
     
     <div class="d-flex justify-content-center align-items-center mt-6">
       <button type="button" class="custom-btn2">
@@ -274,85 +220,22 @@
 
     <div class="container mt-6 w-95">
       <div class="row mb-5 g-4"> <!-- 행 사이 간격과 카드 사이 간격을 조정 -->
+        <!-- goods 리스트 -->
+        <?php foreach($goods as $item): ?>
         <div class="col-md-4">
-          <div class="card">
-            <img src="/assets/img/tripperGoods.png" class="card-img-top" alt="Card Image">
+          <div class="card" onclick="location.href='<?=$item['url']?>'">
+            <img src="<?= get_goods_upload_path() .$item['thumbnail']?>" class="card-img-top" alt="Card Image">
             <div class="card-body mt-3">
-              <h6 class="card-title"><span class="text-uppercase">find your namhae</span> | 다랭이마을 티셔츠</h6>
+              <h6 class="card-title"><?= $item['goods_name'] ?></h6>
               <p class="card-text">
-                <span class="me-2">30,000원</span> <!-- 판매 가격 -->
-                <span class="text-muted text-decoration-line-through">50,000원</span> <!-- 원래 가격 -->
+                <span class="me-2"><?= $item['price'] ?>원</span> <!-- 판매 가격 -->
+                <span class="text-muted text-decoration-line-through"><?= $item['normal'] ?> 원</span> <!-- 원래 가격 -->
               </p>              
             </div>
           </div>
         </div>
-    
-        <div class="col-md-4">
-          <div class="card">
-            <img src="/assets/img/tripperGoods.png" class="card-img-top" alt="Card Image">
-            <div class="card-body mt-3">
-              <h6 class="card-title"><span class="text-uppercase">find your namhae</span> | 다랭이마을 티셔츠</h6>
-              <p class="card-text">
-                <span class="me-2">30,000원</span> <!-- 판매 가격 -->
-                <span class="text-muted text-decoration-line-through">50,000원</span> <!-- 원래 가격 -->
-              </p>              
-            </div>
-          </div>
-        </div>
-    
-        <div class="col-md-4">
-          <div class="card">
-            <img src="/assets/img/tripperGoods.png" class="card-img-top" alt="Card Image">
-            <div class="card-body mt-3">
-              <h6 class="card-title"><span class="text-uppercase">find your namhae</span> | 다랭이마을 티셔츠</h6>
-              <p class="card-text">
-                <span class="me-2">30,000원</span> <!-- 판매 가격 -->
-                <span class="text-muted text-decoration-line-through">50,000원</span> <!-- 원래 가격 -->
-              </p>              
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="row g-4"> <!-- 두 번째 행 카드 사이 간격 조정 -->
-        <div class="col-md-4">
-          <div class="card">
-            <img src="/assets/img/tripperGoods.png" class="card-img-top" alt="Card Image">
-            <div class="card-body mt-3">
-              <h6 class="card-title"><span class="text-uppercase">find your namhae</span> | 다랭이마을 티셔츠</h6>
-              <p class="card-text">
-                <span class="me-2">30,000원</span> <!-- 판매 가격 -->
-                <span class="text-muted text-decoration-line-through">50,000원</span> <!-- 원래 가격 -->
-              </p>              
-            </div>
-          </div>
-        </div>
-    
-        <div class="col-md-4">
-          <div class="card">
-            <img src="/assets/img/tripperGoods.png" class="card-img-top" alt="Card Image">
-            <div class="card-body mt-3">
-              <h6 class="card-title"><span class="text-uppercase">find your namhae</span> | 다랭이마을 티셔츠</h6>
-              <p class="card-text">
-                <span class="me-2">30,000원</span> <!-- 판매 가격 -->
-                <span class="text-muted text-decoration-line-through">50,000원</span> <!-- 원래 가격 -->
-              </p>              
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card">
-            <img src="/assets/img/tripperGoods.png" class="card-img-top" alt="Card Image">
-            <div class="card-body mt-3">
-              <h6 class="card-title"><span class="text-uppercase">find your namhae</span> | 다랭이마을 티셔츠</h6>
-              <p class="card-text">
-                <span class="me-2">30,000원</span> <!-- 판매 가격 -->
-                <span class="text-muted text-decoration-line-through">50,000원</span> <!-- 원래 가격 -->
-              </p>              
-            </div>
-          </div>
-        </div>
+        <?php endforeach; ?>
+        <!-- //goods 리스트 -->
       </div>
     </div>
 

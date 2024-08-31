@@ -1,3 +1,4 @@
+<?php $category=''; ?>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="ko">
 
@@ -115,6 +116,14 @@
       margin: 0 auto; /* 이미지 중앙 정렬 */
     }
 
+    .article-truncate {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3; /* 최대 줄 수 */
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     @media (max-width: 768px) {
       .card {
         width: 14rem;
@@ -133,119 +142,111 @@
   <div class="container-fluid">
     <?php include_once("layout/navbar.php")?>
 
-    <div class="mt-2">
-      <div style="height: 600px; background-image: url(https://cdn.bootstrapstudio.io/placeholders/1400x800.png); background-position: center; background-size: cover;">
-        <div class="container h-100">
-          <div class="row h-100 align-items-center justify-content-center">
-            <div class="col-md-6 text-center">
-              <h1 class="fw-bold">‘아마도’라는 말로 일단 시작했어요</h1>
-            </div>
+    <!-- Slider main container -->
+    <div class="mt-2 swiper swiper-archive">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <?php foreach($banner as $list): ?>
+          <div class="swiper-slide">
+            <img class="w-100 d-block fixed-size" src="<?= get_banner_upload_path() . ($this->agent->is_mobile() ? $list['filename_mobile'] : $list['filename_pc']); ?>" alt="Slide Image" />
           </div>
-        </div>
+        <?php endforeach; ?>
       </div>
+
+      <!-- If we need pagination -->
+      <div class="swiper-pagination swiper-archive-pagination"></div>
     </div>
     
     <div class="container text-center mt-6 fw-bold fs-4">
-      <button class="text-uppercase">all</button>
-      <button class="text-uppercase">dongnae</button>
-      <button class="text-uppercase">creator</button>
+      <button class="text-uppercase filter-btn" onclick="changeCategory('all')">all</button>
+      <button class="text-uppercase filter-btn" onclick="changeCategory('dongnae')">dongnae</button>
+      <button class="text-uppercase filter-btn" onclick="changeCategory('creator')">creator</button>
     </div>
 
-    <div class="container mt-6 w-95">
+    <!-- 글 리스트(ALL)-->
+    <div class="container mt-6 w-95" id="article-list-all">
       <div class="row mb-5 g-4"> <!-- 행 사이 간격과 카드 사이 간격을 조정 -->
-        <div class="col-md-3">
-          <div class="card">
-            <img src="/assets/img/test1.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <div class="badge-container">
-                <h6><span class="badge bg-secondary">경남김해</span></h6>
-                <h6><span class="badge bg-secondary">칼국수</span></h6>
+        <!-- 카테고리 값이 있으면 해당카테고리와 일치하는글만 노출 -->
+          <?php foreach($article as $list): ?>
+          <div class="col-md-3">
+            <div class="card">
+              <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
+              <div class="card-body">
+                <h6 class="card-title"><?= $list['name']; ?></h6>
+                <h4 class="card-title"><?= $list['title']; ?></h4>
+                <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
+                <div class="badge-container">
+                <?php 
+                  $tags = explode("#", $list['tag']);
+                  for($i = 1; $i < count($tags); $i++): 
+                ?>
+                  <h6><span class="badge"><?= $tags[$i]; ?></span></h6>
+                <?php endfor; ?>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-    
-        <div class="col-md-3">
-          <div class="card">
-            <img src="/assets/img/test2.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <div class="badge-container">
-                <h6><span class="badge bg-secondary">경남김해</span></h6>
-                <h6><span class="badge bg-secondary">칼국수</span></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-    
-        <div class="col-md-3">
-          <div class="card">
-            <img src="/assets/img/test3.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <div class="badge-container">
-                <h6><span class="badge bg-secondary">경남김해</span></h6>
-                <h6><span class="badge bg-secondary">칼국수</span></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-    
-        <div class="col-md-3">
-          <div class="card">
-            <img src="/assets/img/test4.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <div class="badge-container">
-                <h6><span class="badge bg-secondary">경남김해</span></h6>
-                <h6><span class="badge bg-secondary">칼국수</span></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="row g-4"> <!-- 두 번째 행 카드 사이 간격 조정 -->
-        <div class="col-md-3">
-          <div class="card">
-            <img src="/assets/img/test1.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <div class="badge-container">
-                <h6><span class="badge bg-secondary">경남김해</span></h6>
-                <h6><span class="badge bg-secondary">칼국수</span></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-    
-        <div class="col-md-3">
-          <div class="card">
-            <img src="/assets/img/test2.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h5 class="card-title">DONGNAE</h5>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <div class="badge-container">
-                <h6><span class="badge bg-secondary">경남김해</span></h6>
-                <h6><span class="badge bg-secondary">칼국수</span></h6>
-              </div>
-            </div>
-          </div>
-        </div>
+          <?php endforeach; ?>
       </div>
     </div>
+    <!--// 글 리스트(ALL)-->
+
+    <!-- 글 리스트(크리에이터)-->
+    <div class="container mt-6 w-95" id="article-list-creator" style="display:none;">
+      <div class="row mb-5 g-4"> <!-- 행 사이 간격과 카드 사이 간격을 조정 -->
+        <!-- 카테고리 값이 있으면 해당카테고리와 일치하는글만 노출 -->
+          <?php foreach($article_creator as $list): ?>
+          <div class="col-md-3">
+            <div class="card">
+              <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
+              <div class="card-body">
+                <h6 class="card-title"><?= $list['name']; ?></h6>
+                <h4 class="card-title"><?= $list['title']; ?></h4>
+                <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
+                <div class="badge-container">
+                <?php 
+                  $tags = explode("#", $list['tag']);
+                  for($i = 1; $i < count($tags); $i++): 
+                ?>
+                  <h6><span class="badge"><?= $tags[$i]; ?></span></h6>
+                <?php endfor; ?>
+                </div>
+              </div>
+            </div>
+          </div>
+          <?php endforeach; ?>
+      </div>
+    </div>
+    <!--// 글 리스트(크리에이터)-->
+
+    <!-- 글 리스트(동네)-->
+    <div class="container mt-6 w-95" id="article-list-dongnae" style="display:none;">
+      <div class="row mb-5 g-4"> <!-- 행 사이 간격과 카드 사이 간격을 조정 -->
+        <!-- 카테고리 값이 있으면 해당카테고리와 일치하는글만 노출 -->
+          <?php foreach($article_dongnae as $list): ?>
+          <div class="col-md-3">
+            <div class="card">
+              <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
+              <div class="card-body">
+                <h6 class="card-title"><?= $list['name']; ?></h6>
+                <h4 class="card-title"><?= $list['title']; ?></h4>
+                <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
+                <div class="badge-container">
+                <?php 
+                  $tags = explode("#", $list['tag']);
+                  for($i = 1; $i < count($tags); $i++): 
+                ?>
+                  <h6><span class="badge"><?= $tags[$i]; ?></span></h6>
+                <?php endfor; ?>
+                </div>
+              </div>
+            </div>
+          </div>
+          <?php endforeach; ?>
+      </div>
+    </div>
+    <!--// 글 리스트(동네)-->
 
     <div class="container mt-8">
       <img src="/assets/img/tripletter.png" alt="Trip Letter Image" class="img-fluid d-block mx-auto">
@@ -255,6 +256,39 @@
   <?php include_once("layout/footer_company_info.php")?>
 
   <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/swiper.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    //글 상세 페이지 이동
+    function articleDetail(id) {
+      location.href = "/main/articleDetail?id="+id;
+    }
+
+    let swiperArchive = new Swiper('.swiper-archive', {
+      direction: 'horizontal',
+      loop: true,
+      pagination: {
+        el: '.swiper-archive-pagination',
+      },
+    });
+
+    function changeCategory(category){
+        if(category == 'creator'){
+          $("#article-list-all").hide();
+          $("#article-list-creator").show();
+          $("#article-list-dongnae").hide();
+        }else if(category == 'dongnae'){
+          $("#article-list-all").hide();
+          $("#article-list-creator").hide();
+          $("#article-list-dongnae").show();
+        }else{
+          $("#article-list-all").show();
+          $("#article-list-creator").hide();
+          $("#article-list-dongnae").hide();
+        }
+    }
+
+  </script>
 </body>
 
 </html>
