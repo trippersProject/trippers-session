@@ -461,7 +461,7 @@
       });
 
       let creatorSwiper = new Swiper('.creator-swiper', {
-        slidesPerView: 2,
+        slidesPerView: 1,
         spaceBetween: 20,
         loop: true,
         pagination: {
@@ -474,7 +474,7 @@
             spaceBetween: 10,
           },
           576: {
-            slidesPerView: 2,
+            slidesPerView: 1,
             spaceBetween: 5,
           }
         }
@@ -489,7 +489,7 @@
       });
 
       let dongnaeSwiper = new Swiper('.dongnae-swiper', {
-        slidesPerView: 2,
+        slidesPerView: 1,
         spaceBetween: 20,
         loop: true,
         pagination: {
@@ -502,7 +502,7 @@
             spaceBetween: 10,
           },
           576: {
-            slidesPerView: 2,
+            slidesPerView: 1,
             spaceBetween: 5,
           }
         }
