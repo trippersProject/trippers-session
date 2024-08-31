@@ -167,4 +167,23 @@ class User_mdl extends CI_Model {
         }
     }
 
+    //회원포인트 차감
+    public function down_user_point($id, $point)
+    {
+        $this->db->trans_begin();
+
+        $this->db->where('id', $id);
+        $this->db->update('tp_users', array('point'=>$point));
+
+        if ($this->db->trans_status() === FALSE) {
+            // 오류 발생 시 롤백
+            $this->db->trans_rollback();
+            return false;
+        } else {
+            // 성공 시 커밋
+            $this->db->trans_commit();
+            return true;
+        }
+    }
+
 }

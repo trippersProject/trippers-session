@@ -7,6 +7,7 @@
             <tr>
                 <th scope="col">no.</th>
                 <th scope="col">제목</th>
+                <th scope="col">조회수</th>
                 <th scope="col">정렬순서</th>
                 <th scope="col">노출여부</th>
                 <th scope="col">카테고리</th>
@@ -18,17 +19,18 @@
             <?php if (!empty($list)): ?>
             <?php foreach ($list as $key => $value): ?>
                 <tr>
-                    <td><?php echo $key+1; ?></td>
-                    <td><?php echo $value['ta_title']; ?></td>
+                    <td><?= $key+1; ?></td>
+                    <td><?= $value['ta_title']; ?></td>
+                    <td><?= $value['ta_hit']; ?></td>
                     <td><input type="number" id="sort_<?= $value['ta_id']; ?>" class="form-control sort-input" style="width:60px" value="<?= $value['ta_sort']; ?>" data-id="<?= $value['ta_id']; ?>"></td>
                     <td>
                         <div class="form-check form-switch">
                             <input class="form-check-input use-checkbox" type="checkbox" id="use_yn_<?= $value['ta_id']; ?>" data-id="<?= $value['ta_id']; ?>" <?=($value['ta_use_yn'] == 'Y')? "checked" : ""?>>
                         </div>
                     </td>
-                    <td><?php echo $value['tc_name']?></td>
-                    <td><?php echo $value['ta_regdate']; ?></td>
-                    <td><button onclick="location.href='article/modify?id=<?php echo $value['ta_id']?>'" class="btn btn-primary btn-sm">수정</button></td>
+                    <td><?= $value['tc_name']?></td>
+                    <td><?= $value['ta_regdate']; ?></td>
+                    <td><button onclick="location.href='article/modify?id=<?= $value['ta_id']?>'" class="btn btn-primary btn-sm">수정</button></td>
                 </tr>
             <?php endforeach; ?>
             <?php else: ?>

@@ -26,20 +26,20 @@ class Main_mdl extends CI_Model {
     //글 목록 조회
     public function get_article_list($category='', $c_id='', $p_id='')
     {
-        $this->db->select('*');
-        $this->db->from('tp_articles');
-        $this->db->join('tp_category', 'tp_category.id = tp_articles.category1');
-        $this->db->where('use_yn', 'Y');
+        $this->db->select('a.*, c.id as c_id, c.name as c_name');
+        $this->db->from('tp_articles a');
+        $this->db->join('tp_category c', 'c.id = a.category1');
+        $this->db->where('a.use_yn', 'Y');
         if($c_id)
         {
-            $this->db->where('c_id', $c_id);
+            $this->db->where('a.c_id', $c_id);
         }
         else if($p_id)
         {
-            $this->db->where('p_id', $p_id);
+            $this->db->where('a.p_id', $p_id);
         }
-        if($category) $this->db->where('tp_articles.category1', $category);
-        $this->db->order_by('sort', 'ASC');
+        if($category) $this->db->where('a.category1', $category);
+        $this->db->order_by('a.sort', 'ASC');
 
         $query = $this->db->get();
 
@@ -160,6 +160,24 @@ class Main_mdl extends CI_Model {
         $query = $this->db->get();
 
         return $query->row_array();
+    }
+
+    //finditem응모 로그기록
+    public function apply_find_item($params)
+    {
+        $this->db->trans_start(); // 트랜잭션 시작
+
+        $this->db->insert('tp_point_use_log', $params); // 데이터 삽입
+
+        $this->db->trans_complete(); // 트랜잭션 종료
+
+        // 트랜잭션 상태 확인
+        if ($this->db->trans_status() === FALSE)
+        {
+            return FALSE;
+        } else {
+            return TRUE;
+        }
     }
 
 }

@@ -176,6 +176,7 @@ class Main extends CI_Controller {
 		exit;
     }
 
+	//find_item 정보 조회
 	public function get_find_item_info()
 	{
 		$id = $this->input->post('id');
@@ -194,6 +195,82 @@ class Main extends CI_Controller {
 		$data['code'] = "0000";
 		$data['mag'] = "FIND ITEM 정보를 조회하였습니다.";
 		$data['item'] = $item;
+		echo json_encode($data);
+		exit;
+	}
+
+	//find_item 응모
+	public function apply_find_item()
+	{
+		check_login(); // 로그인 여부 체크
+
+        $id = $this->input->post('id');
+		$data = array();     
+
+        if($id) 
+		{
+			$this->load->model('user_mdl');
+			//사용자 포인트 조회
+			$user = $this->user_mdl->get_user_by_email($this->session->userdata('email'));
+
+			if(!$user){
+				$data['code'] = '9999';
+				$data['msg'] = '회원정보 조회에 실패하였습니다.';
+				echo json_encode($data);
+				exit;
+			}
+
+			if($user['point'] <= 0)
+			{
+				$data['code'] = '9999';
+				$data['msg'] = '응모가능한 포인트가 부족합니다.';
+				echo json_encode($data);
+				exit;
+			}
+
+			//사용자 포인트 차감
+			$point = $user['point'] -1;
+
+			$res = $this->user_mdl->down_user_point($user['id'], $point);
+			if(!$res)
+			{
+				$data['code'] = '0500';
+				$data['msg'] = 'DB ERORR';
+				echo json_encode($data);
+				exit;
+			}
+
+            //포인트 사용로그 기록
+			$params=[
+				'u_id' => $this->session->userdata('user_id'),
+				'f_id' => $id,
+				'point_path' => "FIND ITEM 응모",
+				'point_gubun' => 'U',
+				'point_acount' => 1,
+				'record_date' => date("Y-m-d H:i:s"), 
+			];
+
+			$result = $this->Main_mdl->apply_find_item($params);
+			
+			if(!$result)
+			{
+				$data['code'] = '0500';
+           		$data['msg'] = 'DB ERORR';
+				echo json_encode($data);
+				exit;
+			}
+
+        } 
+		else 
+		{
+            $data['code'] = '9999';
+            $data['msg'] = '응모에 실패하였습니다 다시 시도해주세요.';
+			echo json_encode($data);
+			exit;
+        }
+
+		$data['code'] = '0000';
+        $data['msg'] = 'FIND ITEM 응모되었습니다.';
 		echo json_encode($data);
 		exit;
 	}

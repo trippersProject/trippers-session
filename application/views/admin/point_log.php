@@ -6,7 +6,7 @@
             <tr>
                 <th scope="col">no.</th>
                 <th scope="col">회원Email</th>
-                <th scope="col">Article</th>
+                <th scope="col">사용처</th>
                 <th scope="col">적립/사용</th>
                 <th scope="col">구분</th>
                 <th scope="col">포인트</th>
@@ -18,8 +18,8 @@
             <?php foreach ($list as $key => $value): ?>
                 <tr>
                     <td><?= $key+1; ?></td>
-                    <td><?= ($value['u_name']) ? $value['u_name'] : "알수없음"; ?></td>
-                    <td><?= $value['a_title']; ?></td>
+                    <td><?= ($value['u_email']) ? $value['u_email'] : "알수없음"; ?></td>
+                    <td><?= ($value['a_title']) ? $value['a_title'] : $value['f_name']; ?></td>
                     <td><?= ($value['p_point_gubun'] == 'E') ? "적립" : "사용"; ?></td>
                     <td><?= $value['p_point_path']; ?></td>
                     <td><?= $value['p_point_acount']; ?> point</td>

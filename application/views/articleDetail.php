@@ -366,7 +366,8 @@
         <div class="col-md-1 fw-bold">장소</div>
         <div class="col-md-11"><?=$info['place_by']?></div>
       </div>
-
+      
+      <!-- TODO: 좋아요, 스크랩 활성화상태(색상변경된) 아이콘 필요-->
       <ul class="mt-6 hero-icon">
         <li><img src="/assets/img/favorite.svg" alt="좋아요" onclick="like_article()"></li>
         <li><img src="/assets/img/stars.svg" alt="스크랩" onclick="scrap_article()"></li>
@@ -408,7 +409,7 @@
             <div class="card" onclick="articleDetail('<?= $list['id'] ?>')">
               <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
               <div class="card-body">
-                <h6 class="card-title"><?= $list['name']; ?></h6>
+                <h6 class="card-title"><?= $list['c_name']; ?></h6>
                 <h4 class="card-title"><?= $list['title']; ?></h4>
                 <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
                 <div class="badge-container">

@@ -240,7 +240,7 @@
           <div class="card" onclick="articleDetail('<?= $list['id'] ?>')">
             <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
             <div class="card-body">
-              <h6 class="card-title"><?= $list['name']; ?></h6>
+              <h6 class="card-title"><?= $list['c_name']; ?></h6>
               <h4 class="card-title"><?= $list['title']; ?></h4>
               <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
               <div class="badge-container">
@@ -292,7 +292,7 @@
           <div class="card" onclick="articleDetail('<?= $list['id'] ?>')">
             <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
             <div class="card-body">
-              <h6 class="card-title"><?= $list['name']; ?></h6>
+              <h6 class="card-title"><?= $list['c_name']; ?></h6>
               <h4 class="card-title"><?= $list['title']; ?></h4>
               <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
               <div class="badge-container">
@@ -346,7 +346,7 @@
       <div class="swiper-button-next swiper-find-item-next"></div>
     </div>
 
-    <!-- 응모하기 모달 step1 -->
+   <!-- 응모하기 모달 step1 -->
     <div class="modal fade w-100" id="mainFindItemModal" tabindex="-1" aria-labelledby="mainFindItemModalLabel">
       <div class="modal-dialog d-flex justify-content-center align-items-center" style="max-width: 100%;">
         <div class="modal-content">
@@ -371,7 +371,7 @@
                   </div>
                   <div id="find_item_content">
                   </div>
-                  <button type="button" class="btn custom-btn w-50">
+                  <button type="button" class="btn custom-btn w-50" onclick="showEventModalStep2()">
                     응모하기
                   </button>
                 </div>
@@ -382,6 +382,62 @@
       </div>
     </div>
     <!-- //응모하기 모달 step1 -->
+
+    <!-- 응모하기 모달 step2 -->
+    <input type="hidden" id="findItemId" value="">
+    <div class="modal fade w-100" id="mainFindItemModal2" tabindex="-1" aria-labelledby="mainFindItemModalLabel2">
+      <div class="modal-dialog d-flex justify-content-center align-items-center" style="max-width: 100%;">
+        <div class="modal-content">
+          <div class="modal-body d-flex align-items-center mt-2 mb-2">
+            <div class="row gy-4 gy-md-0 mx-auto" style="width: 100%;">
+              <div class="col-md-6 d-md-flex align-items-md-center">
+                <div style="max-width: 350px;">
+                  <div class="centered-text-find-item-container mb-4">
+                    <div class="centered-text-find-item">FIND 아이템 응모전에 꼭 확인해 주세요</div>
+                  </div>
+                  <div id="find_item_content">
+                    당첨자는 <a href="">해당페이지</a>에서 확인하세요
+                  </div>
+                  <button type="button" class="btn custom-btn w-50" onclick="applyFindItem()">
+                    응모하기
+                  </button>
+                  <button type="button" class="btn custom-btn w-50" onclick="location.reload()">
+                    취소하기
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //응모하기 모달 step2 -->
+
+    <!-- 응모하기 모달 step3 -->
+    <div class="modal fade w-100" id="mainFindItemModal3" tabindex="-1" aria-labelledby="mainFindItemModalLabel3">
+      <div class="modal-dialog d-flex justify-content-center align-items-center" style="max-width: 100%;">
+        <div class="modal-content">
+          <div class="modal-body d-flex align-items-center mt-2 mb-2">
+            <div class="row gy-4 gy-md-0 mx-auto" style="width: 100%;">
+              <div class="col-md-6 d-md-flex align-items-md-center">
+                <div style="max-width: 350px;">
+                  <div class="centered-text-find-item-container mb-4">
+                    <div class="centered-text-find-item">FIND 아이템 응모를 완료했습니다</div>
+                  </div>
+                  <div id="find_item_content">
+                    여러분의 FIND POINT를 사용해주셔서 감사합니다<br>앞으로도 트리퍼에서 많은 활동 부탁드립니다
+                  </div>
+                  <button type="button" class="btn custom-btn w-50">
+                    확인
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //응모하기 모달 step3 -->
 
     <div class="container mt-8">
       <img src="assets/img/tripletter.png" alt="Trip Letter Image" class="img-fluid d-block mx-auto">
@@ -483,8 +539,8 @@
       //   modal.show();
       // }
 
+      //모달에 노출할 FINDITEM 정보 가져오기
       function showEventModal(itemId) {
-        // Ajax를 사용하여 데이터를 가져옵니다.
         $.ajax({
             url: '/main/get_find_item_info',
             type: 'POST',
@@ -501,6 +557,9 @@
                 $('#mainFindItemModal .centered-text-find-item').text(data.name);
                 $('#find_item_content').html(data.content);
 
+                //finditme아이디 세팅(응모하기시 아이디 넘김)
+                $("#findItemId").val(data.id);
+
                 // 모달노출
                 var modal = new bootstrap.Modal(document.getElementById('mainFindItemModal'));
                 modal.show();
@@ -515,6 +574,46 @@
         });
       }
 
+      //FIND아이템 응모하기 모달 노출
+      function showEventModalStep2() {
+        // 첫 번째 모달을 숨깁니다.
+        // var modal1 = new bootstrap.Modal(document.getElementById('mainFindItemModal'));
+        // modal1.hide();
+
+        $("#mainFindItemModal").remove();
+
+        // 두번째 모달 노출
+        var modal2 = new bootstrap.Modal(document.getElementById('mainFindItemModal2'));
+        modal2.show();
+      }
+
+      //FINDITEM 응모하기
+      function applyFindItem(){
+        let findItemId = $("#findItemId").val();
+        
+        $.ajax({
+            url: '/main/apply_find_item',
+            type: 'POST',
+            dataType: 'json',
+            data: { id: findItemId },
+            success: function(response) {
+              if(response.code == '0000'){
+
+                // 두 번째 모달제거
+                $("#mainFindItemModal2").remove();
+
+                // 모달노출
+                var modal3 = new bootstrap.Modal(document.getElementById('mainFindItemModal3'));
+                modal3.show();
+              }else{
+                alert(response.msg);
+              }
+            },
+            error: function() {
+                alert('데이터를 불러오는 데 실패했습니다.');
+            }
+        });
+      }
 
     </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

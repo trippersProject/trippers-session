@@ -170,10 +170,10 @@
         <!-- 카테고리 값이 있으면 해당카테고리와 일치하는글만 노출 -->
           <?php foreach($article as $list): ?>
           <div class="col-md-3">
-            <div class="card">
+            <div class="card" onclick="articleDetail('<?= $list['id'] ?>')">
               <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
               <div class="card-body">
-                <h6 class="card-title"><?= $list['name']; ?></h6>
+                <h6 class="card-title"><?= $list['c_name']; ?></h6>
                 <h4 class="card-title"><?= $list['title']; ?></h4>
                 <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
                 <div class="badge-container">
@@ -198,10 +198,10 @@
         <!-- 카테고리 값이 있으면 해당카테고리와 일치하는글만 노출 -->
           <?php foreach($article_creator as $list): ?>
           <div class="col-md-3">
-            <div class="card">
+            <div class="card" onclick="articleDetail('<?= $list['id'] ?>')">
               <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
               <div class="card-body">
-                <h6 class="card-title"><?= $list['name']; ?></h6>
+                <h6 class="card-title"><?= $list['c_name']; ?></h6>
                 <h4 class="card-title"><?= $list['title']; ?></h4>
                 <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
                 <div class="badge-container">
@@ -226,10 +226,10 @@
         <!-- 카테고리 값이 있으면 해당카테고리와 일치하는글만 노출 -->
           <?php foreach($article_dongnae as $list): ?>
           <div class="col-md-3">
-            <div class="card">
+            <div class="card" onclick="articleDetail('<?= $list['id'] ?>')">
               <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
               <div class="card-body">
-                <h6 class="card-title"><?= $list['name']; ?></h6>
+                <h6 class="card-title"><?= $list['c_name']; ?></h6>
                 <h4 class="card-title"><?= $list['title']; ?></h4>
                 <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
                 <div class="badge-container">

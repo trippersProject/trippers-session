@@ -14,7 +14,7 @@ class Article_mdl extends CI_Model {
     {
         $this->db->select('ta.id as ta_id, ta.c_id as ta_c_id, ta.category1 as ta_category, 
                            ta.thumbnail as ta_thumbnail, ta.title as ta_title, ta.sort as ta_sort, ta.use_yn as ta_use_yn,
-                           ta.regdate as ta_regdate, tc.name as tc_name');
+                           ta.regdate as ta_regdate, tc.name as tc_name, ta.hit as ta_hit');
         $this->db->from('tp_articles ta');
         $this->db->join('tp_category tc', 'tc.id = ta.category1');
         $this->db->order_by('ta.id', 'DESC');
