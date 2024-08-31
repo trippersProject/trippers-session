@@ -63,6 +63,16 @@ class Login extends CI_Controller {
 
 		// 회원 정보 저장
 		if ($this->user_mdl->insert_user($user_data)) {
+
+			// 사용자 인증
+			$user = $this->user_mdl->get_user_by_email($email);
+
+			//로그인 세션데이터 저장
+			$this->session->set_userdata('user_id', $user['id']);
+            $this->session->set_userdata('email', $user['email']);
+            $this->session->set_userdata('name', $user['name']);
+            $this->session->set_userdata('auth_level', $user['auth_level']);
+
 			$this->output
 				->set_content_type('application/json')
 				->set_output(json_encode(['success' => true, 'redirect' => '/main']));
@@ -82,7 +92,7 @@ class Login extends CI_Controller {
 
         // 이메일과 비밀번호가 입력되었는지 확인
         if (empty($email) || empty($password)) {
-            $this->session->set_flashdata('error', '이메일과 비밀번호를 모두 입력해 주세요.');
+            echo "<script>alert('이메일 또는 비밀번호를 입력해주세요.'); return;</script>";
             redirect('/login'); // 로그인 페이지로 리디렉션
             return;
         }
@@ -90,20 +100,21 @@ class Login extends CI_Controller {
         // 사용자 인증
         $user = $this->user_mdl->get_user_by_email($email);
 
-		if ($user && $user->password === md5($password)) {
+		if ($user && $user['password'] === md5($password)) {
             // 로그인 성공
             // 세션에 사용자 정보 저장
-            $this->session->set_userdata('user_id', $user->id);
-            $this->session->set_userdata('email', $user->email);
-            $this->session->set_userdata('name', $user->name);
-            $this->session->set_userdata('auth_level', $user->auth_level);
+            $this->session->set_userdata('user_id', $user['id']);
+            $this->session->set_userdata('email', $user['email']);
+            $this->session->set_userdata('name', $user['name']);
+            $this->session->set_userdata('auth_level', $user['auth_level']);
 
             // 메인 페이지로 리디렉션
             redirect('/main');
         } else {
             // 로그인 실패
-            $this->session->set_flashdata('error', '잘못된 이메일 또는 비밀번호입니다.');
+            echo "<script>alert('이메일또는 비밀번호가 일치하지 않습니다.'); return;</script>";
             redirect('/login'); // 로그인 페이지로 리디렉션
+            return;
         }
     }
 

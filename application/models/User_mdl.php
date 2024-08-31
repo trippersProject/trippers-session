@@ -41,7 +41,9 @@ class User_mdl extends CI_Model {
     {
         $this->db->where('email', $email);
         $this->db->where('status', 'Y');
+
         $query = $this->db->get('tp_users');
+
         return $query->row_array();
     }
 
@@ -90,6 +92,79 @@ class User_mdl extends CI_Model {
         $query = $this->db->get();
 
         return $query->row_array();
+    }
+
+    //회원정보 수정
+    public function modify_user_info($id, $params)
+    {
+        $this->db->trans_begin();
+
+        $this->db->where('id', $id);
+        $this->db->update('tp_users', $params);
+
+        if ($this->db->trans_status() === FALSE) {
+            // 오류 발생 시 롤백
+            $this->db->trans_rollback();
+            return false;
+        } else {
+            // 성공 시 커밋
+            $this->db->trans_commit();
+            return true;
+        }
+    }
+
+    //회원정보 삭제
+    public function delete_user_info($id){
+        $this->db->trans_begin();
+
+        $this->db->where('id', $id);
+        $this->db->delete('tp_users');
+
+        if ($this->db->trans_status() === FALSE) {
+            // 오류 발생 시 롤백
+            $this->db->trans_rollback();
+            return false;
+        } else {
+            // 성공 시 커밋
+            $this->db->trans_commit();
+            return true;
+        }
+    }
+
+    //회원 스크랩 정보 삭제
+    public function delete_user_scrap($id){
+        $this->db->trans_begin();
+
+        $this->db->where('u_id', $id);
+        $this->db->delete('tp_scrap');
+
+        if ($this->db->trans_status() === FALSE) {
+            // 오류 발생 시 롤백
+            $this->db->trans_rollback();
+            return false;
+        } else {
+            // 성공 시 커밋
+            $this->db->trans_commit();
+            return true;
+        }
+    }
+
+    //회원 좋아요 정보 삭제
+    public function delete_user_like($id){
+        $this->db->trans_begin();
+
+        $this->db->where('u_id', $id);
+        $this->db->delete('tp_like');
+
+        if ($this->db->trans_status() === FALSE) {
+            // 오류 발생 시 롤백
+            $this->db->trans_rollback();
+            return false;
+        } else {
+            // 성공 시 커밋
+            $this->db->trans_commit();
+            return true;
+        }
     }
 
 }

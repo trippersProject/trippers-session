@@ -290,8 +290,13 @@
           <div class="input-group border-secondary border-0 border-bottom"></div>
         </li>
         <li class="nav-item mx-1"><a class="nav-link" href="#"><i class="fas fa-search text-dark pc-search" style="width: 22px;height: 22px;text-align: center;"></i></a></li>
-        <li class="nav-item mx-1"><a class="nav-link" href="/login" style="padding: 8px;"><i class="far fa-user" style="width: 22px;height: 22px;text-align: center;"></i></a></li>
-      </ul>
+        <!-- 로그인상태라면 마이페이지로 이동-->
+        <?php if($this->session->userdata('user_id')){ ?>
+          <li class="nav-item mx-1"><a class="nav-link" href="/mypage" style="padding: 8px;"><i class="far fa-user" style="width: 22px;height: 22px;text-align: center;"></i></a></li>
+        <?php }else{ ?>
+          <li class="nav-item mx-1"><a class="nav-link" href="/login" style="padding: 8px;"><i class="far fa-user" style="width: 22px;height: 22px;text-align: center;"></i></a></li>
+        <?php } ?>
+        </ul>
     </div>
   </div>
 </nav>

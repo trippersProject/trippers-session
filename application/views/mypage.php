@@ -235,36 +235,32 @@
             </div>
           </div>
           <div id="yourContent" class="content d-none">
-            <form action="" method="post">
               <div class="mt-5 mb-3">
                 <label for="username" class="form-label text-start w-100">이름(닉네임) *</label>
-                <input type="text" class="form-control custom-input" id="username" style="cursor: text;"
-                  value="<?= $info['name'] ?>" required>
+                <input type="text" class="form-control custom-input" id="username" name="username" style="cursor: text;" value="<?= $info['name'] ?>" required>
               </div>
               <div class="mb-3">
-                <label for="email" class="form-label text-start w-100">이메일 주소 *</label>
-                <input type="email" class="form-control custom-input" id="email" value="riksa0@naver.com"
+                <label for="email" class="form-label text-start w-100">이메일 주소(변경불가)</label>
+                <input type="email" class="form-control custom-input" id="email" name="email" value="<?= $info['email'] ?>"
                   style="cursor: text;" disabled>
               </div>
               <div class="mb-3">
                 <label for="phone" class="form-label text-start w-100">휴대폰 번호 *</label>
-                <input type="text" class="form-control custom-input" id="phone" style="cursor: text;"
-                  value="<?= $info['phone'] ?>"
+                <input type="text" class="form-control custom-input" id="phone" name="phone" style="cursor: text;" value="<?= $info['phone'] ?>"
                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label text-start w-100">비밀번호 *</label>
-                <input type="password" class="form-control custom-input" id="password" style="cursor: text;" required>
+                <input type="password" class="form-control custom-input" id="password" name="password" style="cursor: text;" required>
               </div>
               <div class="mb-3">
                 <label for="password-verify" class="form-label text-start w-100">비밀번호 확인 *</label>
-                <input type="text" class="form-control custom-input" id="password-verify" style="cursor: text;"
+                <input type="password" class="form-control custom-input" id="password-verify" style="cursor: text;"
                   required>
               </div>
               <div class="mt-6 d-grid">
-                <button type="submit" class="btn custom-btn">수정하기</button>
+                <button class="btn custom-btn" onclick="modifyUserInfo()">수정하기</button>
               </div>
-            </form>
 
             <button type="button" class="btn custom-btn mt-5" data-bs-toggle="modal"
               data-bs-target="#withdrawalMembershipModal">
@@ -282,7 +278,7 @@
                       <br />
                       <span class="fw-bold">마무리 하려면 아래 버튼을 클릭해주세요</span>
                     </h2>
-                    <button type="button" class="btn custom-btn mt-3" onclick="">탈퇴하기</button>
+                    <button type="button" class="btn custom-btn mt-3" onclick="dismissUser()">탈퇴하기</button>
                   </div>
                 </div>
               </div>
@@ -349,7 +345,7 @@
 
 
     <?php include_once("layout/footer_company_info.php")?>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -394,6 +390,90 @@
           showContent(tripContent);
         });
       });
+
+
+    //회원정보 수정
+    function modifyUserInfo() {
+      // 폼 데이터 수집
+      var formData = {
+        username: $('#username').val(),
+        phone: $('#phone').val(),
+        password: $('#password').val(),
+        password_verify: $('#password-verify').val(),
+      };
+
+      // 입력 데이터 유효성 검사
+      if (!formData.username || !formData.phone || !formData.password || !formData.password_verify) {
+        alert('모든 필수 입력 항목을 채워주세요.');
+        return;
+      }
+      // 비밀번호와 비밀번호 확인 일치 여부 검사
+      if (formData.password !== formData.password_verify) {
+        alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+        return;
+      }
+
+      // AJAX 요청
+      $.ajax({
+        url: '/mypage/modify_user_info',
+        type: 'POST',
+        data: formData,
+        dataType: 'json',
+        success: function(response) {
+          // 성공 시 처리할 내용
+          if(response.code == '0000') {
+            alert(response.msg);
+            window.location.href = '/mypage'; // 성공 페이지로 리디렉션
+          } else {
+            alert(response.msg);
+          }
+        },
+        error: function(xhr, status, error) {
+          // 에러 발생 시 처리할 내용
+          console.error(error);
+          alert('오류가 발생했습니다. 다시 시도해 주세요.');
+        }
+      });
+    }
+
+    //유저 탈퇴하기
+    function dismissUser(){
+      const password = $('#password').val();
+      const password_verify = $('#password-verify').val();
+
+      // 비밀번호와 비밀번호 확인 일치 여부 검사
+      if (password || password_verify) {
+        alert('비밀번호를 입력해주세요');
+        return;
+      }
+
+      // 비밀번호와 비밀번호 확인 일치 여부 검사
+      if (password !== password_verify) {
+        alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+        return;
+      }
+
+      // AJAX 요청
+      $.ajax({
+        url: '/mypage/dismiss_user',
+        type: 'POST',
+        dataType: 'json',
+        success: function(response) {
+          // 성공 시 처리할 내용
+          if(response.code == '0000') {
+            alert(response.msg);
+            window.location.href = '/main'; // 메인페이지로 리디렉션
+          } else {
+            alert(response.msg);
+          }
+        },
+        error: function(xhr, status, error) {
+          // 에러 발생 시 처리할 내용
+          console.error(error);
+          alert('오류가 발생했습니다. 다시 시도해 주세요.');
+        }
+      });
+    }
     </script>
 </body>
 

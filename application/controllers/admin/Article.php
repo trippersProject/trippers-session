@@ -205,7 +205,7 @@ class Article extends CI_Controller {
                     $thumbnail_file = $thumbnail_data['file_name'];
 
                 } else {
-                    $result['msg'] = "이미지 업로드에 실패하였습니다";
+                    $result['msg'] = $this->upload->display_errors();
                     echo json_encode($result);
                     return;
                 }
@@ -236,7 +236,7 @@ class Article extends CI_Controller {
                     $event_banner_img = $event_banner_data['file_name'];
 
                 } else {
-                    $result['msg'] = "이미지 업로드에 실패하였습니다";
+                    $result['msg'] = $this->upload->display_errors();
                     echo json_encode($result);
                     return;
                 }
