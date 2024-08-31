@@ -331,7 +331,7 @@
                     <p class="my-3 lh-lg">
                       <?= $list['content_sub']?>
                     </p>
-                    <a href="" class="btn custom-btn btn-lg me-2" onclick="showEventModal()">자세히보기</a>
+                    <a href="#" class="btn custom-btn btn-lg me-2" onclick="showEventModal('<?= $list['id'] ?>')">자세히보기</a>
                   </div>
                 </div>
               </div>
@@ -346,7 +346,7 @@
       <div class="swiper-button-next swiper-find-item-next"></div>
     </div>
 
-    <!-- Modal -->
+    <!-- 응모하기 모달 step1 -->
     <div class="modal fade w-100" id="mainFindItemModal" tabindex="-1" aria-labelledby="mainFindItemModalLabel">
       <div class="modal-dialog d-flex justify-content-center align-items-center" style="max-width: 100%;">
         <div class="modal-content">
@@ -355,18 +355,7 @@
               <div class="col-md-6">
                 <div class="swiper swiper-find-item-detail" style="overflow: hidden;">
                   <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                      <img src="assets/img/mainFindItem.svg" alt="" class="rounded img-fluid w-100">
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/img/mainFindItem.svg" alt="" class="rounded img-fluid w-100">
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/img/mainFindItem.svg" alt="" class="rounded img-fluid w-100">
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/img/mainFindItem.svg" alt="" class="rounded img-fluid w-100">
-                    </div>
+                    <!-- TODO: FINDITEM 썸네일 이미지 현재는 하나만 가능, 이후에 여러개로 슬라이드 노출하기 -->
                     <div class="swiper-slide">
                       <img src="assets/img/mainFindItem.svg" alt="" class="rounded img-fluid w-100">
                     </div>
@@ -380,25 +369,8 @@
                   <div class="centered-text-find-item-container mb-4">
                     <div class="centered-text-find-item">FIND 아이템</div>
                   </div>
-                  <h6>제주를 닮은, 제주를 담은 향기</h6>
-                  <h2 class="fw-bold mb-5">어텀제주 메모리퍼퓸</h2>
-
-                  <h6 class="fw-bold">트리퍼가 찾아낸 어텀제주</h6>
-                  <p class="my-3 mb-5">
-                    제주에서의 소중한 추억들을
-                    <br />
-                    듬뿍 담은 향기로 만나보는 내 손 안에 작은 제주
-                    <br /><br />
-                    제주를 닮은 향기로 나만의 공간을 채워보세요
-                  </p>
-
-                  <h6 class="fw-bold">이런 분들 꼭 응모하세요</h6>
-                  <ul class="my-3 mb-5">
-                    <li>제주도의 떠오르는 추억이 있으신 분</li>
-                    <li>제주를 닮은 향기로 나만의 공간을 채우실 분</li>
-                    <li>침구나 내 옷에 기분좋은 향이 필요하신 분</li>
-                    <li>어텀제주 제품으로 일상 속 여행을 떠나보실 분</li>
-                  </ul>
+                  <div id="find_item_content">
+                  </div>
                   <button type="button" class="btn custom-btn w-50">
                     응모하기
                   </button>
@@ -409,7 +381,7 @@
         </div>
       </div>
     </div>
-
+    <!-- //응모하기 모달 step1 -->
 
     <div class="container mt-8">
       <img src="assets/img/tripletter.png" alt="Trip Letter Image" class="img-fluid d-block mx-auto">
@@ -506,19 +478,43 @@
       });
 
       //FIND ITEM 자세히보기 클릭시 팝업노출 
-      function showEventModal() {
-        // 모달 요소를 가져옵니다.
-        var modal = document.getElementById('mainFindItemModal');
+      // function showEventModal() {
+      //   var modal = new bootstrap.Modal(document.getElementById('mainFindItemModal'));
+      //   modal.show();
+      // }
 
-        // aria-hidden 속성을 false로 변경합니다.
-        modal.setAttribute('aria-hidden', 'false');
+      function showEventModal(itemId) {
+        // Ajax를 사용하여 데이터를 가져옵니다.
+        $.ajax({
+            url: '/main/get_find_item_info',
+            type: 'POST',
+            dataType: 'json',
+            data: { id: itemId },
+            success: function(response) {
+              var data = response.item;
 
-        // 모달을 보여주기 위해 'show' 클래스를 추가합니다.
-        modal.classList.add('show');
+              if(response.code == '0000'){
+                // 이미지 src 업데이트
+                $('#mainFindItemModal .swiper-slide img').attr('src', "<?= get_find_item_upload_path();?>"+data.thumbnail);
 
-        // 모달의 display 속성을 'block'으로 변경하여 화면에 표시되도록 합니다.
-        modal.style.display = 'block';
+                // 텍스트 업데이트
+                $('#mainFindItemModal .centered-text-find-item').text(data.name);
+                $('#find_item_content').html(data.content);
+
+                // 모달노출
+                var modal = new bootstrap.Modal(document.getElementById('mainFindItemModal'));
+                modal.show();
+              }else{
+                alert(response.msg);
+                location.reload();
+              }
+            },
+            error: function() {
+                alert('데이터를 불러오는 데 실패했습니다.');
+            }
+        });
       }
+
 
     </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

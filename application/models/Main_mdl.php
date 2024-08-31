@@ -150,4 +150,16 @@ class Main_mdl extends CI_Model {
         }
     }
 
+    //find_item 정보 조회
+    public function get_find_item_info($id)
+    {
+        $this->db->select('*');
+        $this->db->from('tp_find_item');
+        $this->db->where('id', $id);
+
+        $query = $this->db->get();
+
+        return $query->row_array();
+    }
+
 }

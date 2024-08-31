@@ -82,7 +82,7 @@ class Main extends CI_Controller {
 
 		//크리에이터 글목록
 		$data['article_creator'] = $this->Main_mdl->get_article_list('1');
-		
+
 		//우리동네 글목록
 		$data['article_dongnae'] = $this->Main_mdl->get_article_list('2');
 
@@ -175,4 +175,26 @@ class Main extends CI_Controller {
 		echo json_encode($response);
 		exit;
     }
+
+	public function get_find_item_info()
+	{
+		$id = $this->input->post('id');
+
+		$data = array();
+
+		$item = $this->Main_mdl->get_find_item_info($id);
+
+		if(!$item){
+			$data['code'] = "9999";
+			$data['mag'] = "FIND ITEM 정보 조회에 실패하였습니다.";
+			echo json_encode($data);
+			exit;
+		}
+
+		$data['code'] = "0000";
+		$data['mag'] = "FIND ITEM 정보를 조회하였습니다.";
+		$data['item'] = $item;
+		echo json_encode($data);
+		exit;
+	}
 }
