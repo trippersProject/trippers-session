@@ -268,7 +268,7 @@
         var formData = new FormData();
         formData.append('id', $('#id').val());
         if($('#p_id').val()){
-            formData.append('c_id', $('#c_id').val());
+            formData.append('p_id', $('#p_id').val());
         }
         if($('#c_id').val()){
             formData.append('c_id', $('#c_id').val());

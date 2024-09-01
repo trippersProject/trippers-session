@@ -24,7 +24,7 @@ class Login extends CI_Controller {
         // 모델을 사용해 사용자 인증 시도
         $admin = $this->login_mdl->login($username, $password);
 
-        if ($admin) {
+        if($admin){
             // 로그인 성공
             $this->session->set_userdata('logged_in', true);
             $this->session->set_userdata('admin_id', $admin->email);
@@ -34,7 +34,7 @@ class Login extends CI_Controller {
             redirect('admin/home');
         } else {
             // 로그인 실패 시 에러 메시지와 함께 다시 로그인 페이지로
-            $this->session->set_flashdata('error', 'Invalid username or password');
+            echo "<script>alert('이메일또는 비밀번호가 다릅니다.');return;</script>";
             redirect('admin/login');
         }
 

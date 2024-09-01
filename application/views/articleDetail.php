@@ -380,7 +380,9 @@
         </p>
       </div>
     </div>
-
+    
+    <!-- 이벤트배너 -->
+    <?php if($info['event_banner_text'] != '' && $info['event_banner_img'] != ''): ?>
     <div style="background-color: lightgray;">
       <div class="row">
         <div class="col-md-5 text-end">
@@ -394,41 +396,42 @@
         </div>
       </div>
     </div>
+    <?php endif; ?>
+    <!-- //이벤트배너 -->
 
     <div class="centered-text-container mt-8">
       <div class="centered-text">연관 콘텐츠</div>
     </div>
-
-   <!-- Slider main container -->
-    <div class="mt-5 w-95 swiper related-swiper">
-      <!-- Additional required wrapper -->
-      <div class="swiper-wrapper">
-        <!-- Slides -->
-        <?php foreach($article_list as $list): ?>
-          <div class="swiper-slide">
-            <div class="card" onclick="articleDetail('<?= $list['id'] ?>')">
-              <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
-              <div class="card-body">
-                <h6 class="card-title"><?= $list['c_name']; ?></h6>
-                <h4 class="card-title"><?= $list['title']; ?></h4>
-                <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
-                <div class="badge-container">
-                  <?php 
-                    $tags = explode("#", $list['tag']);
-                    for($i = 1; $i < count($tags); $i++): 
-                  ?>
-                    <h6><span class="badge"><?= $tags[$i]; ?></span></h6>
-                  <?php endfor; ?>
+    <!-- Slider main container -->
+      <div class="mt-5 w-95 swiper related-swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <?php foreach($article_list as $list): ?>
+            <div class="swiper-slide">
+              <div class="card" onclick="articleDetail('<?= $list['id'] ?>')">
+                <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
+                <div class="card-body">
+                  <h6 class="card-title"><?= $list['c_name']; ?></h6>
+                  <h4 class="card-title"><?= $list['title']; ?></h4>
+                  <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
+                  <div class="badge-container">
+                    <?php 
+                      $tags = explode("#", $list['tag']);
+                      for($i = 1; $i < count($tags); $i++): 
+                    ?>
+                      <h6><span class="badge"><?= $tags[$i]; ?></span></h6>
+                    <?php endfor; ?>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        <?php endforeach; ?>
+          <?php endforeach; ?>
+        </div>
+        <!-- If we need pagination -->
+        <!-- <div class="swiper-pagination related-pagination"></div> -->
+        </div>
       </div>
-      <!-- If we need pagination -->
-      <!-- <div class="swiper-pagination related-pagination"></div> -->
-      </div>
-    </div>
 
     <input type="hidden" name="a_id" id="a_id" value="<?= $info['id']?>">
 

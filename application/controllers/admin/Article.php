@@ -248,7 +248,8 @@ class Article extends CI_Controller {
 
             //데이터베이스에 저장
             $data = array(
-                'c_id'               => $title,
+                'c_id'               => $c_id,
+                'p_id'               => $p_id,
                 'category1'          => $category1,
                 'category2'          => $category2,
                 'title'              => $title,
