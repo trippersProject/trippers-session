@@ -186,4 +186,9 @@ class User_mdl extends CI_Model {
         }
     }
 
+    public function update_password($email, $new_password) {
+        $this->db->where('email', $email);
+        return $this->db->update('tp_users', array('password' => $new_password));
+    }
+
 }

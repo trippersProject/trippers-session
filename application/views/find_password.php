@@ -86,10 +86,10 @@
       <div class="text-center mt-5 mb-5">
         <a href="#">가입한 이메일주소를 입력하시면, 비밀번호 재설정 안내 메일을 보내드립니다.</a>
       </div>
-      <form>
+      <form action="<?= site_url('login/reset_password'); ?>" method="post">
         <div class="text-center mb-3">
           <label for="email" class="form-label">이메일주소</label>
-          <input type="email" class="form-control custom-input" id="email" style="cursor: text;" required>
+          <input type="email" class="form-control custom-input" id="email" name="email" style="cursor: text;" required>
         </div>
         <div class="mt-5 d-grid">
           <button type="submit" class="btn custom-btn">이메일 발송하기</button>

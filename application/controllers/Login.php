@@ -6,6 +6,7 @@ class Login extends CI_Controller {
 	public function __construct() {
         parent::__construct();
 		$this->load->model('User_mdl', 'user_mdl');
+		$this->load->library('email');
     }
 
 	public function index()
@@ -116,6 +117,70 @@ class Login extends CI_Controller {
             redirect('/login'); // 로그인 페이지로 리디렉션
             return;
         }
+    }
+
+	//비밀번호 찾기(임시비밀번호 메일전송)
+	public function reset_password() {
+        $email = $this->input->post('email');
+
+        // 이메일이 존재하는지 확인
+        $user = $this->user_mdl->get_user_by_email($email);
+
+        if ($user) {
+            // 임시 비밀번호 생성
+            $temp_password = $this->generate_temp_password();
+
+            // 임시 비밀번호 암호화
+            $encrypted_password = md5($temp_password);
+
+            // 데이터베이스에 임시 비밀번호 저장
+            $this->user_mdl->update_password($email, $encrypted_password);
+
+            // 이메일 발송
+            $result = $this->send_email($email, $temp_password);
+
+			if(!$result) {
+				 echo $this->email->print_debugger();
+			}
+
+            // 성공 메시지 출력
+            echo "<script>alert('임시비밀번호가 메일로 발송되었습니다.');</script>";
+			redirect('/login'); // 로그인 페이지로 리디렉션
+        } else {
+            // 실패 메시지 출력
+            echo "<script>alert('회원정보 조회에 실패하였습니다.'); history.back();</script>";
+			exit;
+        }
+
+        // 비밀번호 찾기 페이지로 리다이렉트
+        redirect('/main');
+    }
+
+	//임시비밀번호 생성
+    private function generate_temp_password($length = 8) {
+        return substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, $length);
+    }
+
+	//이메일 전송
+    private function send_email($to_email, $temp_password) {
+		//메일설정 세팅
+		$this->email->initialize(array(
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://smtp.googlemail.com',
+			'smtp_port' => 465,
+			'smtp_user' => 'rbfla48@gmail.com',
+			'smtp_pass' => 'gdqwyomfuavmapgh',
+			'mailtype'  => 'html',
+			'charset'   => 'utf-8',
+			'newline'   => "\r\n"
+		));
+
+        $this->email->from('admin@trippers.com', '트리퍼스 관리자');
+        $this->email->to($to_email);
+        $this->email->subject('트리퍼스 임시 비밀번호 안내');
+        $this->email->message("발급된 임시 비밀번호는 다음과 같습니다: " . $temp_password . "\n로그인 후 비밀번호를 변경해주세요.");
+
+        return $this->email->send();
     }
 
 }

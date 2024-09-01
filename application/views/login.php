@@ -83,12 +83,13 @@
             <button class="btn custom-btn w-50" onclick="location.href='/login/user_join'">회원가입</button>
             <button type="submit" class="btn custom-btn w-50">로그인</button>
           </div>
-          <div class="mt-5 d-grid">
+          <!-- TODO:API키 발급시 추가예정 -->
+          <!-- <div class="mt-5 d-grid">
             <button type="submit" class="btn custom-btn">카카오로 로그인</button>
           </div>
           <div class="mt-5 d-grid">
             <button type="submit" class="btn custom-btn">네이버로 로그인</button>
-          </div>
+          </div> -->
         </form>
         <div class="text-start mt-5">
           <a href="/login/find_password">비밀번호를 찾으셔야 하나요?</a>
