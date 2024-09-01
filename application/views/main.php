@@ -219,6 +219,23 @@
       object-position: center; /* 이미지의 중앙 부분을 표시 */
     }
   }
+
+  .responsive-image {
+    display: block;
+    max-width: 100%;
+  }
+
+  @media (max-width: 600px) {
+    .responsive-image {
+      content: url('assets/img/moTripletter.svg');
+    }
+  }
+
+  @media (min-width: 601px) {
+    .responsive-image {
+      content: url('assets/img/tripletter.png');
+    }
+  }
 </style>
 
 <body>
@@ -455,7 +472,7 @@
     <!-- //응모하기 모달 step3 -->
 
     <div class="container mt-8">
-      <img src="assets/img/tripletter.png" alt="Trip Letter Image" class="img-fluid d-block mx-auto">
+      <img src="assets/img/tripletter.png" alt="Trip Letter Image" class="responsive-image img-fluid d-block mx-auto" />
     </div>
 
     <?php include_once("layout/footer_company_info.php")?>
