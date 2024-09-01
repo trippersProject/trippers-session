@@ -59,8 +59,9 @@
   }
 
   .fixed-size {
-    width: 1400px;
-    height: 800px;
+    width: 100%;
+    height: auto;
+    max-height: 800px; /* 최대 높이 설정 */
     object-fit: cover;
   }
 
@@ -153,7 +154,7 @@
 
   .swiper-find-item-detail .swiper-wrapper .swiper-slide img {
     height: 700px;
-    object-fit: cover; /* 이미지를 부모 요소에 맞게 크기 조정 */
+    object-fit: cover;
   }
   
 
@@ -194,14 +195,28 @@
   }
 
   @media (max-width: 768px) {
-    .card {
-      width: 14rem;
+    .creator-swiper .card, .dongnae-swiper .card {
+      width: 24rem !important;
+    }
+
+    .fixed-size {
+      width: 100%; /* 부모 요소의 가로 크기에 맞게 */
+      height: 200px; /* 원하는 고정 높이 */
+      object-fit: cover; /* 이미지가 고정된 영역을 덮도록 비율 조정 */
+      object-position: center; /* 이미지의 중앙 부분을 표시 */
     }
   }
 
   @media (max-width: 576px) {
-    .card {
-      width: 12rem;
+    .creator-swiper .card, .dongnae-swiper .card {
+      width: 24rem !important;
+    }
+
+    .fixed-size {
+      width: 100%; /* 부모 요소의 가로 크기에 맞게 */
+      height: 400px; /* 원하는 고정 높이 */
+      object-fit: cover; /* 이미지가 고정된 영역을 덮도록 비율 조정 */
+      object-position: center; /* 이미지의 중앙 부분을 표시 */
     }
   }
 </style>
@@ -477,7 +492,7 @@
             slidesPerView: 1,
             spaceBetween: 5,
           }
-        }
+        },
       });
 
       let swiperMain2 = new Swiper('.swiper-main2', {
