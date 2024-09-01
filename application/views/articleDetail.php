@@ -127,10 +127,12 @@
     }
 
     .creator-info {
+      width: 100%;
       border-top: 2px solid #000;
       border-bottom: 2px solid #000;
       margin: 0;
-      padding: 0;
+      padding-top: 20px;
+      padding-bottom: 20px;
     }
 
     .image-container {
@@ -273,6 +275,47 @@
         width: 12rem;
       }
     }
+
+    .container.custom-container {
+      max-width: 58% !important;
+    }
+
+    /* 모바일 비율일때 설정  */
+    @media (max-width: 800px) {
+      .container.custom-container {
+        max-width: 100% !important;
+        text-align: center;
+      }
+    
+      .custom-container .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .custom-container .col-md-6 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      /* 프로필이미지 */
+      .image-container {
+        width: 150px;
+        height: 150px;
+      }
+      /* 글 본문영역 */
+      .container-content {
+        text-align: left; /* 내부 요소들을 왼쪽 정렬 */
+      }
+
+      .row.flex-row {
+        display: flex;
+        align-items: center; /* 세로축 가운데 정렬 */
+      }
+    }
   </style>
 </head>
 
@@ -292,7 +335,7 @@
       </div>
     </div>
 
-    <div class="container mt-5 py-4 py-xl-5" style="max-width: 58% !important;">
+    <div class="container custom-container mt-5 py-4 py-xl-5">
       <div class="row gy-4 gy-md-0 creator-info">
         <div class="col-md-6">
           <div class="p-xl-5 m-xl-5">
@@ -349,23 +392,25 @@
           </div>
         </div>
       </div>
-
-      <div class="row mt-7">
-      <?= $info['content']; ?>
+       
+      <!-- 글 본문 영역 -->
+      <div class="container-content mt-7">
+        <?= $info['content']; ?>
+         
+        <div class="row mt-5 flex-row">
+          <div class="col-md-1 fw-bold">글</div>
+          <div class="col-md-11"><?=$info['article_by']?></div>
+        </div>
+        <div class="row mt-2 flex-row">
+          <div class="col-md-1 fw-bold">사진</div>
+          <div class="col-md-11"><?=$info['picture_by']?></div>
+        </div>
+        <div class="row mt-2 flex-row">
+          <div class="col-md-1 fw-bold">장소</div>
+          <div class="col-md-11"><?=$info['place_by']?></div>
+        </div>
       </div>
-      
-      <div class="row mt-5">
-        <div class="col-md-1 fw-bold">글</div>
-        <div class="col-md-11"><?=$info['article_by']?></div>
-      </div>
-      <div class="row mt-2">
-        <div class="col-md-1 fw-bold">사진</div>
-        <div class="col-md-11"><?=$info['picture_by']?></div>
-      </div>
-      <div class="row mt-2">
-        <div class="col-md-1 fw-bold">장소</div>
-        <div class="col-md-11"><?=$info['place_by']?></div>
-      </div>
+      <!-- //글 본문 영역 -->
       
       <!-- TODO: 좋아요, 스크랩 활성화상태(색상변경된) 아이콘 필요-->
       <ul class="mt-6 hero-icon">
