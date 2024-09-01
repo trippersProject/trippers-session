@@ -236,6 +236,10 @@
       content: url('assets/img/tripletter.png');
     }
   }
+
+  .creator-swiper,.dongnae-swiper {
+    height: 600px;
+  }
 </style>
 
 <body>
