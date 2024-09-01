@@ -532,14 +532,14 @@
   });
 
   // 검색 버튼 클릭 이벤트 (PC)
-  document.querySelector('.pc-search').addEventListener('click', function() {
-    document.getElementById('search-overlay').style.display = 'flex'; // 검색 오버레이 표시
-  });
+  // document.querySelector('.pc-search').addEventListener('click', function() {
+  //   document.getElementById('search-overlay').style.display = 'flex'; // 검색 오버레이 표시
+  // });
 
   // 검색 버튼 클릭 이벤트 (모바일)
-  document.querySelector('.mo-search').addEventListener('click', function() {
-    document.getElementById('search-overlay').style.display = 'flex'; // 검색 오버레이 표시
-  });
+  // document.querySelector('.mo-search').addEventListener('click', function() {
+  //   document.getElementById('search-overlay').style.display = 'flex'; // 검색 오버레이 표시
+  // });
 
   // 검색 오버레이에서 바깥 영역 클릭 시 숨기기
   document.getElementById('search-overlay').addEventListener('click', function(event) {
