@@ -191,29 +191,28 @@
     margin: 0;
   }
 
-  /* 내비게이션 바의 스타일 */
+  /* 모바일 뷰에서 아이콘을 한 줄에 배치 */
+  @media (max-width: 767.98px) {
+    .navbar-nav, .d-flex {
+      flex-direction: row; /* 아이콘들이 한 줄에 배치되도록 설정 */
+      align-items: center;
+    }
+  }
+
+  /* 기본적인 부트스트랩5 유틸리티 클래스를 활용 */
   .navbar-nav {
-    flex-direction: row; /* 메뉴 아이템을 수평으로 배열 */
+    margin-left: 0;
+    margin-right: auto;
   }
 
   .navbar-nav .nav-item {
-    margin-left: 15px; /* 메뉴 아이템 간격 조정 */
+    margin-left: 15px;
   }
 
   .navbar-toggler {
-    border: none; /* 버튼 테두리 제거 */
+    border: none;
   }
 
-  @media (max-width: 767.98px) {
-    .navbar-nav {
-      flex-direction: column; /* 작은 화면에서는 메뉴를 수직으로 배열 */
-    }
-
-    .navbar-nav .nav-item {
-      margin-left: 0; /* 작은 화면에서는 간격 제거 */
-      margin-bottom: 10px; /* 메뉴 아이템 간격 조정 */
-    }
-  }
 
   .menu-group {
     flex-grow: 1;
@@ -266,41 +265,42 @@
   }
 </style>
 
-<nav class="navbar navbar-expand-md bg-body mt-3 py-3" style="height: 50px;">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="/main" style="margin: 0px -50px 0px 0px;">
-      <img src="/assets/img/tripperLogo.png" style="width: 88px;height: 28px;">
+<nav class="navbar navbar-expand-md bg-body mt-3 py-3">
+  <div class="container d-flex align-items-center">
+    <!-- 메뉴 아이템 (왼쪽) -->
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class="nav-link active pc-mo-menu" href="#">Menu</a>
+      </li>
+    </ul>
+
+    <!-- 로고 (중앙) -->
+    <a class="navbar-brand mx-auto" href="/main">
+      <img src="/assets/img/tripperLogo.png" alt="Logo" style="width: 88px; height: 28px;">
     </a>
-    <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-4">
-      <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse flex-grow-0 order-md-first" id="navcol-4">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item"><a class="nav-link active pc-mo-menu" href="#">Menu</a></li>
-        <li class="nav-item"></li>
-      </ul>
-      <div class="d-md-none my-2">
-        <a class="nav-link" href="#"><i class="fas fa-search text-dark mo-search" style="width: 22px;height: 22px;text-align: center;"></i></a>
-        <a class="nav-link" href="#" style="padding: 8px;"><i class="far fa-user" style="width: 22px;height: 22px;text-align: center;"></i></a>
+
+    <!-- 검색 아이콘 및 사용자 아이콘 (오른쪽) -->
+    <div class="d-flex align-items-center ms-auto">
+      <div class="d-none d-md-block me-3">
+        <div class="input-group border-secondary border-0 border-bottom"></div>
       </div>
-    </div>
-    <div class="d-none d-md-block">
-      <ul class="navbar-nav ms-auto" style="width: 120px;margin: 0px;">
-        <li class="nav-item me-5">
-          <div class="input-group border-secondary border-0 border-bottom"></div>
-        </li>
-        <li class="nav-item mx-1"><a class="nav-link" href="#"><i class="fas fa-search text-dark pc-search" style="width: 22px;height: 22px;text-align: center;"></i></a></li>
-        <!-- 로그인상태라면 마이페이지로 이동-->
-        <?php if($this->session->userdata('user_id')){ ?>
-          <li class="nav-item mx-1"><a class="nav-link" href="/mypage" style="padding: 8px;"><i class="far fa-user" style="width: 22px;height: 22px;text-align: center;"></i></a></li>
-        <?php }else{ ?>
-          <li class="nav-item mx-1"><a class="nav-link" href="/login" style="padding: 8px;"><i class="far fa-user" style="width: 22px;height: 22px;text-align: center;"></i></a></li>
-        <?php } ?>
-        </ul>
+      <a class="nav-link me-3" href="#">
+        <i class="fas fa-search text-dark" style="width: 22px; height: 22px;"></i>
+      </a>
+      <!-- 로그인 상태에 따른 마이페이지 또는 로그인 링크 -->
+      <?php if($this->session->userdata('user_id')) { ?>
+        <a class="nav-link" href="/mypage" style="padding: 8px;">
+          <i class="far fa-user" style="width: 22px; height: 22px;"></i>
+        </a>
+      <?php } else { ?>
+        <a class="nav-link" href="/login" style="padding: 8px;">
+          <i class="far fa-user" style="width: 22px; height: 22px;"></i>
+        </a>
+      <?php } ?>
     </div>
   </div>
 </nav>
-    
+
 <!-- 메뉴 오버레이 -->
 <div id="menu-overlay" class="menu-overlay">
   <div class="menu-box">
