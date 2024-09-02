@@ -69,7 +69,13 @@
   /* 플레이스홀더 스타일 */
   .search-input::placeholder {
     color: white; /* 플레이스홀더 글씨 흰색 */
-    font-size: 24px; /* 글씨 크기 */
+    font-size: 20px; /* 글씨 크기 */
+  }
+  @media (max-width: 768px) {
+    .search-input::placeholder {
+      color: white; /* 플레이스홀더 글씨 흰색 */
+      font-size: 12px; /* 글씨 크기 */
+    }
   }
 
   .search-icon {
@@ -82,6 +88,13 @@
     color: white;
     font-size: 18px;
     cursor: pointer;
+    z-index: 10;
+  }
+  @media (max-width: 768px) {
+    .search-icon > img {
+      width : 20px;
+      z-index: 10;
+    }
   }
 
 
@@ -284,9 +297,14 @@
       <div class="d-none d-md-block me-3">
         <div class="input-group border-secondary border-0 border-bottom"></div>
       </div>
-      <a class="nav-link me-3" href="#">
+      <!-- <a class="nav-link me-3" href="#">
         <i class="fas fa-search text-dark" style="width: 22px; height: 22px;"></i>
-      </a>
+      </a> -->
+      <?php if($this->agent->is_mobile()){?>
+        <a class="nav-link me-3" href="#"><i class="fas fa-search pc-search text-dark" style="width: 22px; height: 22px;"></i></a>
+      <?php }else{ ?>
+        <a class="nav-link me-3" href="#"><i class="fas fa-search pc-search text-dark" style="width: 22px; height: 22px;"></i></a>
+      <?php } ?>
       <!-- 로그인 상태에 따른 마이페이지 또는 로그인 링크 -->
       <?php if($this->session->userdata('user_id')) { ?>
         <a class="nav-link" href="/mypage" style="padding: 8px;">
@@ -344,8 +362,8 @@
 <div id="search-overlay" class="search-overlay">
   <div class="search-box">
     <div class="input-group mt-8">
-      <input type="text" class="form-control search-input" placeholder="어떤 여행지 또는 크리에이터를 찾으시나요?" />
-      <span class="input-group-text search-icon" onclick="">
+      <input type="text" class="form-control search-input" id="searchKeyword" placeholder="어떤 여행지 또는 크리에이터를 찾으시나요?" />
+      <span class="input-group-text search-icon" onclick="searchArticle()">
         <img src="/assets/img/search.svg" alt="search icon">
       </span>
     </div>
@@ -363,60 +381,17 @@
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper mb-5">
         <!-- Slides -->
+        <?php foreach($article_recent as $list): ?>
         <div class="swiper-slide">
-          <div class="card menu">
-            <img src="/assets/img/test1.png" class="card-img-top" alt="Card Image">
+          <div class="card menu" onclick="location.href='/main/articleDetail?id=<?= $list['id'] ?>'">
+            <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
             <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
+              <h6 class="card-title"><?= $list['c_name']; ?></h6>
+              <h4 class="card-title"><?= $list['title']; ?></h4>
             </div>
           </div>
         </div>
-        <div class="swiper-slide">
-          <div class="card menu">
-            <img src="/assets/img/test2.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="card menu">
-            <img src="/assets/img/test3.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="card menu">
-            <img src="/assets/img/test4.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="card menu">
-            <img src="/assets/img/test1.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="card menu">
-            <img src="/assets/img/test2.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h5 class="card-title">DONGNAE</h5>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-            </div>
-          </div>
-        </div>
+        <?php endforeach; ?>
       </div>
 
       <!-- If we need pagination -->
@@ -432,60 +407,17 @@
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper mb-5">
         <!-- Slides -->
+        <?php foreach($article_popular as $list): ?>
         <div class="swiper-slide">
-          <div class="card menu">
-            <img src="/assets/img/test1.png" class="card-img-top" alt="Card Image">
+          <div class="card menu" onclick="location.href='/main/articleDetail?id=<?= $list['id'] ?>'">
+            <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
             <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
+              <h6 class="card-title"><?= $list['c_name']; ?></h6>
+              <h4 class="card-title"><?= $list['title']; ?></h4>
             </div>
           </div>
         </div>
-        <div class="swiper-slide">
-          <div class="card menu">
-            <img src="/assets/img/test2.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="card menu">
-            <img src="/assets/img/test3.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="card menu">
-            <img src="/assets/img/test4.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="card menu">
-            <img src="/assets/img/test1.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="card menu">
-            <img src="/assets/img/test2.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h5 class="card-title">DONGNAE</h5>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-            </div>
-          </div>
-        </div>
+        <?php endforeach; ?>
       </div>
 
       <!-- If we need pagination -->
@@ -531,27 +463,34 @@
     document.getElementById('menu-overlay').style.display = 'none'; // 메뉴 오버레이 숨김
   });
 
-  // 검색 버튼 클릭 이벤트 (PC)
-  // document.querySelector('.pc-search').addEventListener('click', function() {
-  //   document.getElementById('search-overlay').style.display = 'flex'; // 검색 오버레이 표시
-  // });
+  //검색 버튼 클릭 이벤트 (PC)
+  document.querySelector('.pc-search').addEventListener('click', function() {
+    document.getElementById('search-overlay').style.display = 'flex'; // 검색 오버레이 표시
+  });
 
-  // 검색 버튼 클릭 이벤트 (모바일)
+  //검색 버튼 클릭 이벤트 (모바일)
   // document.querySelector('.mo-search').addEventListener('click', function() {
   //   document.getElementById('search-overlay').style.display = 'flex'; // 검색 오버레이 표시
   // });
 
   // 검색 오버레이에서 바깥 영역 클릭 시 숨기기
-  document.getElementById('search-overlay').addEventListener('click', function(event) {
-    if (event.target === this) {
-      this.style.display = 'none'; // 검색 오버레이 숨김
-    }
-  });
+  // document.getElementById('search-overlay').addEventListener('click', function(event) {
+  //   if (event.target === this) {
+  //     this.style.display = 'none'; // 검색 오버레이 숨김
+  //   }
+  // });
 
   // 검색 오버레이 내부 화살표 클릭 시 오버레이 숨기기
   // document.getElementById('close-overlay').addEventListener('click', function() {
   //   document.getElementById('search-overlay').style.display = 'none'; // 검색 오버레이 숨김
   // });
+
+  // 검색 오버레이에서 바깥 영역 클릭 시 숨기기
+  document.getElementById('upperArrow').addEventListener('click', function(event) {
+    if (event.target === this) {
+      this.style.display = 'none'; // 검색 오버레이 숨김
+    }
+  });
 
   let recentSwiper = new Swiper('.recent-swiper', {
     slidesPerView: 1,
@@ -592,4 +531,13 @@
       }
     }
   });
+
+  //글 검색
+  function searchArticle(){
+    var keyword = document.getElementById('searchKeyword').value;
+
+    location.href="/main/search_article_list?sk="+encodeURIComponent(keyword);
+
+    return;
+  }
 </script>

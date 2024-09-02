@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Main extends CI_Controller {
+class Main extends MY_Controller {
 
 	public function __construct() {
         parent::__construct();
@@ -33,7 +33,29 @@ class Main extends CI_Controller {
 		$this->load->view('main.php',$data);
 	}
 
-	public function articleDetail() {
+	public function search_article_list()
+	{
+		$data = array();
+
+		$keyword = $this->input->get('sk') ? trim($this->input->get('sk')) : '';
+
+		$where = [
+			'a.title' => $keyword,
+			'a.content' => $keyword,
+			'a.tag' => $keyword
+		];
+
+		$list = $this->Main_mdl->get_search_article_list($where);
+
+		$data['code'] = "0000";
+		$data['msg'] = "검색결과를 조회하였습니다";
+		$data['article'] = $list;
+
+		$this->load->view('search_result.php', $data);
+	}
+
+	public function articleDetail()
+	{
 		$data = array();
 
 		$id = $this->input->get('id');

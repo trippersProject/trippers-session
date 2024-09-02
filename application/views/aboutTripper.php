@@ -141,7 +141,7 @@
         </div>
       </div>
     </div>
-
+    <?php /*
     <!-- Slider main container -->
     <div class="mt-8 w-95 swiper first-about-swiper">
       <!-- Additional required wrapper -->
@@ -342,7 +342,7 @@
       <!-- If we need pagination -->
       <!-- <div class="swiper-pagination second-about-pagination"></div> -->
     </div>
-
+    */ ?>
     <?php include_once("layout/footer_company_info.php")?>
 
     <!-- 스크립트 위치를 body 태그 안으로 이동 -->

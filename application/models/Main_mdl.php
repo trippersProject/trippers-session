@@ -46,6 +46,47 @@ class Main_mdl extends CI_Model {
         return $query->result_array();
     }
 
+    //글 목록 조회
+    public function get_where_article_list($where='', $orderby='', $action='DESC')
+    {
+        $this->db->select('a.*, c.id as c_id, c.name as c_name');
+        $this->db->from('tp_articles a');
+        $this->db->join('tp_category c', 'c.id = a.category1');
+
+        if($where != '')
+        {
+            $this->db->where($where);
+        }
+        if($orderby != '')
+        {
+            $this->db->order_by($orderby, $action);
+        }
+
+        $this->db->limit(5);
+
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
+    //검색어 기준 글 조회
+    public function get_search_article_list($where)
+    {
+        $this->db->distinct('a.id');
+        $this->db->select('a.*, c.id as c_id, c.name as c_name');
+        $this->db->from('tp_articles a');
+        $this->db->join('tp_category c', 'c.id = a.category1');
+
+        if($where != '')
+        {
+            $this->db->or_like($where);
+        }
+
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
     //FIND ITEM 리스트 조회
     public function get_find_item_list($main='')
     {

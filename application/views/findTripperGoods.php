@@ -167,6 +167,8 @@
   <div class="container-fluid">
     <?php include_once("layout/navbar.php")?>
 
+    <!-- TODO : FIND ITEM 비활성화(작업완료시까지) -->
+    <?php /*
     <div class="container" style="height: 700px; display: flex; justify-content: center; align-items: center; max-width: 90%;">
       <div class="row" style="width: 100%;">
         <div class="text-center mx-auto" style="width: 100%;">
@@ -203,13 +205,13 @@
     <?php endforeach; ?>
     <!-- //FIND ITEM 리스트 -->
     
-    
     <div class="d-flex justify-content-center align-items-center mt-6">
       <button type="button" class="custom-btn2">
         <img src="/assets/img/downArrow.svg" alt="" onclick="">
       </button>
     </div>
-
+    */?>
+    
     <div class="d-flex justify-content-center align-items-center mt-6">
       <img src="/assets/img/tripperLounge.svg" alt="">
     </div>
