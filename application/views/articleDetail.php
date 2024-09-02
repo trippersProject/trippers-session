@@ -336,8 +336,8 @@
     <?php include_once("layout/navbar.php")?>
 
     <div class="mt-2">
-      <div style="height: 600px; background-image: url('<?= get_creator_upload_path(). $creator['banner_image'] ?>'); background-position: center; background-size: cover;">
-        <div class="container h-100">
+      <div style="height: 600px; background-image: url('<?= get_article_upload_path(). ($this->agent->is_mobile() ? $info['banner_image_mobile'] : $info['banner_image_pc'])?>'); background-position: center; background-size: cover;">
+      <div class="container h-100">
           <div class="row h-100 align-items-center justify-content-center">
             <div class="col-md-12 text-center">
               <div class="banner-text fw-bold"><strong><?= $info['title']?></strong></div>
@@ -347,64 +347,123 @@
       </div>
     </div>
 
-    <div class="container custom-container mt-5 py-4 py-xl-5">
-      <div class="row gy-4 gy-md-0 creator-info">
-        <div class="col-md-6">
-          <div class="p-xl-5 m-xl-5">
-            <div class="image-container">
-              <img class="rounded-circle img-fluid" src="<?= get_creator_upload_path(). $creator['profile_image'] ?>" />
+    <?php if(!empty($creator['profile_image'])): ?>
+      <div class="container custom-container mt-5 py-4 py-xl-5">
+        <div class="row gy-4 gy-md-0 creator-info">
+          <div class="col-md-6">
+            <div class="p-xl-5 m-xl-5">
+              <div class="image-container">
+                  <img class="rounded-circle img-fluid" src="<?= get_creator_upload_path(). $creator['profile_image'] ?>" />
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-6 d-md-flex align-items-md-center">
-          <div class="text-center" style="max-width: 500px;">
-            <?= $creator['description'] ?>
-            <!-- <h6 class="fw-bold">아마도 책방</h6>
-            <h4 class="fw-bold">책방지기 박수진</h4>
-            
-            <p class="my-3">
-              오늘의 인터뷰 주인공은 바로 남해에서 마음가는대로 <br /> 멋지게 살아가고 있는 아마도 책방 박수진이야.
-              <br /><br />
-              평일엔 팜프라촌에서 일하고, 책도 쓰고, 서핑을 즐기는 멋진 여성이지.
-              <br />
-              시골에서 마음 가는대로 살게 된다면? 바로 이렇게 멋지게 살아보면 어떨까?
-            </p> -->
+          <div class="col-md-6 d-md-flex align-items-md-center">
+            <div class="text-center" style="max-width: 500px;">
+              <?= $creator['description'] ?>
+              <!-- <h6 class="fw-bold">아마도 책방</h6>
+              <h4 class="fw-bold">책방지기 박수진</h4>
+              
+              <p class="my-3">
+                오늘의 인터뷰 주인공은 바로 남해에서 마음가는대로 <br /> 멋지게 살아가고 있는 아마도 책방 박수진이야.
+                <br /><br />
+                평일엔 팜프라촌에서 일하고, 책도 쓰고, 서핑을 즐기는 멋진 여성이지.
+                <br />
+                시골에서 마음 가는대로 살게 된다면? 바로 이렇게 멋지게 살아보면 어떨까?
+              </p> -->
 
-            <div class="sns-img-container">
-              <?if($creator['homepage_url']){?>
-                <a href="<?=$creator['homepage_url']?>" target="_blank">
-                  <img src="/assets/img/Home.svg" alt="" class="img-icon">
-                </a>
-              <?}?>
-              <?if($creator['sns_url_1']){?>
-                <a href="<?=$creator['sns_url_1']?>" target="_blank">
-                  <img src="/assets/img/Instagram.svg" alt="" class="img-icon">
-                </a>
-              <?}?>
-              <?if($creator['sns_url_2']){?>
-                <a href="<?=$creator['sns_url_2']?>" target="_blank">
-                  <img src="/assets/img/Instagram.svg" alt="" class="img-icon">
-                </a>
-              <?}?>
-              <?if($creator['sns_url_3']){?>
-                <a href="<?=$creator['sns_url_3']?>" target="_blank">
-                  <img src="/assets/img/Instagram.svg" alt="" class="img-icon">
-                </a>
-              <?}?>
-            </div>
-            
-            <div class="badge-container">
-              <?php 
-                $tags = explode("#", $info['tag']);
-                for($i = 1; $i < count($tags); $i++): 
-              ?>
-                <h6><span class="badge"><?= $tags[$i]; ?></span></h6>
-              <?php endfor; ?>
+              <div class="sns-img-container">
+                <?php if($creator['homepage_url']) :?>
+                  <a href="<?=$creator['homepage_url']?>" target="_blank">
+                    <img src="/assets/img/Home.svg" alt="" class="img-icon">
+                  </a>
+                <?php endif;?>
+                <?php if($creator['sns_url_1']) : ?>
+                  <a href="<?=$creator['sns_url_1']?>" target="_blank">
+                    <img src="/assets/img/Instagram.svg" alt="" class="img-icon">
+                  </a>
+                <?php endif;?>
+                <?php if($creator['sns_url_2']) : ?>
+                  <a href="<?=$creator['sns_url_2']?>" target="_blank">
+                    <img src="/assets/img/Instagram.svg" alt="" class="img-icon">
+                  </a>
+                <?php endif;?>
+                <?php if($creator['sns_url_3']) : ?>
+                  <a href="<?=$creator['sns_url_3']?>" target="_blank">
+                    <img src="/assets/img/Instagram.svg" alt="" class="img-icon">
+                  </a>
+                <?php endif;?>
+              </div>
+              
+              <div class="badge-container">
+                <?php 
+                  $tags = explode("#", $creator['tag']);
+                  for($i = 1; $i < count($tags); $i++): 
+                ?>
+                  <h6><span class="badge"><?= $tags[$i]; ?></span></h6>
+                <?php endfor; ?>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-       
+      <?php elseif(!empty($place['profile_image'])) : ?>
+        <div class="container custom-container mt-5 py-4 py-xl-5">
+        <div class="row gy-4 gy-md-0 creator-info">
+          <div class="col-md-6">
+            <div class="p-xl-5 m-xl-5">
+              <div class="image-container">
+                  <img class="rounded-circle img-fluid" src="<?= get_place_upload_path(). $place['profile_image'] ?>" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 d-md-flex align-items-md-center">
+            <div class="text-center" style="max-width: 500px;">
+              <?= $place['description'] ?>
+              <!-- <h6 class="fw-bold">아마도 책방</h6>
+              <h4 class="fw-bold">책방지기 박수진</h4>
+              
+              <p class="my-3">
+                오늘의 인터뷰 주인공은 바로 남해에서 마음가는대로 <br /> 멋지게 살아가고 있는 아마도 책방 박수진이야.
+                <br /><br />
+                평일엔 팜프라촌에서 일하고, 책도 쓰고, 서핑을 즐기는 멋진 여성이지.
+                <br />
+                시골에서 마음 가는대로 살게 된다면? 바로 이렇게 멋지게 살아보면 어떨까?
+              </p> -->
+
+              <div class="sns-img-container">
+                <?php if($place['homepage_url']) : ?>
+                  <a href="<?=$place['homepage_url']?>" target="_blank">
+                    <img src="/assets/img/Home.svg" alt="" class="img-icon">
+                  </a>
+                <?php endif;?>
+                <?php if($place['sns_url_1']) : ?>
+                  <a href="<?=$place['sns_url_1']?>" target="_blank">
+                    <img src="/assets/img/Instagram.svg" alt="" class="img-icon">
+                  </a>
+                <?php endif;?>
+                <?php if($place['sns_url_2']) : ?>
+                  <a href="<?=$place['sns_url_2']?>" target="_blank">
+                    <img src="/assets/img/Instagram.svg" alt="" class="img-icon">
+                  </a>
+                <?php endif;?>
+                <?php if($place['sns_url_3']) : ?>
+                  <a href="<?=$place['sns_url_3']?>" target="_blank">
+                    <img src="/assets/img/Instagram.svg" alt="" class="img-icon">
+                  </a>
+                <?php endif;?>
+              </div>
+              
+              <div class="badge-container">
+                <?php 
+                  $tags = explode("#", $place['tag']);
+                  for($i = 1; $i < count($tags); $i++): 
+                ?>
+                  <h6><span class="badge"><?= $tags[$i]; ?></span></h6>
+                <?php endfor; ?>
+              </div>
+            </div>
+          </div>
+        </div>
+      <?php endif; ?>
       <!-- 글 본문 영역 -->
       <div class="container-content mt-7">
         <?= $info['content']; ?>
