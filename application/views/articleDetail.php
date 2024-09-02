@@ -316,6 +316,18 @@
         align-items: center; /* 세로축 가운데 정렬 */
       }
     }
+
+    /* 글상세 배너 텍스트 */
+    .banner-text {
+      font-size: 3.8rem;
+      color : #f8f9fa;
+    }
+
+    @media (max-width: 768px) {
+      .banner-text {
+        font-size: 1.6rem;
+      }
+    }
   </style>
 </head>
 
@@ -327,8 +339,8 @@
       <div style="height: 600px; background-image: url('<?= get_creator_upload_path(). $creator['banner_image'] ?>'); background-position: center; background-size: cover;">
         <div class="container h-100">
           <div class="row h-100 align-items-center justify-content-center">
-            <div class="col-md-6 text-center">
-              <h1 class="fw-bold"><?= $info['title']?></h1>
+            <div class="col-md-12 text-center">
+              <div class="banner-text fw-bold"><strong><?= $info['title']?></strong></div>
             </div>
           </div>
         </div>

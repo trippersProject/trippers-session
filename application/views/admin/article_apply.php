@@ -51,8 +51,13 @@
                 <hr>
             </div>
 
-            <h4>대표 이미지</h4>
-                <input type="file" name="banner_image" id="banner_image" class="form-control w-25">
+            <h4>대표 이미지(PC)</h4>
+                <input type="file" name="banner_image_pc" id="banner_image_pc" class="form-control w-25">
+
+            <hr>
+
+            <h4>대표 이미지(모바일)</h4>
+                <input type="file" name="banner_image_mobile" id="banner_image_mobile" class="form-control w-25">
 
             <hr>
 
@@ -253,8 +258,11 @@
         if($('#category2').val()){  
             formData.append('category2', $('#category2').val());
         }
-        if($('#banner_image').val()){
-        formData.append('banner_image', $('#banner_image')[0].files[0]);
+        if($('#banner_image_pc').val()){
+            formData.append('banner_image_pc', $('#banner_image_pc')[0].files[0]);
+        }
+        if($('#banner_image_mobile').val()){
+            formData.append('banner_image_mobile', $('#banner_image_mobile')[0].files[0]);
         }
         if($('#thumbnail').val()){
             formData.append('thumbnail', $('#thumbnail')[0].files[0]);

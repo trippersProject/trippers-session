@@ -153,9 +153,9 @@ class Article extends CI_Controller {
                 exit;
             }
 
-            // 대표 이미지 업로드 처리
-            $banner_image = null;
-            if (!empty($_FILES['banner_image']['name'])) 
+            // 대표 이미지(PC) 업로드 처리
+            $banner_image_pc = null;
+            if (!empty($_FILES['banner_image_pc']['name'])) 
             { 
                 $config['upload_path']   = FCPATH . 'images/article/';
                 $config['allowed_types'] = 'jpg|jpeg|png|gif';
@@ -167,11 +167,11 @@ class Article extends CI_Controller {
                 //config 초기화
                 $this->upload->initialize($config);
 
-                if ($this->upload->do_upload('banner_image')) {
+                if ($this->upload->do_upload('banner_image_pc')) {
 
                     $banner = $this->upload->data();
 
-                    $banner_image = $banner['file_name'];
+                    $banner_image_pc = $banner['file_name'];
 
                 } else {
                     $result['msg'] = $this->upload->display_errors();
@@ -181,7 +181,38 @@ class Article extends CI_Controller {
             }
             else
             {
-                $banner_image = $article['banner_image'];
+                $banner_image_pc = $article['banner_image_pc'];
+            }
+
+            // 대표 이미지 업로드 처리
+            $banner_image_mobile = null;
+            if (!empty($_FILES['banner_image_mobile']['name'])) 
+            { 
+                $config['upload_path']   = FCPATH . 'images/article/';
+                $config['allowed_types'] = 'jpg|jpeg|png|gif';
+                $config['file_name']     = $this->generate_unique_filename(); // 파일명 생성 함수 호출
+                $config['overwrite']     = TRUE; // 기존 파일 덮어쓰기
+                //$config['max_size'] = 2048; // 2MB
+
+                $this->load->library('upload', $config);
+                //config 초기화
+                $this->upload->initialize($config);
+
+                if ($this->upload->do_upload('banner_image_mobile')) {
+
+                    $banner = $this->upload->data();
+
+                    $banner_image_mobile = $banner['file_name'];
+
+                } else {
+                    $result['msg'] = $this->upload->display_errors();
+                    echo json_encode($result);
+                    return;
+                }
+            }
+            else
+            {
+                $banner_image_mobile = $article['banner_image_mobile'];
             }
 
             // 썸네일 업로드 처리
@@ -260,7 +291,8 @@ class Article extends CI_Controller {
                 'picture_by'         => $picture_by,
                 'place_by'           => $place_by,
                 'thumbnail'          => $thumbnail_file,
-                'banner_image'       => $banner_image,
+                'banner_image_pc'    => $banner_image_pc,
+                'banner_image_mobile'=> $banner_image_mobile,
                 'event_banner_img'   => $event_banner_img,
                 'sort'               => 1,
                 'regdate'            => date('Y-m-d H:i:s'),

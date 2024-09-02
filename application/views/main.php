@@ -61,7 +61,7 @@
   .fixed-size {
     width: 100%;
     height: auto;
-    max-height: 800px; /* 최대 높이 설정 */
+    max-height: 1000px; /* 최대 높이 설정 */
     object-fit: cover;
   }
 
@@ -214,7 +214,7 @@
 
     .fixed-size {
       width: 100%; /* 부모 요소의 가로 크기에 맞게 */
-      height: 400px; /* 원하는 고정 높이 */
+      height: 650px; /* 원하는 고정 높이 */
       object-fit: cover; /* 이미지가 고정된 영역을 덮도록 비율 조정 */
       object-position: center; /* 이미지의 중앙 부분을 표시 */
     }
@@ -347,7 +347,9 @@
       <!-- If we need pagination -->
       <!-- <div class="swiper-pagination dongnae-pagination"></div> -->
     </div>
-
+    
+    <!-- TODO : 작업완료시까지 잠시 비활성화! -->
+    <?php /*
     <div class="mt-8 swiper swiper-find-item">
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper">
@@ -381,7 +383,8 @@
       <div class="swiper-button-prev swiper-find-item-prev"></div>
       <div class="swiper-button-next swiper-find-item-next"></div>
     </div>
-
+   
+   
    <!-- 응모하기 모달 step1 -->
     <div class="modal fade w-100" id="mainFindItemModal" tabindex="-1" aria-labelledby="mainFindItemModalLabel">
       <div class="modal-dialog d-flex justify-content-center align-items-center" style="max-width: 100%;">
@@ -474,7 +477,7 @@
       </div>
     </div>
     <!-- //응모하기 모달 step3 -->
-
+    */?>
     <div class="container mt-8">
       <img src="assets/img/tripletter.png" alt="Trip Letter Image" class="responsive-image img-fluid d-block mx-auto" />
     </div>

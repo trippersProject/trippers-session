@@ -240,7 +240,7 @@
   }
 
   .menu-group .site-menu li a {
-    font-size: 48px; /* 글씨 크기 설정 */
+    font-size: 39px; /* 글씨 크기 설정 */
   }
 
   .menu-group ul li a:hover {
