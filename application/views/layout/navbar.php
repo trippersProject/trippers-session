@@ -474,23 +474,17 @@
   // });
 
   // 검색 오버레이에서 바깥 영역 클릭 시 숨기기
-  // document.getElementById('search-overlay').addEventListener('click', function(event) {
-  //   if (event.target === this) {
-  //     this.style.display = 'none'; // 검색 오버레이 숨김
-  //   }
-  // });
-
-  // 검색 오버레이 내부 화살표 클릭 시 오버레이 숨기기
-  // document.getElementById('close-overlay').addEventListener('click', function() {
-  //   document.getElementById('search-overlay').style.display = 'none'; // 검색 오버레이 숨김
-  // });
-
-  // 검색 오버레이에서 바깥 영역 클릭 시 숨기기
-  document.getElementById('upperArrow').addEventListener('click', function(event) {
+  document.getElementById('search-overlay').addEventListener('click', function(event) {
     if (event.target === this) {
       this.style.display = 'none'; // 검색 오버레이 숨김
     }
   });
+
+  // 검색 오버레이 내부 화살표 클릭 시 오버레이 숨기기
+  document.getElementById('close-overlay').addEventListener('click', function() {
+    document.getElementById('search-overlay').style.display = 'none'; // 검색 오버레이 숨김
+  });
+
 
   let recentSwiper = new Swiper('.recent-swiper', {
     slidesPerView: 1,
