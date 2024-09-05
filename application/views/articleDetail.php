@@ -628,6 +628,11 @@
       }
     });
 
+    //글 상세 페이지 이동
+    function articleDetail(id) {
+      location.href = "/main/articleDetail?id="+id;
+    }
+
     //글 좋아요
     function like_article() {
       var article_id = $('#a_id').val(); // hidden input에서 article ID 값을 가져옵니다.
@@ -641,6 +646,7 @@
               if (response.status == "success") {             
                 //TODO:좋아요 아이콘 빨간색으로 변경
                 alert('좋아요 1포인트 적립되었습니다');
+                location.reload();
               } else if (response.status == 'already') {
                 alert('이미 포인트가 지급되었습니다.');
               } else if (response.status == 'login') {
@@ -669,6 +675,7 @@
 
               if (response.status == 'success') {
                 alert('글 스크랩 1포인트 지급되었습니다.');
+                location.reload();
               } else if (response.status == 'already') {
                 alert('이미 포인트가 지급되었습니다.');
               } else if (response.status == 'login') {
