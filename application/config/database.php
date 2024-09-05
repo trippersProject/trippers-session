@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'tripper0.mycafe24.com',
-	'username' => 'tripper0',
-	'password' => 'xmflvj63!',
-	'database' => 'tripper0',
+	'hostname' => '116.126.143.90',
+	'username' => 'tripper01',
+	'password' => 'xmflvj01!!',
+	'database' => 'tripper01',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
