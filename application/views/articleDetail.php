@@ -328,6 +328,33 @@
         font-size: 1.6rem;
       }
     }
+
+    .creator-content {
+      font-family: "Pretendard Variable-Light";
+    }
+
+    .creator-description p {
+      font-family: "Pretendard Variable-SemiBold" !important;
+    }
+
+    .creator-content p:first-child {
+      font-family: "Pretendard Variable-Bold" !important;
+    }
+
+    @font-face {
+      font-family: "Pretendard Variable-Bold";
+      src: url('/assets/fonts/Pretendard-Bold.woff') format('woff-variations');
+    }
+
+    @font-face {
+      font-family: "Pretendard Variable-SemiBold";
+      src: url('/assets/fonts/Pretendard-SemiBold.woff') format('woff-variations');
+    }
+
+    @font-face {
+      font-family: "Pretendard Variable-Light";
+      src: url('/assets/fonts/Pretendard-Light.woff') format('woff-variations');
+    }
   </style>
 </head>
 
@@ -358,7 +385,7 @@
             </div>
           </div>
           <div class="col-md-6 d-md-flex align-items-md-center">
-            <div class="text-center" style="max-width: 500px;">
+            <div class="text-center creator-description" style="max-width: 500px;">
               <?= $creator['description'] ?>
               <!-- <h6 class="fw-bold">아마도 책방</h6>
               <h4 class="fw-bold">책방지기 박수진</h4>
@@ -416,7 +443,7 @@
             </div>
           </div>
           <div class="col-md-6 d-md-flex align-items-md-center">
-            <div class="text-center" style="max-width: 500px;">
+            <div class="text-center creator-description" style="max-width: 500px;">
               <?= $place['description'] ?>
               <!-- <h6 class="fw-bold">아마도 책방</h6>
               <h4 class="fw-bold">책방지기 박수진</h4>
@@ -465,7 +492,7 @@
         </div>
       <?php endif; ?>
       <!-- 글 본문 영역 -->
-      <div class="container-content mt-7">
+      <div class="container-content creator-content mt-7">
         <?= $info['content']; ?>
          
         <div class="row mt-5 flex-row">
