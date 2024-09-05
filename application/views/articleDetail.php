@@ -513,13 +513,13 @@
       <!-- TODO: 좋아요, 스크랩 활성화상태(색상변경된) 아이콘 필요-->
       <ul class="mt-6 hero-icon">
         <?php if($this->session->userdata('user_id')){?>
-          <?php if($like_post > 0){?>
+          <?php if($like_post){?>
             <li><img src="/assets/img/favorite_active.svg" alt="좋아요" onclick="like_article()"></li>
           <?php }else{ ?>
             <li><img src="/assets/img/favorite.svg" alt="좋아요" onclick="like_article()"></li>
           <?php } ?>
 
-          <?php if($scrap_post > 0){?>
+          <?php if($scrap_post){?>
             <li><img src="/assets/img/stars_active.svg" alt="스크랩" onclick="scrap_article()"></li>
           <?php }else{ ?>
             <li><img src="/assets/img/stars.svg" alt="스크랩" onclick="scrap_article()"></li>
