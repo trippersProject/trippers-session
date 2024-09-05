@@ -136,7 +136,7 @@ class Main extends MY_Controller {
 
 		if(!$u_id)
 		{
-			$response['status'] = 'error';
+			$response['status'] = 'login';
 			$response['msg'] = '로그인 후 가능합니다.';
 			echo json_encode($response);
 			exit;
@@ -184,7 +184,7 @@ class Main extends MY_Controller {
 
 		if(!$u_id)
 		{
-			$response['status'] = 'error';
+			$response['status'] = 'login';
 			$response['msg'] = '로그인 후 가능합니다.';
 			echo json_encode($response);
 			exit;

@@ -628,6 +628,9 @@
                 alert('좋아요 1포인트 적립되었습니다');
               } else if (response.status == 'already') {
                 alert('이미 포인트가 지급되었습니다.');
+              } else if (response.status == 'login') {
+                alert('로그인 후 가능합니다.');
+                location.href="/login";
               } else {
                 alert(response.msg);
               }
@@ -653,6 +656,9 @@
                 alert('글 스크랩 1포인트 지급되었습니다.');
               } else if (response.status == 'already') {
                 alert('이미 포인트가 지급되었습니다.');
+              } else if (response.status == 'login') {
+                alert('로그인 후 가능합니다.');
+                location.href="/login";
               } else {
                 alert(response.msg);
               }
