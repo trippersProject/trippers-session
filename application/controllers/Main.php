@@ -59,6 +59,10 @@ class Main extends MY_Controller {
 		$data = array();
 
 		$id = $this->input->get('id');
+		$u_id = $this->session->userdata('user_id');
+
+		$data['like_post'] = $this->Main_mdl->get_like_info($u_id, $id);
+		$data['scrap_post'] = $this->Main_mdl->get_scrap_info($u_id, $id);
 
 		//글 상세 정보
 		$data['info'] = $this->Main_mdl->get_article_info($id);

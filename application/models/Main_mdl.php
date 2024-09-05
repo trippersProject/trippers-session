@@ -221,4 +221,27 @@ class Main_mdl extends CI_Model {
         }
     }
 
+    //좋아요 여부
+    public function get_like_info($uid, $id) 
+    {
+        $this->db->select('count(1) as cnt');
+        $this->db->from('tp_like');
+        $this->db->where('u_id', $uid);
+        $this->db->where('a_id', $id);
+        $query = $this->db->get();
+
+        return $query->row_array();
+    }
+
+    //스크랩 여부
+    public function get_scrap_info($uid, $id) 
+    {
+        $this->db->select('count(1) as cnt');
+        $this->db->from('tp_scrap');
+        $this->db->where('u_id', $uid);
+        $this->db->where('a_id', $id);
+        $query = $this->db->get();
+
+        return $query->row_array();
+    }
 }
