@@ -127,12 +127,20 @@ class Main extends MY_Controller {
 
 	//글 좋아요
 	public function like_post() {
-        check_login(); // 로그인 여부 체크
+        //check_login(); // 로그인 여부 체크
 
 		$response = array();
         
         $a_id = $this->input->post('post_id');
         $u_id = $this->session->userdata('user_id');
+
+		if(!$u_id)
+		{
+			$response['status'] = 'error';
+			$response['msg'] = '로그인 후 가능합니다.';
+			echo json_encode($response);
+			exit;
+		}
 
 		$data = array(
             'u_id' => $u_id,
@@ -147,16 +155,20 @@ class Main extends MY_Controller {
 
 			if($point_given == 1){
 				$response['status'] = 'success';
+				$response['msg'] = '좋아요 1포인트 적립되었습니다.';
 
 			}elseif($point_given === 'already'){
 				$response['status'] = 'already';
+				$response['msg'] = '이미 포인트적립 된 글입니다.';
 
 			}else{
 				$response['status'] = 'error';
+				$response['msg'] = '처리중 문제가 발생하였습니다.';
 			}
 
         } else {
             $response['status'] = 'error';
+			$response['msg'] = '처리중 오류가 발생하였습니다.';
         }
 
 		echo json_encode($response);
@@ -165,10 +177,18 @@ class Main extends MY_Controller {
 
 	//글 스크랩
     public function scrap_post() {
-        check_login(); // 로그인 여부 체크
+        //check_login(); // 로그인 여부 체크
         
         $a_id = $this->input->post('post_id');
         $u_id = $this->session->userdata('user_id');
+
+		if(!$u_id)
+		{
+			$response['status'] = 'error';
+			$response['msg'] = '로그인 후 가능합니다.';
+			echo json_encode($response);
+			exit;
+		}
 
 		$data = array(
             'u_id' => $u_id,
@@ -182,16 +202,20 @@ class Main extends MY_Controller {
 
 			if($point_given == 1){
 				$response['status'] = 'success';
+				$response['msg'] = '좋아요 1포인트 적립되었습니다.';
 
-			}elseif($point_given == 'already'){
+			}elseif($point_given === 'already'){
 				$response['status'] = 'already';
+				$response['msg'] = '이미 포인트적립 된 글입니다.';
 
 			}else{
 				$response['status'] = 'error';
+				$response['msg'] = '처리중 문제가 발생하였습니다.';
 			}
 
         } else {
             $response['status'] = 'error';
+			$response['msg'] = '처리중 오류가 발생하였습니다.';
         }
 
 		echo json_encode($response);

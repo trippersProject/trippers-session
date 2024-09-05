@@ -629,11 +629,11 @@
               } else if (response.status == 'already') {
                 alert('이미 포인트가 지급되었습니다.');
               } else {
-                alert('오류가 발생했습니다.');
+                alert(response.msg);
               }
           },
           error: function() {
-              alert('서버와의 통신 중 문제가 발생했습니다.');
+              alert(response.msg);
           }
       });
     }
@@ -654,11 +654,11 @@
               } else if (response.status == 'already') {
                 alert('이미 포인트가 지급되었습니다.');
               } else {
-                alert('오류가 발생했습니다.');
+                alert(response.msg);
               }
           },
           error: function() {
-              alert('서버와의 통신 중 문제가 발생했습니다.');
+              alert(response.msg);
           }
       });
     }
