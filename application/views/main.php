@@ -240,6 +240,15 @@
   .creator-swiper,.dongnae-swiper {
     height: 600px;
   }
+
+  .card-title {
+    font-family: "Pretendard Variable-SemiBold";
+  }
+
+  @font-face {
+    font-family: "Pretendard Variable-SemiBold";
+    src: url('assets/fonts/Pretendard-SemiBold.woff') format('woff-variations');
+  }
 </style>
 
 <body>
