@@ -534,7 +534,7 @@
 
       <div class="row mt-2">
         <p>
-          위 버튼을 누르면 FIND POINT가 적립됩니다. <a href="#" class="fw-bold">FIND POINT란?</a>
+          위 버튼을 누르면 FIND POINT가 적립됩니다. <a href="#" class="fw-bold" title="FIND ITEM에 응모할수 있는 포인트에요!">FIND POINT란?</a>
         </p>
       </div>
     </div>
