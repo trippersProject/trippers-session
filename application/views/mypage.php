@@ -127,6 +127,10 @@
       margin-top: 5rem !important;
     }
 
+    .mb-7 {
+      margin-bottom: 6.5rem !important;
+    }
+
     .logo-container {
       display: inline-block;
       text-align: center;
@@ -214,7 +218,7 @@
   <div class="container-fluid">
     <?php include_once("layout/navbar.php")?>
 
-    <div class="container d-flex justify-content-center align-items-center mt-6">
+    <div class="container d-flex justify-content-center align-items-center mt-6 mb-7">
       <div class="border-0">
         <div class="container text-center mt-6 fw-bold fs-4">
           <button id="findBtn" class="text-uppercase">find</button>
