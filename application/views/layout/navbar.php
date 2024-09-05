@@ -276,6 +276,24 @@
     justify-content: space-between; /* 공간을 균등하게 분배 */
     height: 100vh;
   }
+
+  .site-menu {
+    font-family: "Pretendard Variable-ExtraBold";
+  }
+
+  .sns-menu {
+    font-family: "Pretendard Variable-SemiBold";
+  }
+
+  @font-face {
+    font-family: "Pretendard Variable-ExtraBold";
+    src: url('/assets/fonts/Pretendard-ExtraBold.woff') format('woff-variations');
+  }
+
+  @font-face {
+    font-family: "Pretendard Variable-SemiBold";
+    src: url('/assets/fonts/Pretendard-SemiBold.woff') format('woff-variations');
+  }
 </style>
 
 <nav class="navbar navbar-expand-md bg-body mt-3 py-3">
@@ -294,24 +312,24 @@
 
     <!-- 검색 아이콘 및 사용자 아이콘 (오른쪽) -->
     <div class="d-flex align-items-center ms-auto">
-      <div class="d-none d-md-block me-3">
+      <div class="d-none d-md-block me-1">
         <div class="input-group border-secondary border-0 border-bottom"></div>
       </div>
       <!-- <a class="nav-link me-3" href="#">
         <i class="fas fa-search text-dark" style="width: 22px; height: 22px;"></i>
       </a> -->
       <?php if($this->agent->is_mobile()){?>
-        <a class="nav-link me-3" href="#"><i class="fas fa-search pc-search text-dark" style="width: 22px; height: 22px;"></i></a>
+        <a class="nav-link" href="#" style="padding: 3px;"><i class="fas fa-search pc-search text-dark" style="width: 22px; height: 22px;"></i></a>
       <?php }else{ ?>
-        <a class="nav-link me-3" href="#"><i class="fas fa-search pc-search text-dark" style="width: 22px; height: 22px;"></i></a>
+        <a class="nav-link" href="#" style="padding: 3px;"><i class="fas fa-search pc-search text-dark" style="width: 22px; height: 22px;"></i></a>
       <?php } ?>
       <!-- 로그인 상태에 따른 마이페이지 또는 로그인 링크 -->
       <?php if($this->session->userdata('user_id')) { ?>
-        <a class="nav-link" href="/mypage" style="padding: 8px;">
+        <a class="nav-link" href="/mypage" style="padding: 3px;">
           <i class="far fa-user" style="width: 22px; height: 22px;"></i>
         </a>
       <?php } else { ?>
-        <a class="nav-link" href="/login" style="padding: 8px;">
+        <a class="nav-link" href="/login" style="padding: 3px;">
           <i class="far fa-user" style="width: 22px; height: 22px;"></i>
         </a>
       <?php } ?>
@@ -321,7 +339,7 @@
 
 <!-- 메뉴 오버레이 -->
 <div id="menu-overlay" class="menu-overlay">
-  <div class="menu-box">
+  <div class="menu-box mt-4">
     <div class="menu-group">
       <ul class="site-menu">
         <li><a href="/main" class="text-light text-uppercase">home</a></li>
