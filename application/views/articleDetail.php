@@ -146,7 +146,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover; /* 이미지를 컨테이너에 맞게 조정 */
-    }    
+    }
 
     .mt-8 {
       margin-top: 8rem !important;
@@ -181,9 +181,36 @@
     }
 
     .fixed-size {
-      width: 1400px;
-      height: 800px;
+      width: 100%;
+      height: auto;
+      max-height: 1000px; /* 최대 높이 설정 */
       object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      .related-swiper .card {
+        width: 24rem !important;
+      }
+
+      .fixed-size {
+        width: 100%; /* 부모 요소의 가로 크기에 맞게 */
+        height: 200px; /* 원하는 고정 높이 */
+        object-fit: cover; /* 이미지가 고정된 영역을 덮도록 비율 조정 */
+        object-position: center; /* 이미지의 중앙 부분을 표시 */
+      }
+    }
+
+    @media (max-width: 576px) {
+      .related-swiper .card {
+        width: 24rem !important;
+      }
+
+      .fixed-size {
+        width: 100%; /* 부모 요소의 가로 크기에 맞게 */
+        height: 650px; /* 원하는 고정 높이 */
+        object-fit: cover; /* 이미지가 고정된 영역을 덮도록 비율 조정 */
+        object-position: center; /* 이미지의 중앙 부분을 표시 */
+      }
     }
 
     .badge-container {
@@ -301,11 +328,6 @@
         flex-direction: column;
       }
 
-      /* 프로필이미지 */
-      .image-container {
-        width: 150px;
-        height: 150px;
-      }
       /* 글 본문영역 */
       .container-content {
         text-align: left; /* 내부 요소들을 왼쪽 정렬 */
@@ -374,7 +396,7 @@
       </div>
     </div>
 
-    <?php if(!empty($creator['profile_image'])): ?>
+      <?php if(!empty($creator['profile_image'])): ?>
       <div class="container custom-container mt-5 py-4 py-xl-5">
         <div class="row gy-4 gy-md-0 creator-info">
           <div class="col-md-6">
@@ -433,7 +455,7 @@
           </div>
         </div>
       <?php elseif(!empty($place['profile_image'])) : ?>
-        <div class="container custom-container mt-5 py-4 py-xl-5">
+      <div class="container custom-container mt-5 py-4 py-xl-5">
         <div class="row gy-4 gy-md-0 creator-info">
           <div class="col-md-6">
             <div class="p-xl-5 m-xl-5">
@@ -494,7 +516,7 @@
       <!-- 글 본문 영역 -->
       <div class="container-content creator-content mt-7">
         <?= $info['content']; ?>
-         
+
         <div class="row mt-5 flex-row">
           <div class="col-md-1 fw-bold">글</div>
           <div class="col-md-11"><?=$info['article_by']?></div>
@@ -609,7 +631,7 @@
     });
 
     let relatedSwiper = new Swiper('.related-swiper', {
-      slidesPerView: 2,
+      slidesPerView: 1,
       spaceBetween: 20,
       loop: true,
       pagination: {
@@ -622,7 +644,7 @@
           spaceBetween: 10,
         },
         576: {
-          slidesPerView: 2,
+          slidesPerView: 1,
           spaceBetween: 5,
         }
       }
