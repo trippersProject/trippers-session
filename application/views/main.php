@@ -252,7 +252,7 @@
 
   .card img {
     width: 100%;
-    height: 384px;
+    height: 400px;
     object-fit: cover;
   }
 </style>
@@ -292,7 +292,7 @@
             <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
             <div class="card-body">
               <h6 class="card-title"><?= $list['c_name']; ?></h6>
-              <h4 class="card-title"><?= $list['title']; ?></h4>
+              <h5 class="card-title"><?= $list['title']; ?></h5>
               <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
               <div class="badge-container">
                 <?php 
@@ -344,7 +344,7 @@
             <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
             <div class="card-body">
               <h6 class="card-title"><?= $list['c_name']; ?></h6>
-              <h4 class="card-title"><?= $list['title']; ?></h4>
+              <h5 class="card-title"><?= $list['title']; ?></h5>
               <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
               <div class="badge-container">
                 <?php 
