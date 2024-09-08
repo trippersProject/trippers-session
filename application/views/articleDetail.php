@@ -397,7 +397,7 @@
     </div>
 
       <?php if(!empty($creator['profile_image'])): ?>
-      <div class="container custom-container mt-5 py-4 py-xl-5">
+      < class="container custom-container mt-5 py-4 py-xl-5">
         <div class="row gy-4 gy-md-0 creator-info">
           <div class="col-md-6">
             <div class="p-xl-5 m-xl-5">
@@ -611,7 +611,7 @@
         <!-- If we need pagination -->
         <!-- <div class="swiper-pagination related-pagination"></div> -->
         </div>
-      </div>
+      </>
 
     <input type="hidden" name="a_id" id="a_id" value="<?= $info['id']?>">
 
