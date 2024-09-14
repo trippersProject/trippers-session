@@ -66,10 +66,12 @@
     }
 
     .fixed-size {
-      width: 1400px;
-      height: 800px;
+      width: 100%;
+      height: auto;
+      max-height: 1000px; /* 최대 높이 설정 */
       object-fit: cover;
     }
+
 
     .badge-container {
       display: flex;
@@ -124,16 +126,53 @@
       text-overflow: ellipsis;
     }
 
+    .responsive-image {
+      display: block;
+      max-width: 100%;
+    }
+
     @media (max-width: 768px) {
-      .card {
-        width: 14rem;
+      #article-list-all .card, #article-list-creator .card, #article-list-dongnae .card {
+        width: 24rem !important;
+      }
+
+      .fixed-size {
+        width: 100%; /* 부모 요소의 가로 크기에 맞게 */
+        height: 200px; /* 원하는 고정 높이 */
+        object-fit: cover; /* 이미지가 고정된 영역을 덮도록 비율 조정 */
+        object-position: center; /* 이미지의 중앙 부분을 표시 */
       }
     }
 
     @media (max-width: 576px) {
-      .card {
-        width: 12rem;
+      #article-list-all .card, #article-list-creator .card, #article-list-dongnae .card {
+        width: 21.8rem !important;
       }
+
+      .fixed-size {
+        width: 100%; /* 부모 요소의 가로 크기에 맞게 */
+        height: 650px; /* 원하는 고정 높이 */
+        object-fit: cover; /* 이미지가 고정된 영역을 덮도록 비율 조정 */
+        object-position: center; /* 이미지의 중앙 부분을 표시 */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .responsive-image {
+        content: url('/assets/img/moTripletter.svg');
+      }
+    }
+
+    @media (min-width: 601px) {
+      .responsive-image {
+        content: url('/assets/img/tripletter.png');
+      }
+    }
+
+    .card img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
     }
   </style>
 </head>
@@ -158,11 +197,19 @@
       <div class="swiper-pagination swiper-archive-pagination"></div>
     </div>
     
-    <div class="container text-center mt-6 fw-bold fs-4">
+    <!-- <div class="container text-center mt-6 fw-bold fs-4">
       <button class="text-uppercase filter-btn" onclick="changeCategory('all')">all</button>
       <button class="text-uppercase filter-btn" onclick="changeCategory('dongnae')">dongnae</button>
       <button class="text-uppercase filter-btn" onclick="changeCategory('creator')">creator</button>
+    </div> -->
+    <div class="container text-center mt-6 fw-bold fs-5">
+      <div class="d-flex flex-nowrap justify-content-center">
+        <button class="text-uppercase filter-btn mx-2 my-1" onclick="changeCategory('all')">all</button>
+        <button class="text-uppercase filter-btn mx-2 my-1" onclick="changeCategory('dongnae')">dongnae</button>
+        <button class="text-uppercase filter-btn mx-2 my-1" onclick="changeCategory('creator')">creator</button>
+      </div>
     </div>
+
 
     <!-- 글 리스트(ALL)-->
     <div class="container mt-6 w-95" id="article-list-all">
@@ -249,7 +296,7 @@
     <!--// 글 리스트(동네)-->
 
     <div class="container mt-8">
-      <img src="/assets/img/tripletter.png" alt="Trip Letter Image" class="img-fluid d-block mx-auto">
+      <img src="/assets/img/tripletter.png" alt="Trip Letter Image" class="responsive-image img-fluid d-block mx-auto">
     </div>
   </div>
 
@@ -265,11 +312,23 @@
     }
 
     let swiperArchive = new Swiper('.swiper-archive', {
+      slidesPerView: 1,
+      spaceBetween: 20,
       direction: 'horizontal',
       loop: true,
       pagination: {
         el: '.swiper-archive-pagination',
       },
+      breakpoints: {
+        768: {
+          slidesPerView: 4,
+          spaceBetween: 10,
+        },
+        576: {
+          slidesPerView: 1,
+          spaceBetween: 5,
+        }
+      }
     });
 
     function changeCategory(category){
