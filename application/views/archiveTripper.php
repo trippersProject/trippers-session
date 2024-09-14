@@ -132,7 +132,7 @@
     }
 
     @media (max-width: 768px) {
-      #article-list-all .card, #article-list-creator .card, #article-list-dongnae .card {
+      .card {
         width: 24rem !important;
       }
 
@@ -145,8 +145,8 @@
     }
 
     @media (max-width: 576px) {
-      #article-list-all .card, #article-list-creator .card, #article-list-dongnae .card {
-        width: 21.8rem !important;
+      .card {
+        width: 24rem !important;
       }
 
       .fixed-size {
