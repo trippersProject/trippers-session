@@ -1,6 +1,5 @@
 <style>
-  .menu-overlay,
-  .search-overlay {
+  .menu-overlay {
     display: none; /* 처음에는 숨김 */
     position: fixed;
     top: 0;
@@ -15,6 +14,22 @@
     justify-content: center; /* 수직 중앙 정렬 */
     padding: 20px; /* 내부 여백 추가 */
   }
+
+  .search-overlay {
+    display: none;
+    position: fixed; /* 화면에 고정 */
+    top: 0; /* 화면의 맨 위에 위치 */
+    left: 0;
+    width: 100vw; /* 전체 화면 너비 */
+    height: 100vh; /* 전체 화면 높이 */
+    background-color: rgba(0, 0, 0);
+    z-index: 1050; /* 다른 요소들보다 위에 표시되도록 설정 */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤 허용 */
+    flex-direction: column; /* 세로 방향 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+    padding: 20px; /* 상하좌우 여백 */
+  }
+
 
   /* 버튼 그룹 스타일 */
   .button-group {
@@ -39,9 +54,11 @@
 
   /* 중앙의 검색창 스타일 */
   .search-box {
-    width: 80%;
-    height: 100%;
-    max-width: 500px;
+    width: 100%;
+    max-width: 500px; /* 최대 너비 설정 */
+    padding: 40px 20px; /* 상하좌우 여백 */
+    border-radius: 10px; /* 모서리를 둥글게 */
+    margin-top: 20px; /* 상단에서 약간의 여백 */
   }
 
   .search-box .input-group {
@@ -52,12 +69,13 @@
   }
 
   .search-input {
+    width: 100%;
     background: none;
-    border: none; /* 테두리 없애기 */
+    border: none;
     padding: 10px;
     font-size: 18px;
     color: white;
-    outline: none; /* 클릭 시 외곽선 없애기 */
+    outline: none;
   }
 
   /* 검색 인풋 클릭 시 스타일 */
@@ -101,10 +119,6 @@
   a {
     color: black; /* 링크 색깔을 검은색으로 설정 */
     text-decoration: underline;
-  }
-
-  .mt-8 {
-    margin-top: 8rem !important;
   }
 
   .mt-6 {
@@ -379,7 +393,7 @@
 
 <div id="search-overlay" class="search-overlay">
   <div class="search-box">
-    <div class="input-group mt-8">
+    <div class="input-group mt-5">
       <input type="text" class="form-control search-input" id="searchKeyword" placeholder="어떤 여행지 또는 크리에이터를 찾으시나요?" />
       <span class="input-group-text search-icon" onclick="searchArticle()">
         <img src="/assets/img/search.svg" alt="search icon">
@@ -441,22 +455,18 @@
       <!-- If we need pagination -->
       <div class="swiper-pagination views-pagination"></div>
     </div>
+  </div>
 
-    <div class="container d-flex align-items-center justify-content-between" style="height: 30vh;">
-      <a class="me-auto" href="/main">
-        <img src="/assets/img/menuTripperLogo.svg" alt="Logo" style="width: 88px; height: 28px;">
-      </a>
-      <div class="d-flex align-items-center flex-grow-1 justify-content-center pe-5" style="cursor: pointer;">
-        <img src="/assets/img/upperArrow.svg" alt="Upper Arrow" id="upperArrow">
-      </div>
-      <div class="d-flex align-items-center">
-        <a class="me-auto" href="#">
-          <img src="/assets/img/search.svg" alt="Search" id="searchIcon" class="me-2">
-        </a>
-        <a class="me-auto" href="/login">
-          <img src="/assets/img/user.svg" alt="User" id="userIcon">
-        </a>
-      </div>
+  <div class="container d-flex align-items-center justify-content-between" style="height: 100vh; padding: 0 20px;">
+    <a class="me-auto" href="/main">
+      <img src="/assets/img/menuTripperLogo.svg" alt="Logo" style="width: 88px; height: 28px;">
+    </a>
+    <div class="d-flex align-items-center justify-content-center flex-grow-1" style="cursor: pointer;">
+      <img src="/assets/img/upperArrow.svg" alt="Upper Arrow" id="upperArrow">
+    </div>
+    <div class="d-flex align-items-center justify-content-end">
+      <a href="#"><img src="/assets/img/search.svg" alt="Search" id="searchIcon" class="me-3"></a>
+      <a href="/login"><img src="/assets/img/user.svg" alt="User" id="userIcon"></a>
     </div>
   </div>
 </div>
