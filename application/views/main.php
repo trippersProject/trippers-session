@@ -1,4 +1,5 @@
 <?php include_once("layout/header.php");?>
+<link rel="stylesheet" href="/assets/css/main.css">
 <style>
   .article-truncate {
     display: -webkit-box;
@@ -114,56 +115,6 @@
     position: absolute;
     bottom: 0;
     left: 0;
-  }
-
-  .centered-text-find-item-container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center; /* 세로 방향 중앙 정렬 */
-    width: 100%;
-    height: 100px; /* 높이 조정 */
-    position: relative; /* 부모 컨테이너에서 상대 위치 설정 */
-  }
-
-  .centered-text-find-item {
-    text-align: center; /* 텍스트를 화면 중앙에 위치 */
-    position: relative; /* 밑줄을 위한 상대 위치 지정 */
-    display: inline-block; /* 텍스트 길이에 맞게 밑줄 적용 */
-    padding-bottom: 5px; /* 밑줄과 텍스트 간격 조정 */
-    font-weight: 800;
-    font-size: 24px;
-  }
-  
-  .centered-text-find-item::after {
-    content: ""; /* 가상 요소 생성 */
-    display: block;
-    width: 100%; /* 밑줄의 길이 */
-    height: 4px; /* 밑줄의 두께 */
-    background-color: black; /* 밑줄 색상 */
-    position: absolute;
-    bottom: 0;
-    left: 0;
-  }
-  
-  .swiper-find-item-detail .swiper-wrapper .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 700px;
-  }
-
-  .swiper-find-item-detail .swiper-wrapper .swiper-slide img {
-    height: 700px;
-    object-fit: cover;
-  }
-  
-
-  /* Swiper 카드 슬라이드 스타일 */
-  .swiper-slide {
-    display: flex;
-    justify-content: center; /* 카드 가운데 정렬 */
-    align-items: center; /* 카드 가운데 정렬 */
-    padding: 10px; /* 카드 간격 조정 */
   }
 
   /* 카드 스타일 */
@@ -332,7 +283,6 @@
       <div class="centered-text">이번 주 우리동네</div>
     </div>
     
-
     <!-- Slider main container -->
     <div class="mt-5 w-95 swiper dongnae-swiper">
       <!-- Additional required wrapper -->
@@ -363,45 +313,50 @@
       <!-- <div class="swiper-pagination dongnae-pagination"></div> -->
     </div>
     
-    <!-- TODO : 작업완료시까지 잠시 비활성화! -->
-    <?php /*
-    <div class="mt-8 swiper swiper-find-item">
-      <!-- Additional required wrapper -->
-      <div class="swiper-wrapper">
-        <!-- MARK: 바로 아래 div 구조가 반복되야하는 부분 -->
-        <!-- MARK: 자세히보기 버튼 클릭 시 나오는 모달 창은 아래쪽 부분에 있음 -->
-        <div class="swiper-slide row gy-4 gy-md-0">
+    <div class="find-item-area">
+      <?php if($this->agent->is_mobile()){ ?>
+        <div class="find-item-title"><strong>FIND 아이템</strong></div>
+      <?php } ?>
+      <div class="swiper swiper-find-item">
+        <div class="swiper-wrapper">
           <!-- FIND ITEM 리스트 -->
           <?php foreach($find_item as $list): ?>
-            <div class="d-flex justify-content-center align-items-center mt-5" style="background-color: #F5F5F5;">
-              <div class="row w-100">
-                <div class="col-md-6">
-                  <img src="<?= get_find_item_upload_path() .$list['thumbnail']?>" alt="" class="rounded img-fluid w-100 fit-cover" style="min-height: 300px;">
-                </div>
-                <div class="col-md-6 d-md-flex align-items-md-center flex-start ps-5">
-                  <div style="max-width: 900px;">
-                    <h2 class="fw-bold"><?= $list['name']?></h2>
-                    <p class="my-3 lh-lg">
-                      <?= $list['content_sub']?>
-                    </p>
-                    <a href="#" class="btn custom-btn btn-lg me-2" onclick="showEventModal('<?= $list['id'] ?>')">자세히보기</a>
+            <div class="swiper-slide">
+
+                <div class="find-item-content-area w-100">
+                  <div class="find-item-img-area">
+                    <img src="<?= get_find_item_upload_path() .$list['thumbnail']?>" alt="" class="rounded img-fluid w-100 fit-cover">
+                  </div>
+                  <div class="find-item-text-area d-md-flex align-items-md-center">
+                    <div style="max-width: 900px;">
+                      <?php if(!$this->agent->is_mobile()){ ?>
+                        <div class="find-item-title">FIND 아이템</div>
+                      <?php } ?>
+                      <h2 class="fw-bold"><?= $list['name']?></h2>
+                      <p class="my-3 lh-lg">
+                        <?= $list['content_sub']?>
+                      </p>
+                      <a href="#" class="btn finditem-btn" onclick="showEventModal('<?= $list['id'] ?>')">자세히보기</a>
+                    </div>
                   </div>
                 </div>
-              </div>
+
             </div>
           <?php endforeach; ?>
           <!-- //FIND ITEM 리스트 -->
         </div>
+        <!-- 모바일일떈 하단 버튼, PC일땐 사이드 화살표노출  -->
+        <?php if($this->agent->is_mobile()){ ?>
+          <div class="swiper-pagination swiper-find-item-pagination"></div>
+        <?php }else{ ?>
+          <div class="swiper-button-prev swiper-find-item-prev"></div>
+          <div class="swiper-button-next swiper-find-item-next"></div>
+        <?php } ?>
       </div>
-
-      <!-- If we need navigation buttons -->
-      <div class="swiper-button-prev swiper-find-item-prev"></div>
-      <div class="swiper-button-next swiper-find-item-next"></div>
+    
     </div>
-   
-   
-   <!-- 응모하기 모달 step1 -->
-    <div class="modal fade w-100" id="mainFindItemModal" tabindex="-1" aria-labelledby="mainFindItemModalLabel">
+    <!-- 응모하기 모달 step1 -->
+    <div class="modal fade w-100" id="mainFindItemModal" tabindex="-1" aria-labelledby="mainFindItemModalLabel" aria-hidden="true">
       <div class="modal-dialog d-flex justify-content-center align-items-center" style="max-width: 100%;">
         <div class="modal-content">
           <div class="modal-body d-flex align-items-center mt-2 mb-2">
@@ -439,25 +394,34 @@
 
     <!-- 응모하기 모달 step2 -->
     <input type="hidden" id="findItemId" value="">
-    <div class="modal fade w-100" id="mainFindItemModal2" tabindex="-1" aria-labelledby="mainFindItemModalLabel2">
-      <div class="modal-dialog d-flex justify-content-center align-items-center" style="max-width: 100%;">
+    <div class="modal fade modal w-100" id="mainFindItemModal2" tabindex="-1" aria-labelledby="mainFindItemModalLabel2" aria-hidden="true">
+      <div class="modal-dialog modal-lg d-flex justify-content-center align-items-center">
         <div class="modal-content">
-          <div class="modal-body d-flex align-items-center mt-2 mb-2">
-            <div class="row gy-4 gy-md-0 mx-auto" style="width: 100%;">
-              <div class="col-md-6 d-md-flex align-items-md-center">
-                <div style="max-width: 350px;">
-                  <div class="centered-text-find-item-container mb-4">
+          <div class="modal-body d-flex align-items-center justify-content-center">
+            <div class="row gy-4 mx-auto text-center" style="width: 100%;">
+              <div class="d-md-flex justify-content-center align-items-md-center">
+                <div class="modal-inner-content" style="margin: 0 auto;">
+                  <div class="centered-text-find-item-container">
                     <div class="centered-text-find-item">FIND 아이템 응모전에 꼭 확인해 주세요</div>
                   </div>
-                  <div id="find_item_content">
-                    당첨자는 <a href="">해당페이지</a>에서 확인하세요
+                  <div class="find_item_text">
+                    <h5 class="mt-2">당첨자는 <a href="">해당페이지</a>에서 확인하세요</h5>
+                    <ul class="mt-4">
+                      <li>응모하기 완료 후 취소 또는 포인트 환불은 불가합니다</li>
+                      <li>아이디 1개 기준 1회만 응모할 수 있습니다</li>
+                      <li>중복 연락처, 주소 사용의 경우 당첨자에서 제외됩니다</li>
+                      <li>배송정보는 별도 개인정보 수집이 진행됩니다</li>
+                      <li>응모하기와 동시에 <a href="">개인정보수집 이용 동의</a>가 진행됩니다</li>
+                    </ul>
                   </div>
-                  <button type="button" class="btn custom-btn w-50" onclick="applyFindItem()">
-                    응모하기
-                  </button>
-                  <button type="button" class="btn custom-btn w-50" onclick="location.reload()">
-                    취소하기
-                  </button>
+                  <div class="mt-4">
+                    <button type="button" class="btn custom-btn w-100 mt-4" onclick="applyFindItem()">
+                      응모하기
+                    </button>
+                    <button type="button" class="btn custom-btn w-100 mt-4 mb-4" onclick="location.reload()">
+                      취소하기
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -468,22 +432,24 @@
     <!-- //응모하기 모달 step2 -->
 
     <!-- 응모하기 모달 step3 -->
-    <div class="modal fade w-100" id="mainFindItemModal3" tabindex="-1" aria-labelledby="mainFindItemModalLabel3">
-      <div class="modal-dialog d-flex justify-content-center align-items-center" style="max-width: 100%;">
+    <div class="modal fade modal w-100" id="mainFindItemModal3" tabindex="-1" aria-labelledby="mainFindItemModalLabel2" aria-hidden="true">
+      <div class="modal-dialog modal-lg d-flex justify-content-center align-items-center">
         <div class="modal-content">
-          <div class="modal-body d-flex align-items-center mt-2 mb-2">
-            <div class="row gy-4 gy-md-0 mx-auto" style="width: 100%;">
-              <div class="col-md-6 d-md-flex align-items-md-center">
-                <div style="max-width: 350px;">
-                  <div class="centered-text-find-item-container mb-4">
+          <div class="modal-body d-flex align-items-center justify-content-center">
+            <div class="row gy-4 mx-auto text-center" style="width: 100%;">
+              <div class="d-md-flex justify-content-center align-items-md-center">
+                <div class="modal-inner-content" style="margin: 0 auto;">
+                  <div class="centered-text-find-item-container">
                     <div class="centered-text-find-item">FIND 아이템 응모를 완료했습니다</div>
                   </div>
-                  <div id="find_item_content">
-                    여러분의 FIND POINT를 사용해주셔서 감사합니다<br>앞으로도 트리퍼에서 많은 활동 부탁드립니다
+                  <div class="find_item_text">
+                    <h5 class="mt-2">여러분의 FIND POINT를 사용해주셔서 감사합니다<BR>앞으로도 트리퍼에 많은 활동 부탁드립니다</h5>
                   </div>
-                  <button type="button" class="btn custom-btn w-50">
-                    확인
-                  </button>
+                  <div class="mt-4">
+                    <button type="button" class="btn custom-btn w-100 mt-4" onclick="location.reload()">
+                      확인
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -492,7 +458,7 @@
       </div>
     </div>
     <!-- //응모하기 모달 step3 -->
-    */?>
+
     <div class="container mt-8">
       <img src="assets/img/tripletter.png" alt="Trip Letter Image" class="responsive-image img-fluid d-block mx-auto" />
     </div>
@@ -614,9 +580,7 @@
                 //finditme아이디 세팅(응모하기시 아이디 넘김)
                 $("#findItemId").val(data.id);
 
-                // 모달노출
-                var modal = new bootstrap.Modal(document.getElementById('mainFindItemModal'));
-                modal.show();
+                $('#mainFindItemModal').modal('show'); // 두 번째 모달 열기
               }else{
                 alert(response.msg);
                 location.reload();
@@ -630,21 +594,21 @@
 
       //FIND아이템 응모하기 모달 노출
       function showEventModalStep2() {
-        // 첫 번째 모달을 숨깁니다.
-        // var modal1 = new bootstrap.Modal(document.getElementById('mainFindItemModal'));
-        // modal1.hide();
-
-        $("#mainFindItemModal").remove();
-
-        // 두번째 모달 노출
-        var modal2 = new bootstrap.Modal(document.getElementById('mainFindItemModal2'));
-        modal2.show();
+        $('#mainFindItemModal').modal('hide');  // 첫 번째 모달 닫기
+        $('#mainFindItemModal2').modal('show'); // 두 번째 모달 열기
       }
 
       //FINDITEM 응모하기
       function applyFindItem(){
         let findItemId = $("#findItemId").val();
+        var user_id = "<?= $this->session->userdata("user_id")?>";
         
+        if(user_id == ''){
+          alert("로그인 후 응모 가능합니다.");
+          location.href = "/login";
+          return;
+        }
+
         $.ajax({
             url: '/main/apply_find_item',
             type: 'POST',
@@ -653,12 +617,8 @@
             success: function(response) {
               if(response.code == '0000'){
 
-                // 두 번째 모달제거
-                $("#mainFindItemModal2").remove();
-
-                // 모달노출
-                var modal3 = new bootstrap.Modal(document.getElementById('mainFindItemModal3'));
-                modal3.show();
+                $('#mainFindItemModal2').modal('hide');  // 첫 번째 모달 닫기
+                $('#mainFindItemModal3').modal('show'); // 두 번째 모달 열기
               }else{
                 alert(response.msg);
               }
@@ -668,6 +628,14 @@
             }
         });
       }
+
+    $('.modal').on('hidden.bs.modal', function () {
+      if ($('.modal.show').length === 0) {
+          $('body').removeClass('modal-open'); // 모든 모달이 닫혔을 경우 modal-open 클래스 제거
+          $('body').css('overflow', 'auto'); // 스크롤 다시 활성화
+          $('.modal-backdrop').remove(); // 오버레이(회색 배경) 제거
+      }
+    });
 
     </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
