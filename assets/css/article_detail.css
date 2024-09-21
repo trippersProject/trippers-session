@@ -258,7 +258,8 @@
 .event-banner-text-area > a{
     margin-top: 3vw;
     border-radius: 0;
-    width: 7vw;
+    font-size: 1rem;
+    width: 9vw;
     height: 2.5vw;
     display: flex;
     justify-content: center; /* 이미지 수평 가운데 정렬 */
@@ -313,7 +314,7 @@
 }
 
 .relation-content-title {
-    width: 6%;
+    width: 10%;
     margin: 0 auto;
     border-bottom: solid 4px #000;
     font-size: 1.4rem;
@@ -356,7 +357,7 @@
 .card-img-top {
     width: 100%;
     height: auto;
-    min-height: 600px;
+    min-height: 400px;
 }
 
 /* 카드 내용 */

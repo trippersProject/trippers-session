@@ -242,8 +242,8 @@
           <div class="card" onclick="articleDetail('<?= $list['id'] ?>')">
             <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
             <div class="card-body">
-              <h6 class="card-title"><?= $list['c_name']; ?></h6>
-              <h5 class="card-title"><?= $list['title']; ?></h5>
+              <h6 class="card-title"><strong><?= $list['c_name']; ?></strong></h6>
+              <h5 class="card-title"><strong><?= $list['title']; ?></strong></h5>
               <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
               <div class="badge-container">
                 <?php 
@@ -460,7 +460,9 @@
     <!-- //응모하기 모달 step3 -->
 
     <div class="container mt-8">
-      <img src="assets/img/tripletter.png" alt="Trip Letter Image" class="responsive-image img-fluid d-block mx-auto" />
+      <a href="https://page.stibee.com/subscriptions/240273">
+        <img src="assets/img/tripletter.png" class="responsive-image img-fluid d-block mx-auto" style="cursor:pointer;"/>
+      </a>
     </div>
 
     <?php include_once("layout/footer_company_info.php")?>

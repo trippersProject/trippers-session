@@ -97,6 +97,14 @@ class Main extends MY_Controller {
 	public function aboutTripper() {
 		$data = array();
 
+		//NEWS 글목록
+		$article_news = $this->Main_mdl->get_article_list('16');
+
+		//STORY 글목록
+		$article_story = $this->Main_mdl->get_article_list('17');
+
+		$data['article'] = array_merge($article_news, $article_story);
+
 		$this->load->view('aboutTripper.php',$data);
 	}
 

@@ -220,9 +220,9 @@
             <p class="card-text article-truncate mt-2"><?= strip_tags($list['content']); ?></p>
             <div class="badge-container">
               <?php 
-                      $tags = explode("#", $list['tag']);
-                      for($i = 1; $i < count($tags); $i++): 
-                    ?>
+                $tags = explode("#", $list['tag']);
+                for($i = 1; $i < count($tags); $i++): 
+              ?>
               <h6><span class="badge"><?= $tags[$i]; ?></span></h6>
               <?php endfor; ?>
             </div>

@@ -105,6 +105,14 @@
       margin: 0 auto; /* 이미지 중앙 정렬 */
     }
 
+    .article-truncate {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3; /* 최대 줄 수 */
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     @media (max-width: 768px) {
       .card {
         width: 14rem;
@@ -141,213 +149,45 @@
         </div>
       </div>
     </div>
-    <?php /*
-    <!-- Slider main container -->
-    <div class="mt-8 w-95 swiper first-about-swiper">
-      <!-- Additional required wrapper -->
-      <div class="swiper-wrapper">
-        <!-- Slides -->
-        <div class="swiper-slide">
-          <div class="card">
-            <!-- <img src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" class="card-img-top" alt="Card Image"> -->
-            <img src="/assets/img/test1.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <div class="badge-container">
-                <h6><span class="badge bg-secondary">경남김해</span></h6>
-                <h6><span class="badge bg-secondary">칼국수</span></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="card">
-            <!-- <img src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" class="card-img-top" alt="Card Image"> -->
-            <img src="/assets/img/test2.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <div class="badge-container">
-                <h6><span class="badge bg-secondary">경남김해</span></h6>
-                <h6><span class="badge bg-secondary">칼국수</span></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="card">
-            <!-- <img src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" class="card-img-top" alt="Card Image"> -->
-            <img src="/assets/img/test3.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <div class="badge-container">
-                <h6><span class="badge bg-secondary">경남김해</span></h6>
-                <h6><span class="badge bg-secondary">칼국수</span></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="card">
-            <!-- <img src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" class="card-img-top" alt="Card Image"> -->
-            <img src="/assets/img/test4.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <div class="badge-container">
-                <h6><span class="badge bg-secondary">경남김해</span></h6>
-                <h6><span class="badge bg-secondary">칼국수</span></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="card">
-            <!-- <img src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" class="card-img-top" alt="Card Image"> -->
-            <img src="/assets/img/test1.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <div class="badge-container">
-                <h6><span class="badge bg-secondary">경남김해</span></h6>
-                <h6><span class="badge bg-secondary">칼국수</span></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="card">
-            <!-- <img src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" class="card-img-top" alt="Card Image"> -->
-            <img src="/assets/img/test2.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h5 class="card-title">DONGNAE</h5>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <div class="badge-container">
-                <h6><span class="badge bg-secondary">경남김해</span></h6>
-                <h6><span class="badge bg-secondary">칼국수</span></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- If we need pagination -->
-      <!-- <div class="swiper-pagination first-about-pagination"></div> -->
-    </div>
-    
 
-    <!-- Slider main container -->
-    <div class="mt-6 w-95 swiper second-about-swiper">
-      <!-- Additional required wrapper -->
-      <div class="swiper-wrapper">
-        <!-- Slides -->
-        <div class="swiper-slide">
-          <div class="card">
-            <!-- <img src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" class="card-img-top" alt="Card Image"> -->
-            <img src="/assets/img/test1.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <div class="badge-container">
-                <h6><span class="badge bg-secondary">경남김해</span></h6>
-                <h6><span class="badge bg-secondary">칼국수</span></h6>
+    <!-- 글 리스트(ALL)-->
+    <div class="container mt-6 w-95" id="article-list-all">
+      <div class="row mb-5 g-4"> <!-- 행 사이 간격과 카드 사이 간격을 조정 -->
+        <!-- 카테고리 값이 있으면 해당카테고리와 일치하는글만 노출 -->
+          <?php foreach($article as $list): ?>
+          <div class="col-md-3">
+            <div class="card" onclick="articleDetail('<?= $list['id'] ?>')">
+              <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
+              <div class="card-body">
+                <h6 class="card-title"><strong><?= $list['c_name']; ?></strong></h6>
+                <h4 class="card-title"><strong><?= $list['title']; ?></strong></h4>
+                <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
+                <div class="badge-container">
+                <?php 
+                  $tags = explode("#", $list['tag']);
+                  for($i = 1; $i < count($tags); $i++): 
+                ?>
+                  <h6><span class="badge"><?= $tags[$i]; ?></span></h6>
+                <?php endfor; ?>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="card">
-            <!-- <img src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" class="card-img-top" alt="Card Image"> -->
-            <img src="/assets/img/test2.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <div class="badge-container">
-                <h6><span class="badge bg-secondary">경남김해</span></h6>
-                <h6><span class="badge bg-secondary">칼국수</span></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="card">
-            <!-- <img src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" class="card-img-top" alt="Card Image"> -->
-            <img src="/assets/img/test3.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <div class="badge-container">
-                <h6><span class="badge bg-secondary">경남김해</span></h6>
-                <h6><span class="badge bg-secondary">칼국수</span></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="card">
-            <!-- <img src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" class="card-img-top" alt="Card Image"> -->
-            <img src="/assets/img/test4.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <div class="badge-container">
-                <h6><span class="badge bg-secondary">경남김해</span></h6>
-                <h6><span class="badge bg-secondary">칼국수</span></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="card">
-            <!-- <img src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" class="card-img-top" alt="Card Image"> -->
-            <img src="/assets/img/test1.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h6 class="card-title">DONGNAE</h6>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <div class="badge-container">
-                <h6><span class="badge bg-secondary">경남김해</span></h6>
-                <h6><span class="badge bg-secondary">칼국수</span></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="card">
-            <!-- <img src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" class="card-img-top" alt="Card Image"> -->
-            <img src="/assets/img/test2.png" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h5 class="card-title">DONGNAE</h5>
-              <h4 class="card-title">딱 두 시간만 먹을 수 있는 식당.</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <div class="badge-container">
-                <h6><span class="badge bg-secondary">경남김해</span></h6>
-                <h6><span class="badge bg-secondary">칼국수</span></h6>
-              </div>
-            </div>
-          </div>
-        </div>
+          <?php endforeach; ?>
       </div>
-      <!-- If we need pagination -->
-      <!-- <div class="swiper-pagination second-about-pagination"></div> -->
     </div>
-    */ ?>
+    <!--// 글 리스트(ALL)-->
+
     <?php include_once("layout/footer_company_info.php")?>
 
     <!-- 스크립트 위치를 body 태그 안으로 이동 -->
     <script src="/assets/js/swiper.js"></script>
     <script>
+      //글 상세 페이지 이동
+      function articleDetail(id) {
+        location.href = "/main/articleDetail?id="+id;
+      }
+      
       let firstAboutSwiper = new Swiper('.first-about-swiper', {
         slidesPerView: 2,
         spaceBetween: 20,

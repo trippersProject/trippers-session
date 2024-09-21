@@ -66,10 +66,12 @@
     }
 
     .fixed-size {
-      width: 1400px;
-      height: 800px;
+      width: 100%;
+      height: auto;
+      max-height: 1000px; /* 최대 높이 설정 */
       object-fit: cover;
     }
+
 
     .badge-container {
       display: flex;
@@ -124,34 +126,71 @@
       text-overflow: ellipsis;
     }
 
+    .responsive-image {
+      display: block;
+      max-width: 100%;
+    }
+
     @media (max-width: 768px) {
       .card {
-        width: 14rem;
+        width: 24rem !important;
+      }
+
+      .fixed-size {
+        width: 100%; /* 부모 요소의 가로 크기에 맞게 */
+        height: 200px; /* 원하는 고정 높이 */
+        object-fit: cover; /* 이미지가 고정된 영역을 덮도록 비율 조정 */
+        object-position: center; /* 이미지의 중앙 부분을 표시 */
       }
     }
 
     @media (max-width: 576px) {
       .card {
-        width: 12rem;
+        width: 24rem !important;
       }
+
+      .fixed-size {
+        width: 100%; /* 부모 요소의 가로 크기에 맞게 */
+        height: 650px; /* 원하는 고정 높이 */
+        object-fit: cover; /* 이미지가 고정된 영역을 덮도록 비율 조정 */
+        object-position: center; /* 이미지의 중앙 부분을 표시 */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .responsive-image {
+        content: url('/assets/img/moTripletter.svg');
+      }
+    }
+
+    @media (min-width: 601px) {
+      .responsive-image {
+        content: url('/assets/img/tripletter.png');
+      }
+    }
+
+    .card img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
     }
   </style>
 </head>
 
 <body>
-  <div class="container-fluid">
+  <div class="content-container">
     <?php include_once("layout/navbar.php")?>
-
-    <!-- 검색결과 글 리스트(ALL)-->
-    <div class="container mt-6 w-95 d-flex justify-content-center flex-wrap">
-      <div class="row mb-5 g-4 justify-content-center">
+    <!-- 글 리스트(ALL)-->
+    <div class="container mt-6 w-95">
+      <div class="row mb-5 g-4"> <!-- 행 사이 간격과 카드 사이 간격을 조정 -->
+        <!-- 카테고리 값이 있으면 해당카테고리와 일치하는글만 노출 -->
           <?php foreach($article as $list): ?>
-          <div class="col-md-6 d-flex justify-content-center">
+          <div class="col-md-3">
             <div class="card" onclick="articleDetail('<?= $list['id'] ?>')">
               <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
               <div class="card-body">
-                <h6 class="card-title"><?= $list['c_name']; ?></h6>
-                <h4 class="card-title"><?= $list['title']; ?></h4>
+                <h6 class="card-title"><strong><?= $list['c_name']; ?></strong></h6>
+                <h4 class="card-title"><strong><?= $list['title']; ?></strong></h4>
                 <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
                 <div class="badge-container">
                 <?php 
@@ -170,7 +209,9 @@
     <!--// 글 리스트(ALL)-->
 
     <div class="container mt-8">
-      <img src="/assets/img/tripletter.png" alt="Trip Letter Image" class="img-fluid d-block mx-auto">
+      <a href="https://page.stibee.com/subscriptions/240273">
+        <img src="assets/img/tripletter.png" class="responsive-image img-fluid d-block mx-auto" style="cursor:pointer;"/>
+      </a>
     </div>
   </div>
 
@@ -184,6 +225,26 @@
     function articleDetail(id) {
       location.href = "/main/articleDetail?id="+id;
     }
+
+    let swiperArchive = new Swiper('.swiper-archive', {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      direction: 'horizontal',
+      loop: true,
+      pagination: {
+        el: '.swiper-archive-pagination',
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 4,
+          spaceBetween: 10,
+        },
+        576: {
+          slidesPerView: 1,
+          spaceBetween: 5,
+        }
+      }
+    });
   </script>
 </body>
 

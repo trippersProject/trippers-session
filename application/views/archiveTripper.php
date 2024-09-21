@@ -220,8 +220,8 @@
             <div class="card" onclick="articleDetail('<?= $list['id'] ?>')">
               <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
               <div class="card-body">
-                <h6 class="card-title"><?= $list['c_name']; ?></h6>
-                <h4 class="card-title"><?= $list['title']; ?></h4>
+                <h6 class="card-title"><strong><?= $list['c_name']; ?></strong></h6>
+                <h4 class="card-title"><strong><?= $list['title']; ?></strong></h4>
                 <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
                 <div class="badge-container">
                 <?php 
@@ -248,8 +248,8 @@
             <div class="card" onclick="articleDetail('<?= $list['id'] ?>')">
               <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
               <div class="card-body">
-                <h6 class="card-title"><?= $list['c_name']; ?></h6>
-                <h4 class="card-title"><?= $list['title']; ?></h4>
+                <h6 class="card-title"><strong><?= $list['c_name']; ?></strong></h6>
+                <h4 class="card-title"><strong><?= $list['title']; ?></strong></h4>
                 <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
                 <div class="badge-container">
                 <?php 
@@ -276,8 +276,8 @@
             <div class="card" onclick="articleDetail('<?= $list['id'] ?>')">
               <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
               <div class="card-body">
-                <h6 class="card-title"><?= $list['c_name']; ?></h6>
-                <h4 class="card-title"><?= $list['title']; ?></h4>
+                <h6 class="card-title"><strong><?= $list['c_name']; ?></strong></h6>
+                <h4 class="card-title"><strong><?= $list['title']; ?></strong></h4>
                 <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
                 <div class="badge-container">
                 <?php 
