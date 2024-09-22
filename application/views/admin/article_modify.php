@@ -12,7 +12,9 @@
                 <?php endforeach; */?>
                 <option value="">---선택---</option>
                 <option value="1" <?= ($info['category1'] == '1') ? "selected" : ""?>>CREATOR</option>
-                <option value="2" <?= ($info['category1'] == '2') ? "selected" : ""?>>DONGNAE</option>
+                <option value="2" <?= ($info['category1'] == '2') ? "selected" : ""?>>SPACE</option>
+                <option value="16" <?= ($info['category1'] == '16') ? "selected" : ""?>>NEWS</option>
+                <option value="17" <?= ($info['category1'] == '17') ? "selected" : ""?>>STORY</option>
             </select>
 
             <hr>
@@ -142,6 +144,7 @@
         </div>
     </form>
 </div>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
 <script>
     //머리글 에디터
     $(document).ready(function() {
@@ -199,6 +202,8 @@
                 },  // 어두운 코드 스타일 옵션
                 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',  // 제목 스타일 옵션
             ],
+            fontNames: ['Pretendard', 'Arial', 'Courier New', 'Times New Roman'], // 폰트 목록에 Pretendard 추가
+            fontNamesIgnoreCheck: ['Pretendard'], // Summernote에서 기본 제공하지 않는 폰트를 사용할 때 필요
         });
     });
 
@@ -255,6 +260,8 @@
                 },  // 어두운 코드 스타일 옵션
                 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',  // 제목 스타일 옵션
             ],
+            fontNames: ['Pretendard', 'Arial', 'Courier New', 'Times New Roman'], // 폰트 목록에 Pretendard 추가
+            fontNamesIgnoreCheck: ['Pretendard'], // Summernote에서 기본 제공하지 않는 폰트를 사용할 때 필요
         });
     });
 

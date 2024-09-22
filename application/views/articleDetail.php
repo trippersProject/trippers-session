@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="/assets/css/Navbar-Centered-Brand-icons.css">
 
   <link rel="stylesheet" href="/assets/css/globals.css" />
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="/assets/css/styles.css">
   <link rel="stylesheet" href="/assets/css/article_detail.css">
   <link rel="stylesheet" href="/assets/css/swiper.css" />
 
@@ -32,7 +32,7 @@
     <!-- //상단 배너 -->
 
     <!-- 크리에이터, 매장 소개영역 -->
-    <?php if(!empty($creator['profile_image'])): ?>
+    <?php if(!empty($creator['profile_image']) && $info['category1'] == '1'): ?>
     <div class="profile-container">
       <!-- 프로필이미지 영역 -->
       <div class="profile-image-area">
@@ -45,6 +45,8 @@
       <!-- 프로필 텍스트 영역 -->
       <div class="profile-text-area">
         <div class="text-center profile-text">
+          <h5><strong><?= $creator['sub_name'] ?></strong></h5><BR>
+          <h3><strong><?= $creator['name'] ?></strong></h3><BR>
           <?= $creator['description'] ?>
           <!-- sns 아이콘이미지 -->
           <div class="sns-img-container">
@@ -82,7 +84,7 @@
       </div>
       <!-- //프로필 텍스트 영역 -->
     </div>
-    <?php elseif(!empty($place['profile_image'])) : ?>
+    <?php elseif(!empty($place['profile_image']) && $info['category1'] == '1') : ?>
     <div class="container custom-container mt-5 py-4 py-xl-5">
       <div class="row gy-4 gy-md-0 creator-info">
         <div class="col-md-6">
@@ -140,15 +142,15 @@
       <?= $info['content']; ?>
 
       <div class="flex-row article-from">
-        <div class="article-from-item"><strong>글</strong></div>
+        <div class="article-from-item-title"><strong>글</strong></div>
         <div class="col-md-11 article-from-item"><?=$info['article_by']?></div>
       </div>
       <div class="article-from">
-        <div class="article-from-item"><strong>사진</strong></div>
+        <div class="article-from-item-title"><strong>사진</strong></div>
         <div class="article-from-item"><?=$info['picture_by']?></div>
       </div>
       <div class="article-from">
-        <div class="article-from-item"><strong>장소</strong></div>
+        <div class="article-from-item-title"><strong>장소</strong></div>
         <div class="article-from-item"><?=$info['place_by']?></div>
       </div>
     </div>
@@ -195,7 +197,7 @@
     <div class="col-md-7 p-4 d-flex align-items-center">
       <div class="event-banner-text-area">
         <?=$info['event_banner_text']?>
-        <a class="btn btn-dark" role="button" href="#">신청하기</a>
+        <a class="btn btn-dark" role="button" href="<?= $list['event_banner_link'] ?>">신청하기</a>
       </div>
     </div>
   </div>
@@ -237,9 +239,7 @@
 </div>
 
   <input type="hidden" name="a_id" id="a_id" value="<?= $info['id']?>">
-  <div class="footer-area">
-    <?php include_once("layout/footer_company_info.php")?>
-  </div>
+  <?php include_once("layout/footer_company_info.php")?>
 
   <!-- 스크립트 위치를 body 태그 안으로 이동 -->
   <script src="/assets/js/swiper.js"></script>

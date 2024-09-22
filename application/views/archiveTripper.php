@@ -174,6 +174,11 @@
       height: 400px;
       object-fit: cover;
     }
+
+    .on-title{
+      color:#F36523;
+      border-bottom: solid 2px #F36523;
+    }
   </style>
 </head>
 
@@ -197,16 +202,11 @@
       <div class="swiper-pagination swiper-archive-pagination"></div>
     </div>
     
-    <!-- <div class="container text-center mt-6 fw-bold fs-4">
-      <button class="text-uppercase filter-btn" onclick="changeCategory('all')">all</button>
-      <button class="text-uppercase filter-btn" onclick="changeCategory('dongnae')">dongnae</button>
-      <button class="text-uppercase filter-btn" onclick="changeCategory('creator')">creator</button>
-    </div> -->
     <div class="container text-center mt-6 fw-bold fs-5">
-      <div class="d-flex flex-nowrap justify-content-center">
-        <button class="text-uppercase filter-btn mx-2 my-1" onclick="changeCategory('all')">all</button>
-        <button class="text-uppercase filter-btn mx-2 my-1" onclick="changeCategory('dongnae')">dongnae</button>
-        <button class="text-uppercase filter-btn mx-2 my-1" onclick="changeCategory('creator')">creator</button>
+      <div class="d-flex flex-nowrap justify-content-center p-1">
+        <button class="text-uppercase filter-btn p-3" onclick="changeCategory('all')">all.</button>
+        <button class="text-uppercase filter-btn p-3" onclick="changeCategory('dongnae')">dongnae.</button>
+        <button class="text-uppercase filter-btn p-3" onclick="changeCategory('creator')">creator.</button>
       </div>
     </div>
 

@@ -92,7 +92,7 @@
   @media (max-width: 768px) {
     .search-input::placeholder {
       color: white; /* 플레이스홀더 글씨 흰색 */
-      font-size: 12px; /* 글씨 크기 */
+      font-size: 1.0rem; /* 글씨 크기 */
     }
   }
 
@@ -139,7 +139,6 @@
   /* 카드 이미지 */
   .card-img-top {
     width: 100%;
-    height: auto;
   }
 
   /* 카드 내용 */
@@ -378,7 +377,7 @@
       <img src="/assets/img/menuTripperLogo.svg" alt="Logo" style="width: 88px; height: 28px;">
     </a>
     <div class="d-flex align-items-center flex-grow-1 justify-content-center pe-5" style="cursor: pointer;">
-      <img src="/assets/img/upperArrow.svg" alt="Upper Arrow" id="upperArrow">
+      <img src="/assets/img/upperArrow.svg" alt="Upper Arrow" id="upperArrow1">
     </div>
     <div class="d-flex align-items-center">
       <a class="me-auto" href="#">
@@ -400,7 +399,7 @@
       </span>
     </div>
     <div class="button-group mt-5">
-      <button class="search-button text-uppercase">dongnae</button>
+      <button class="search-button text-uppercase">space</button>
       <button class="search-button text-uppercase">creator</button>
     </div>
 
@@ -462,7 +461,7 @@
       <img src="/assets/img/menuTripperLogo.svg" alt="Logo" style="width: 88px; height: 28px;">
     </a>
     <div class="d-flex align-items-center justify-content-center flex-grow-1" style="cursor: pointer;">
-      <img src="/assets/img/upperArrow.svg" alt="Upper Arrow" id="upperArrow">
+      <img src="/assets/img/upperArrow.svg" alt="Upper Arrow" id="upperArrow2">
     </div>
     <div class="d-flex align-items-center justify-content-end">
       <a href="#"><img src="/assets/img/search.svg" alt="Search" id="searchIcon" class="me-3"></a>
@@ -486,9 +485,22 @@
     }
   });
 
-  // 메뉴 오버레이 내부 화살표 클릭 시 오버레이 숨기기
-  document.getElementById('upperArrow').addEventListener('click', function() {
-    document.getElementById('menu-overlay').style.display = 'none'; // 메뉴 오버레이 숨김
+  //오버레이 내부 화살표 클릭 시 오버레이 숨기기
+  document.addEventListener('DOMContentLoaded', function() {
+    const upperArrow1 = document.getElementById('upperArrow1');
+    const upperArrow2 = document.getElementById('upperArrow2');
+
+    if (upperArrow1) {
+      upperArrow1.addEventListener('click', function() {
+        document.getElementById('menu-overlay').style.display = 'none';
+      });
+    }
+
+    if (upperArrow2) {
+      upperArrow2.addEventListener('click', function() {
+        document.getElementById('search-overlay').style.display = 'none';
+      });
+    }
   });
 
   //검색 버튼 클릭 이벤트 (PC)
@@ -506,11 +518,6 @@
     if (event.target === this) {
       this.style.display = 'none'; // 검색 오버레이 숨김
     }
-  });
-
-  // 검색 오버레이 내부 화살표 클릭 시 오버레이 숨기기
-  document.getElementById('close-overlay').addEventListener('click', function() {
-    document.getElementById('search-overlay').style.display = 'none'; // 검색 오버레이 숨김
   });
 
 

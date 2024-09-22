@@ -144,15 +144,25 @@
   .card img {
     margin: 0 auto; /* 이미지 중앙 정렬 */
   }
+  
+  .creator-swiper,.dongnae-swiper {
+    height: 40vw;
+    min-height: 700px;
+  }
 
   @media (max-width: 768px) {
+    .creator-swiper,.dongnae-swiper {
+      height: 170vw;
+      min-height: 400px;
+    }
+
     .creator-swiper .card, .dongnae-swiper .card {
       width: 24rem !important;
     }
 
     .fixed-size {
       width: 100%; /* 부모 요소의 가로 크기에 맞게 */
-      height: 200px; /* 원하는 고정 높이 */
+      height: 300px; /* 원하는 고정 높이 */
       object-fit: cover; /* 이미지가 고정된 영역을 덮도록 비율 조정 */
       object-position: center; /* 이미지의 중앙 부분을 표시 */
     }
@@ -188,10 +198,6 @@
     }
   }
 
-  .creator-swiper,.dongnae-swiper {
-    height: 600px;
-  }
-
   .card-title {
     font-family: "Pretendard Variable-SemiBold";
   }
@@ -219,8 +225,10 @@
         <!-- Slides -->
         <?php foreach($mt_banners as $list): ?>
           <div class="swiper-slide">
-            <img class="w-100 d-block fixed-size" src="<?= get_banner_upload_path() . ($this->agent->is_mobile() ? $list['filename_mobile'] : $list['filename_pc']); ?>" alt="Slide Image" />
-          </div>
+            <a href="<?=  $list['link'] ?>" class="cursor:pointer;">
+              <img class="w-100 d-block fixed-size" src="<?= get_banner_upload_path() . ($this->agent->is_mobile() ? $list['filename_mobile'] : $list['filename_pc']); ?>" alt="Slide Image" />
+            </a>
+            </div>
         <?php endforeach; ?>
       </div>
 
@@ -229,11 +237,10 @@
     </div>
 
     <div class="centered-text-container">
-      <div class="centered-text">크리에이터 추천 공간</div>
-    </div>  
-
+      <div class="centered-text">CREATOR STORY</div>
+    </div>
     <!-- Slider main container -->
-    <div class="mt-5 w-95 swiper creator-swiper">
+    <div class="w-95 swiper creator-swiper">
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper">
         <!-- Slides -->
@@ -259,7 +266,7 @@
         <?php endforeach; ?>
       </div>
       <!-- If we need pagination -->
-      <!-- <div class="swiper-pagination creator-pagination"></div> -->
+      <div class="swiper-pagination creator-pagination"></div>
     </div>
 
 
@@ -284,7 +291,7 @@
     </div>
     
     <!-- Slider main container -->
-    <div class="mt-5 w-95 swiper dongnae-swiper">
+    <div class="swiper dongnae-swiper">
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper">
         <!-- Slides -->
@@ -310,9 +317,10 @@
         <?php endforeach; ?>
       </div>
       <!-- If we need pagination -->
-      <!-- <div class="swiper-pagination dongnae-pagination"></div> -->
+      <div class="swiper-pagination dongnae-pagination"></div>
     </div>
-    
+<?php /*
+*FIND ITEM 논의후에 작업후 적용예정
     <div class="find-item-area">
       <?php if($this->agent->is_mobile()){ ?>
         <div class="find-item-title"><strong>FIND 아이템</strong></div>
@@ -458,7 +466,7 @@
       </div>
     </div>
     <!-- //응모하기 모달 step3 -->
-
+*/?>
     <div class="container mt-8">
       <a href="https://page.stibee.com/subscriptions/240273">
         <img src="assets/img/tripletter.png" class="responsive-image img-fluid d-block mx-auto" style="cursor:pointer;"/>

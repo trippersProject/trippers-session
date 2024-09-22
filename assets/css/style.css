@@ -480,3 +480,14 @@
 .swiper-button-prev {
   color: black; /* 화살표 색상 검정 */
 }
+
+/*footer 영역*/
+.footer-info {
+  font-size : 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .footer-info {
+    font-size : 0.8rem;
+  }
+}

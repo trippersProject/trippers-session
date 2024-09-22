@@ -144,7 +144,7 @@ class Article extends CI_Controller {
             $place_by = $this->input->post('place_by', TRUE);  // XSS 필터링하지 않음
             $tag = $this->input->post('tag', TRUE);
             $event_banner_link = $this->input->post('event_banner_link', TRUE);
-            $event_banner_text = $this->input->post('event_banner_text', TRUE);
+            $event_banner_text = $this->input->post('event_banner_text', FALSE);
             
             $article = $this->article_mdl->get_article_info($id);
 

@@ -11,6 +11,7 @@
   
   <link rel="stylesheet" href="/assets/css/styles.css">
   <link rel="stylesheet" href="/assets/css/swiper.css" />
+  <link rel="stylesheet" href="/assets/css/findGoods.css" />
 
   <style>
     a {
@@ -121,50 +122,12 @@
       padding: 10px; /* 카드 간격 조정 */
     }
 
-    /* 카드 스타일 */
-    .card {
-      width: 100%;
-      max-width: 23rem; /* 카드 최대 너비 */
-      transition: transform 0.2s ease-in-out;
-      border: none; /* 테두리 제거 */
-      box-shadow: none; /* 그림자 제거 */
-      text-align: center; /* 텍스트 중앙 정렬 */
-    }
 
-    /* 카드 이미지 */
-    .card-img-top {
-      width: 100%;
-      height: auto;
-    }
-
-    /* 카드 내용 */
-    .card-body {
-      display: flex;
-      flex-direction: column;
-      align-items: start;
-      padding: 0 !important;
-    }
-    
-    .card img {
-      margin: 0 auto; /* 이미지 중앙 정렬 */
-    }
-
-    @media (max-width: 768px) {
-      .card {
-        width: 14rem;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .card {
-        width: 12rem;
-      }
-    }
   </style>
 </head>
 
 <body>
-  <div class="container-fluid">
+  <div class="">
     <?php include_once("layout/navbar.php")?>
 
     <!-- TODO : FIND ITEM 비활성화(작업완료시까지) -->
@@ -216,29 +179,28 @@
       <img src="/assets/img/tripperLounge.svg" alt="">
     </div>
 
-    <div class="centered-text-container">
-      <div class="centered-text">트리퍼가 만든 지역의 굿즈를 소개합니다</div>
+    <div class="find-title">
+      <div class="find-title-line1"><strong>트리퍼가 만든&nbsp;</strong></div>
+      <div class="find-title-line2"><strong>지역의 굿즈를 소개합니다</strong></div>
     </div>
 
-    <div class="container mt-6 w-95">
-      <div class="row mb-5 g-4"> <!-- 행 사이 간격과 카드 사이 간격을 조정 -->
+    <div class="goods-area">
         <!-- goods 리스트 -->
         <?php foreach($goods as $item): ?>
-        <div class="col-md-4">
+        <div class="goods-item">
           <div class="card" onclick="location.href='<?=$item['url']?>'">
             <img src="<?= get_goods_upload_path() .$item['thumbnail']?>" class="card-img-top" alt="Card Image">
             <div class="card-body mt-3">
-              <h6 class="card-title"><?= $item['goods_name'] ?></h6>
+              <div class="card-title"><strong><?= $item['goods_name'] ?></strong></div>
               <p class="card-text">
-                <span class="me-2"><?= $item['price'] ?>원</span> <!-- 판매 가격 -->
-                <span class="text-muted text-decoration-line-through"><?= $item['normal'] ?> 원</span> <!-- 원래 가격 -->
+                <span class="me-2 card-price"><strong><?= number_format($item['price']) ?>원</strong></span> <!-- 판매 가격 -->
+                <span class="text-decoration-line-through card-normal"><?= number_format($item['normal']) ?> 원</span> <!-- 원래 가격 -->
               </p>              
             </div>
           </div>
         </div>
         <?php endforeach; ?>
         <!-- //goods 리스트 -->
-      </div>
     </div>
 
     <div class="d-flex justify-content-center align-items-center mt-6">

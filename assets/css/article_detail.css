@@ -1,45 +1,6 @@
-:root {
-    /* fonts */
-    --font-pretendard-variable: "Pretendard Variable";
-  
-    /* font sizes */
-    --font-size-base: 16px;
-    --font-size-xl: 20px;
-    --font-size-13xl: 32px;
-    --font-size-5xl: 24px;
-    --font-size-lgi: 19px;
-    --font-size-xs: 12px;
-    --font-size-mini: 15px;
-    --font-size-lg: 18px;
-    --font-size-7xl: 26px;
-  
-    /* Colors */
-    --color-white: #fff;
-    --color-black: #000;
-    --color-gainsboro: #e2e2e2;
-    --color-silver: #c6c6c6;
-  
-    /* Gaps */
-    --gap-xl: 20px;
-    --gap-xs: 12px;
-    --gap-4xs-5: 8.5px;
-    --gap-4xs-6: 8.6px;
-    --gap-4xl: 23px;
-    --gap-smi: 13px;
-  
-    /* Paddings */
-    --padding-xl: 20px;
-    --padding-10xl: 29px;
-    --padding-6xs: 7px;
-    --padding-12xs: 1px;
-    --padding-11xs: 2px;
-    --padding-9xs: 4px;
-    --padding-54xl: 73px;
-    --padding-53xl: 72px;
-    --padding-8xs-5: 4.5px;
-    --padding-11xs-1: 1.1px;
-    --padding-6xs-5: 6.5px;
-  }
+* {
+    font-family: "Pretendard Variable-Medium", Helvetica;
+}
 
 /*상단배너*/
 .main-container {
@@ -61,12 +22,18 @@
     color: #fff;
 }
 
+@media (max-width: 768px) {
+    .article-banner-text {
+        font-size: 10vw;
+    }
+}
+
 /*크리에이터&매장 프로필 영역*/
 .profile-container {
     display: flex; /* 플렉스박스를 사용하여 자식 요소를 가로로 정렬 */
     justify-content: center; /* 가로로 자식 요소들을 가운데 정렬 */
     align-items: center; /* 세로로 자식 요소들을 가운데 정렬 */
-    width: 65%;
+    width: 50%;
     height: auto;
     min-height: 480px;
     margin: 0 auto; /* 전체 컨테이너 수평 가운데 정렬 */
@@ -89,7 +56,7 @@
     display: flex;
     flex-direction: column; /* 텍스트와 배지가 세로로 쌓이게 설정 */
     justify-content: center; /* 텍스트를 세로로 가운데 정렬 */
-    padding : 50px 50px 0 50px;
+    padding : 0 10% 0 10%;
     text-align: center; /* 텍스트 가운데 정렬 */
 }
 
@@ -149,22 +116,22 @@
     }
 
     .profile-image > img{
-        min-width: 152px;
-        min-height: 152px;
+        min-width: 210px;
+        min-height: 210px;
     }
 }
 
 
 /*본문영역*/
 .content-area {
-    width: 65%;
+    width: 50%;
     margin: 0 auto;
     margin-top: 8vw;
 }
 
 /*좋아요 스크랩 공유하기 영역*/
 .share-icon-area {
-    width: 65%;
+    width: 50%;
     margin: 0 auto;
 }
 
@@ -186,8 +153,12 @@
     margin-top: 1vw;
 }
 
-.article-from-item {
+.article-from-item-title {
     width: 10%;
+}
+
+.article-from-item {
+    width: 30%;
 }
 
 @media (max-width: 768px) {
@@ -212,6 +183,10 @@
         display: flex;
         justify-content: left;
         margin-top: 5vw;
+    }
+
+    .article-from-item-title {
+        width: 20%;
     }
 
     .article-from-item {
@@ -357,7 +332,6 @@
 .card-img-top {
     width: 100%;
     height: auto;
-    min-height: 400px;
 }
 
 /* 카드 내용 */
@@ -387,7 +361,6 @@
 
     .card > img{
         height: auto;
-        min-height: 400px;
     }
 }
 
