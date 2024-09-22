@@ -6,7 +6,11 @@
         <input type="hidden" name="id" id="id" value="<?= $info['id']?>">
         <div>
             <h4>크리에이터명</h4>
-                <input type="text" name="name" id="name" class="form-control" value="<?= $info['name'];?>">
+                <input type="text" name="name" id="name" class="form-control w-50" value="<?= $info['name'];?>">
+            <hr>
+
+            <h4>크리에이터 타이틀</h4>
+                <input type="text" name="sub_name" id="sub_name" class="form-control  w-50" value="<?= $info['sub_name'];?>">
             <hr>
 
             <h4>태그 ( '#' 으로 구분)</h4>
@@ -145,6 +149,7 @@
         var formData = new FormData();
         formData.append('id', $('#id').val());
         formData.append('name', $('#name').val());
+        formData.append('sub_name', $('#sub_name').val());
         formData.append('tag', $('#tag').val());
         formData.append('description', $('#summernote').val());
         formData.append('homepage_url', $('#homepage_url').val());

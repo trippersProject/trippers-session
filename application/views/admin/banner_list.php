@@ -30,7 +30,10 @@ $banner_category = $this->config->item('banner_category');
                             <input class="form-check-input use-checkbox" type="checkbox" id="use_yn_<?= $value['id']; ?>" data-id="<?= $value['id']; ?>" <?=($value['use_yn'] == 'Y')? "checked" : ""?>>
                         </div>
                     </td>
-                    <td><button onclick="location.href='banner/modify?id=<?= $value['id']?>'" class="btn btn-primary btn-sm">수정</button></td>
+                    <td>
+                        <button onclick="location.href='banner/modify?id=<?= $value['id']?>'" class="btn btn-primary btn-sm">수정</button>
+                        <button onclick="deleteBanner(<?= $value['id']?>)" class="btn btn-danger btn-sm">삭제</button>
+                    </td>
                 </tr>
             <?php endforeach; ?>
             <?php else: ?>
@@ -89,5 +92,34 @@ $(document).ready(function() {
         });
     });
 });
+
+function deleteBanner(id){
+    var bannerId = id;
+    if(bannerId == ''){
+        alert("필수값 누락입니다.");
+        return;
+    }
+    if(confirm('해당 게시물을 삭제하시겠습니까?')){
+        $.ajax({
+            url: 'banner/banner_delete',
+            dataType: 'json',
+            type: 'POST',
+            data: {
+                id: bannerId
+            },
+            success: function(response) {
+                if(response.code == '0000'){               
+                    alert('삭제처리 되었습니다.');
+                    location.reload();
+                }else{
+                    alert(response.msg);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert('업데이트 중 오류가 발생했습니다.');
+            }
+        });
+    }
+}
 </script>
 </html>

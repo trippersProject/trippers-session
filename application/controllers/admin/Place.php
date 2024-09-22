@@ -111,6 +111,7 @@ class Place extends CI_Controller {
             // POST 데이터 받기
             $id = $this->input->post('id', FALSE);
             $name = $this->input->post('name', TRUE);
+            $sub_name = $this->input->post('sub_name', TRUE);
             $tag = $this->input->post('tag', TRUE);
             $description = $this->input->post('description', TRUE);
             $homepage_url = $this->input->post('homepage_url', TRUE);
@@ -191,6 +192,7 @@ class Place extends CI_Controller {
             //데이터베이스에 저장
             $data = array(
                 'name'          => $name,
+                'sub_name'      => $sub_name,
                 'tag'           => $tag,
                 'description'   => $description,
                 'homepage_url'  => $homepage_url,
@@ -237,4 +239,42 @@ class Place extends CI_Controller {
         echo json_encode($result);
         exit;
     }
+
+    //매장 삭제
+	public function place_delete()	
+	{	
+		$id = $this->input->post('id', TRUE);
+
+        $result = array();
+        $data = array();
+
+        if(empty($id))
+        {
+            $result['msg'] = "id가 없습니다";
+            json_encode($result);
+            exit;
+        }
+        
+        $info = $this->place_mdl->get_place_info($id);
+
+        if (!empty($info))
+        {
+            //delete헬퍼
+            $res = delete_record('tp_banner', $id);
+
+            if($res == true)
+            {
+                $result['code'] = "0000";
+                $result['msg'] = "삭제되었습니다.";
+            }else{
+                $result['code'] = "9999";
+                $result['msg'] = "처리중 에러가 발생하였습니다";
+            }
+		}else{
+            $result['code'] = "9999";
+			$result['msg'] = "조회된 정보가 없습니다";        
+		}
+        echo json_encode($result);
+        exit;
+	}
 }

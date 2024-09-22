@@ -45,7 +45,8 @@ if (!function_exists('place_upload_path')) {
 }
 
 //정렬순서 업데이트
-function update_sort($table, $id, $sort) {
+function update_sort($table, $id, $sort)
+{
     $CI =& get_instance();
 
     if($table && $id){
@@ -61,7 +62,8 @@ function update_sort($table, $id, $sort) {
 }
 
 //사용여부 업데이트
-function update_use_yn($table, $id, $use_yn) {
+function update_use_yn($table, $id, $use_yn)
+{
     $CI =& get_instance();
 
     if($table && $id){
@@ -76,7 +78,8 @@ function update_use_yn($table, $id, $use_yn) {
 }
 
 //일반회원 로그인여부 체크
-function check_login() {
+function check_login()
+{
     $CI =& get_instance();
     $user_id = $CI->session->userdata('user_id');
     
@@ -91,7 +94,8 @@ function check_login() {
 }
 
 //포인트 지급
-function change_user_point($u_id, $a_id, $gubun, $path) {
+function change_user_point($u_id, $a_id, $gubun, $path)
+{
     $CI =& get_instance();
     $CI->load->database();  
 
@@ -156,7 +160,8 @@ function change_user_point($u_id, $a_id, $gubun, $path) {
 
 
 //글 조회수 업데이트
-function update_article_hit($id, $hit) {
+function update_article_hit($id, $hit)
+{
     $CI =& get_instance();
 
     // 배너의 사용여부 업데이트 로직
@@ -165,4 +170,37 @@ function update_article_hit($id, $hit) {
 
     return true;
 
+}
+
+//DB삭제
+function delete_record($table, $id)
+{
+    // CI 인스턴스 가져오기
+    $CI =& get_instance();
+    // 데이터베이스 로드
+    $CI->load->database();
+
+    // 테이블명과 ID 값 검증
+    if (empty($table) || !is_numeric($id)) {
+        return false;
+    }
+
+    // 트랜잭션 시작
+    $CI->db->trans_start();
+
+    // 삭제 쿼리 실행
+    $CI->db->where('id', $id);
+    $CI->db->delete($table);
+
+    // 트랜잭션 완료 또는 롤백
+    $CI->db->trans_complete();
+
+    // 트랜잭션 성공 여부 확인
+    if ($CI->db->trans_status() === FALSE) {
+        // 트랜잭션 실패 시 롤백
+        return false;
+    } else {
+        // 트랜잭션 성공 시 커밋
+        return true;
+    }
 }

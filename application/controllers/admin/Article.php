@@ -143,6 +143,7 @@ class Article extends CI_Controller {
             $picture_by = $this->input->post('picture_by', TRUE);  // XSS 필터링하지 않음
             $place_by = $this->input->post('place_by', TRUE);  // XSS 필터링하지 않음
             $tag = $this->input->post('tag', TRUE);
+            $event_banner_link = $this->input->post('event_banner_link', TRUE);
             $event_banner_text = $this->input->post('event_banner_text', TRUE);
             
             $article = $this->article_mdl->get_article_info($id);
@@ -285,7 +286,6 @@ class Article extends CI_Controller {
                 'category2'          => $category2,
                 'title'              => $title,
                 'tag'                => $tag,
-                'event_banner_text'  => $event_banner_text,
                 'content'            => $content,
                 'article_by'         => $article_by,
                 'picture_by'         => $picture_by,
@@ -294,6 +294,8 @@ class Article extends CI_Controller {
                 'banner_image_pc'    => $banner_image_pc,
                 'banner_image_mobile'=> $banner_image_mobile,
                 'event_banner_img'   => $event_banner_img,
+                'event_banner_link'  => $event_banner_link,
+                'event_banner_text'  => $event_banner_text,
                 'sort'               => 1,
                 'regdate'            => date('Y-m-d H:i:s'),
             );
@@ -335,6 +337,44 @@ class Article extends CI_Controller {
         echo json_encode($result);
         exit;
     }
+
+    //작성글 삭제
+	public function article_delete()	
+	{	
+		$id = $this->input->post('id', TRUE);
+
+        $result = array();
+        $data = array();
+
+        if(empty($id))
+        {
+            $result['msg'] = "id가 없습니다";
+            json_encode($result);
+            exit;
+        }
+        
+        $info = $this->article_mdl->get_article_info($id);
+
+        if (!empty($info))
+        {
+            //delete헬퍼
+            $res = delete_record('tp_articles', $id);
+
+            if($res == true)
+            {
+                $result['code'] = "0000";
+                $result['msg'] = "삭제되었습니다.";
+            }else{
+                $result['code'] = "9999";
+                $result['msg'] = "처리중 에러가 발생하였습니다";
+            }
+		}else{
+            $result['code'] = "9999";
+			$result['msg'] = "조회된 정보가 없습니다";        
+		}
+        echo json_encode($result);
+        exit;
+	}
 
 	public function main(){
 		$this->load->view('main.php');

@@ -238,4 +238,42 @@ class Banner extends CI_Controller {
         echo json_encode($result);
         exit;
     }
+
+    //배너 삭제
+	public function banner_delete()	
+	{	
+		$id = $this->input->post('id', TRUE);
+
+        $result = array();
+        $data = array();
+
+        if(empty($id))
+        {
+            $result['msg'] = "id가 없습니다";
+            json_encode($result);
+            exit;
+        }
+        
+        $info = $this->banner_mdl->get_banner_info($id);
+
+        if (!empty($info))
+        {
+            //delete헬퍼
+            $res = delete_record('tp_banner', $id);
+
+            if($res == true)
+            {
+                $result['code'] = "0000";
+                $result['msg'] = "삭제되었습니다.";
+            }else{
+                $result['code'] = "9999";
+                $result['msg'] = "처리중 에러가 발생하였습니다";
+            }
+		}else{
+            $result['code'] = "9999";
+			$result['msg'] = "조회된 정보가 없습니다";        
+		}
+        echo json_encode($result);
+        exit;
+	}
 }

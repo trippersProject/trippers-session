@@ -94,7 +94,9 @@
 
             <h4>이벤트배너 이미지</h4>
                 <input type="file" name="event_banner_img" id="event_banner_img" class="form-control w-25">
-
+            <BR>
+            <h4>이벤트배너 연결링크</h4>
+                <input type="text" name="event_banner_link" id="event_banner_link" class="form-control">
             <hr>
 
             <h4>이벤트배너 문구</h4>
@@ -276,6 +278,7 @@
         if($('#event_banner_img').val()){
             formData.append('event_banner_img', $('#event_banner_img')[0].files[0]);
         }
+        formData.append('event_banner_link', $('#event_banner_link').val());
         formData.append('event_banner_text', $('#event_banner_text').val());
 
         $.ajax({
