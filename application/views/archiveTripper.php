@@ -1,17 +1,5 @@
 <?php $category=''; ?>
-<!DOCTYPE html>
-<html data-bs-theme="light" lang="ko">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <title>trippers</title>
-  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css">
-  <link rel="stylesheet" href="/assets/css/Navbar-Centered-Brand-icons.css">
-  
-  <link rel="stylesheet" href="/assets/css/styles.css">
-  <link rel="stylesheet" href="/assets/css/swiper.css" />
+<?php include_once("layout/header.php");?>
 
   <style>
     a {
@@ -82,6 +70,17 @@
       margin: 0;
     }
 
+    .badge {
+      display: inline-block;
+      padding: 5px 10px;
+      margin: 2px;
+      background-color: #f0f0f0; /* Light grey background */
+      border: 1px solid #ccc; /* Light grey border */
+      border-radius: 4px; /* Slightly rounded corners, adjust as needed */
+      font-size: 14px;
+      color: #000; /* Black text color */
+    }
+
     /* Swiper 카드 슬라이드 스타일 */
     .swiper-slide {
       display: flex;
@@ -118,12 +117,25 @@
       margin: 0 auto; /* 이미지 중앙 정렬 */
     }
 
-    .article-truncate {
+    .card-text {
+      font-size: 0.9rem;
+    }
+
+    .card-title-sub {
+      font-size: 1.0rem;
+    }
+
+    /* .article-truncate {
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3; /* 최대 줄 수 */
+      -webkit-line-clamp: 3;
       overflow: hidden;
       text-overflow: ellipsis;
+    } */
+
+    .sub-categoey {
+      font-size: 1.2rem;
+      margin-top: 5vw;
     }
 
     .responsive-image {
@@ -186,6 +198,7 @@
   <div class="container-fluid">
     <?php include_once("layout/navbar.php")?>
 
+<?php /*
     <!-- Slider main container -->
     <div class="mt-2 swiper swiper-archive">
       <!-- Additional required wrapper -->
@@ -201,15 +214,15 @@
       <!-- If we need pagination -->
       <div class="swiper-pagination swiper-archive-pagination"></div>
     </div>
+*/ ?>
     
-    <div class="container text-center mt-6 fw-bold fs-5">
+    <div class="container sub-categoey">
       <div class="d-flex flex-nowrap justify-content-center p-1">
-        <button class="text-uppercase filter-btn p-3" onclick="changeCategory('all')">all.</button>
-        <button class="text-uppercase filter-btn p-3" onclick="changeCategory('dongnae')">dongnae.</button>
-        <button class="text-uppercase filter-btn p-3" onclick="changeCategory('creator')">creator.</button>
+        <button class="text-uppercase filter-btn p-3" onclick="changeCategory('all')"><strong>all.</strong></button>
+        <button class="text-uppercase filter-btn p-3" onclick="changeCategory('dongnae')"><strong>dongnae.</strong></button>
+        <button class="text-uppercase filter-btn p-3" onclick="changeCategory('creator')"><strong>creator.</strong></button>
       </div>
     </div>
-
 
     <!-- 글 리스트(ALL)-->
     <div class="container mt-6 w-95" id="article-list-all">
@@ -221,8 +234,8 @@
               <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
               <div class="card-body">
                 <h6 class="card-title"><strong><?= $list['c_name']; ?></strong></h6>
-                <h4 class="card-title"><strong><?= $list['title']; ?></strong></h4>
-                <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
+                <h4 class="card-title-sub"><strong><?= $list['title']; ?></strong></h4>
+                <p class="card-text article-truncate"><?= $list['content_sub']; ?></p>
                 <div class="badge-container">
                 <?php 
                   $tags = explode("#", $list['tag']);
@@ -250,7 +263,7 @@
               <div class="card-body">
                 <h6 class="card-title"><strong><?= $list['c_name']; ?></strong></h6>
                 <h4 class="card-title"><strong><?= $list['title']; ?></strong></h4>
-                <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
+                <p class="card-text article-truncate"><?= $list['content_sub']; ?></p>
                 <div class="badge-container">
                 <?php 
                   $tags = explode("#", $list['tag']);
@@ -278,7 +291,7 @@
               <div class="card-body">
                 <h6 class="card-title"><strong><?= $list['c_name']; ?></strong></h6>
                 <h4 class="card-title"><strong><?= $list['title']; ?></strong></h4>
-                <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
+                <p class="card-text article-truncate"><?= $list['content_sub']; ?></p>
                 <div class="badge-container">
                 <?php 
                   $tags = explode("#", $list['tag']);

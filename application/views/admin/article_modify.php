@@ -83,6 +83,10 @@
                 <input type="text" name="title" id="title" class="form-control" value="<?= $info['title'];?>">
             <hr>
 
+            <h4>노출용 본문</h4>
+                <textarea  name="content_sub" id="content_sub" class="form-control"><?= $info['content_sub'];?></textarea>
+            <hr>
+
             <h4>태그 ( '#' 으로 구분)</h4>
                 <input type="text" name="tag" id="tag" class="form-control w-25" value="<?= $info['tag'];?>">
             <hr>
@@ -310,6 +314,7 @@
         }
         formData.append('title', $('#title').val());
         formData.append('content', $('#content').val());
+        formData.append('content_sub', $('#content_sub').val());
         formData.append('article_by', $('#article_by').val());
         formData.append('picture_by', $('#picture_by').val());
         formData.append('place_by', $('#place_by').val());

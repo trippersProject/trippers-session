@@ -139,6 +139,7 @@ class Article extends CI_Controller {
             $category2 = $this->input->post('category2', TRUE); //소분류 카테고리
             $title = $this->input->post('title', TRUE);
             $content = $this->input->post('content', FALSE);  // XSS 필터링하지 않음
+            $content_sub = $this->input->post('content_sub', FALSE);  // XSS 필터링하지 않음
             $article_by = $this->input->post('article_by', TRUE);  // XSS 필터링하지 않음
             $picture_by = $this->input->post('picture_by', TRUE);  // XSS 필터링하지 않음
             $place_by = $this->input->post('place_by', TRUE);  // XSS 필터링하지 않음
@@ -287,6 +288,7 @@ class Article extends CI_Controller {
                 'title'              => $title,
                 'tag'                => $tag,
                 'content'            => $content,
+                'content_sub'        => $content_sub,
                 'article_by'         => $article_by,
                 'picture_by'         => $picture_by,
                 'place_by'           => $place_by,

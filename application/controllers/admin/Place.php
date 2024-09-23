@@ -113,7 +113,7 @@ class Place extends CI_Controller {
             $name = $this->input->post('name', TRUE);
             $sub_name = $this->input->post('sub_name', TRUE);
             $tag = $this->input->post('tag', TRUE);
-            $description = $this->input->post('description', TRUE);
+            $description = $this->input->post('description', FALSE);
             $homepage_url = $this->input->post('homepage_url', TRUE);
             $sns_url_1 = $this->input->post('sns_url_1', TRUE);
             $sns_url_2 = $this->input->post('sns_url_2', TRUE);

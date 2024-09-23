@@ -81,14 +81,14 @@ class Main extends MY_Controller {
 			//글 크리에이터 정보 조회
 			$data['creator'] = $this->Main_mdl->get_creator_info($data['info']['c_id']);
 			//크리에이터의 연관콘텐츠 리스트 조회
-			$data['article_list'] = $this->Main_mdl->get_article_list('1', $data['info']['c_id']);
+			$data['article_list'] = $this->Main_mdl->get_article_list('1', $data['info']['c_id'], '');
 
 		//p_id(매장 아이디)가 있으면
 		}else if($data['info']['p_id'] != '0'){
 			//글 매장 정보 조회
 			$data['place'] = $this->Main_mdl->get_palce_info($data['info']['p_id']);
 			//매장 연관콘텐츠 리스트 조회
-			$data['article_list'] = $this->Main_mdl->get_article_list('2', $data['info']['p_id']);
+			$data['article_list'] = $this->Main_mdl->get_article_list('2', '', $data['info']['p_id']);
 		}
 
 		$this->load->view('articleDetail.php',$data);

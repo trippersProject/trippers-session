@@ -61,16 +61,19 @@
     text-align: left;
 }
 
-.swiper-find-item-detail .swiper-wrapper{
+ .swiper-find-item-detail .swiper-wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 700px;
-}
+    height: 300vw;
+} 
 
-.swiper-find-item-detail .swiper-wrapper{
-    height: 700px;
-    object-fit: cover;
+.creator-swiper, .dongnae-swiper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    max-height:60vw;
 }
 
 /* Swiper 카드 슬라이드 스타일 */
@@ -78,7 +81,7 @@
     width: 100%;
     display: flex;
     justify-content: center; /* 카드 가운데 정렬 */
-    align-items: center; /* 카드 가운데 정렬 */
+    align-items:start; /* 카드 가운데 정렬 */
     padding: 10px; /* 카드 간격 조정 */
 }
 
@@ -126,6 +129,16 @@
     background-color: lightgray;
 }
 
+.creator-pagination, .dongnae-pagination {
+    position: absolute;
+    bottom: 1px; /* Adjust this value to move pagination up or down */
+    left: 0;
+    right: 0;
+    z-index: 10; /* Ensure pagination is above slides */
+    display: flex;
+    justify-content: center; /* Center pagination */
+}
+
 .swiper-pagination-bullet-active {
     background-color: #F36523; /* 주황색 (#ff5722)으로 변경 */
     opacity: 1; /* 활성화된 요소는 불투명하게 */
@@ -133,6 +146,14 @@
 
 
 @media (max-width: 768px) {
+    .creator-swiper, .dongnae-swiper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        max-height:200vw;
+    }
+
     .find-item-content-area {
         display: block;
         width: 100%;

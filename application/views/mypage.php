@@ -169,15 +169,11 @@
     /* 카드 스타일 */
     .card {
       width: 100%;
-      max-width: 30rem;
-      /* 카드 최대 너비 */
+      max-width: 23rem; /* 카드 최대 너비 */
       transition: transform 0.2s ease-in-out;
-      border: none;
-      /* 테두리 제거 */
-      box-shadow: none;
-      /* 그림자 제거 */
-      text-align: center;
-      /* 텍스트 중앙 정렬 */
+      border: none; /* 테두리 제거 */
+      box-shadow: none; /* 그림자 제거 */
+      text-align: center; /* 텍스트 중앙 정렬 */
     }
 
     /* 카드 이미지 */
@@ -190,14 +186,20 @@
     .card-body {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      /* 내용 중앙 정렬 */
+      align-items: center; /* 내용 중앙 정렬 */
       padding: 1rem;
     }
-
+    
     .card img {
-      margin: 0 auto;
-      /* 이미지 중앙 정렬 */
+      margin: 0 auto; /* 이미지 중앙 정렬 */
+    }
+
+    .card-text {
+      font-size: 0.9rem;
+    }
+
+    .card-title-sub {
+      font-size: 1.0rem;
     }
 
     @media (max-width: 768px) {
@@ -210,6 +212,26 @@
       .card {
         width: 12rem;
       }
+    }
+
+    .badge-container {
+      display: flex;
+      gap: 5px; /* 배지 간의 간격 조절 */
+    }
+    
+    .badge-container h6 {
+      margin: 0;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 5px 10px;
+      margin: 2px;
+      background-color: #f0f0f0; /* Light grey background */
+      border: 1px solid #ccc; /* Light grey border */
+      border-radius: 4px; /* Slightly rounded corners, adjust as needed */
+      font-size: 14px;
+      color: #000; /* Black text color */
     }
   </style>
 </head>
@@ -298,19 +320,18 @@
               <?php foreach($like_article as $list): ?>
                 <div class="col-md-3">
                   <div class="card" onclick="articleDetail('<?= $list['id'] ?>')">
-                    <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top"
-                      alt="Card Image">
+                    <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
                     <div class="card-body">
-                      <h6 class="card-title"><?= $list['category']; ?></h6>
-                      <h4 class="card-title"><?= $list['title']; ?></h4>
-                      <p class="card-text"><?= strip_tags($list['content']); ?></p>
+                      <h6 class="card-title"><strong><?= $list['category']; ?></strong></h6>
+                      <h4 class="card-title-sub"><strong><?= $list['title']; ?></strong></h4>
+                      <p class="card-text article-truncate"><?= $list['content_sub']; ?></p>
                       <div class="badge-container">
-                        <?php 
-                            $tags = explode("#", $list['tag']);
-                            for($i = 1; $i < count($tags); $i++): 
-                          ?>
+                      <?php 
+                        $tags = explode("#", $list['tag']);
+                        for($i = 1; $i < count($tags); $i++): 
+                      ?>
                         <h6><span class="badge"><?= $tags[$i]; ?></span></h6>
-                        <?php endfor; ?>
+                      <?php endfor; ?>
                       </div>
                     </div>
                   </div>
@@ -320,19 +341,18 @@
               <?php foreach($scrap_article as $list): ?>
                 <div class="col-md-3">
                   <div class="card" onclick="articleDetail('<?= $list['id'] ?>')">
-                    <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top"
-                      alt="Card Image">
+                    <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
                     <div class="card-body">
-                      <h6 class="card-title"><?= $list['category']; ?></h6>
-                      <h4 class="card-title"><?= $list['title']; ?></h4>
-                      <p class="card-text"><?= strip_tags($list['content']); ?></p>
+                      <h6 class="card-title"><strong><?= $list['category']; ?></strong></h6>
+                      <h4 class="card-title-sub"><strong><?= $list['title']; ?></strong></h4>
+                      <p class="card-text article-truncate"><?= $list['content_sub']; ?></p>
                       <div class="badge-container">
-                        <?php 
-                            $tags = explode("#", $list['tag']);
-                            for($i = 1; $i < count($tags); $i++): 
-                          ?>
+                      <?php 
+                        $tags = explode("#", $list['tag']);
+                        for($i = 1; $i < count($tags); $i++): 
+                      ?>
                         <h6><span class="badge"><?= $tags[$i]; ?></span></h6>
-                        <?php endfor; ?>
+                      <?php endfor; ?>
                       </div>
                     </div>
                   </div>

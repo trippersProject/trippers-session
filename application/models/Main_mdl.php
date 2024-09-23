@@ -30,13 +30,13 @@ class Main_mdl extends CI_Model {
         $this->db->from('tp_articles a');
         $this->db->join('tp_category c', 'c.id = a.category1');
         $this->db->where('a.use_yn', 'Y');
-        if($c_id)
-        {
-            $this->db->where('a.c_id', $c_id);
-        }
-        else if($p_id)
+        if($c_id != 0)
         {
             $this->db->where('a.p_id', $p_id);
+        }
+        else if($c_id != 0)
+        {
+            $this->db->where('a.c_id', $c_id);
         }
         if($category) $this->db->where('a.category1', $category);
         $this->db->order_by('a.sort', 'ASC');

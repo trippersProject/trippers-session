@@ -1,13 +1,15 @@
 <?php include_once("layout/header.php");?>
 <link rel="stylesheet" href="/assets/css/main.css">
 <style>
+  /*
   .article-truncate {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3; /* 최대 줄 수 */
+    -webkit-line-clamp: 3;
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  */
 
   .custom-btn {
     background-color: #000; /* Black background */
@@ -145,10 +147,6 @@
     margin: 0 auto; /* 이미지 중앙 정렬 */
   }
   
-  .creator-swiper,.dongnae-swiper {
-    height: 40vw;
-    min-height: 700px;
-  }
 
   @media (max-width: 768px) {
     .creator-swiper,.dongnae-swiper {
@@ -251,7 +249,7 @@
             <div class="card-body">
               <h6 class="card-title"><strong><?= $list['c_name']; ?></strong></h6>
               <h5 class="card-title"><strong><?= $list['title']; ?></strong></h5>
-              <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
+              <p class="card-text article-truncate"><?= $list['content_sub'] ?></p>
               <div class="badge-container">
                 <?php 
                   $tags = explode("#", $list['tag']);
@@ -287,7 +285,7 @@
     </div>
 
     <div class="centered-text-container">
-      <div class="centered-text">이번 주 우리동네</div>
+      <div class="centered-text">WEEKLY SPACE</div>
     </div>
     
     <!-- Slider main container -->
@@ -302,7 +300,7 @@
             <div class="card-body">
               <h6 class="card-title"><?= $list['c_name']; ?></h6>
               <h5 class="card-title"><?= $list['title']; ?></h5>
-              <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
+              <p class="card-text article-truncate"><?= $list['content_sub'] ?></p>
               <div class="badge-container">
                 <?php 
                   $tags = explode("#", $list['tag']);

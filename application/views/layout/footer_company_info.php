@@ -15,10 +15,10 @@
         </p>
 
         <div class="d-inline-block footer-link">
-          <a href="/main/aboutTripper" class="text-decoration-none me-3">ABOUT</a>|
-          <a href="https://page.stibee.com/subscriptions/240273" class="text-decoration-none mx-3">NEWSLETTER</a>|
-          <a href="https://www.instagram.com/trippers_me/" class="text-decoration-none mx-3">INSTAGRAM</a>|
-          <a href="https://www.youtube.com/channel/UCqKnJKhEXwjd0_oXRtFCD2g" class="text-decoration-none ms-3">YOUTUBE</a>
+          <a href="/main/aboutTripper" class="text-decoration-none">ABOUT</a>|
+          <a href="https://page.stibee.com/subscriptions/240273" class="text-decoration-none">NEWSLETTER</a>|
+          <a href="https://www.instagram.com/trippers_me/" class="text-decoration-none">INSTAGRAM</a>|
+          <a href="https://www.youtube.com/channel/UCqKnJKhEXwjd0_oXRtFCD2g" class="text-decoration-none">YOUTUBE</a>
         </div>
       </div>
     </div>

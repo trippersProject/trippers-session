@@ -373,8 +373,8 @@
   </div>
 
   <div class="container d-flex align-items-center justify-content-between" style="height: 30vh;">
-    <a class="me-auto" href="/main">
-      <img src="/assets/img/menuTripperLogo.svg" alt="Logo" style="width: 88px; height: 28px;">
+    <a class="me-auto align-items-center" href="/main">
+      <img src="/assets/img/menuTripperLogo.svg" alt="Logo" style="width: 50%; height: 28px;">
     </a>
     <div class="d-flex align-items-center flex-grow-1 justify-content-center pe-5" style="cursor: pointer;">
       <img src="/assets/img/upperArrow.svg" alt="Upper Arrow" id="upperArrow1">
@@ -404,7 +404,7 @@
     </div>
 
     <div class="mt-5 centered-text-overlay-container">
-      <div class="centered-text-overlay text-light">최신 콘텐츠</div>
+      <div class="centered-text-overlay text-light">RECENTLY CONTENTS</div>
     </div>
 
     <!-- Slider main container -->
@@ -430,7 +430,7 @@
     </div>
 
     <div class="mt-7 centered-text-overlay-container">
-      <div class="centered-text-overlay text-light">조회수 높은 콘텐츠</div>
+      <div class="centered-text-overlay text-light">BEST CONTENTS</div>
     </div>
 
     <!-- Slider main container -->
@@ -456,16 +456,20 @@
     </div>
   </div>
 
-  <div class="container d-flex align-items-center justify-content-between" style="height: 100vh; padding: 0 20px;">
-    <a class="me-auto" href="/main">
-      <img src="/assets/img/menuTripperLogo.svg" alt="Logo" style="width: 88px; height: 28px;">
+  <div class="container d-flex align-items-center justify-content-between" style="height: 30vh;">
+    <a class="me-auto align-items-center" href="/main">
+      <img src="/assets/img/menuTripperLogo.svg" alt="Logo" style="width: 50%; height: 28px;">
     </a>
-    <div class="d-flex align-items-center justify-content-center flex-grow-1" style="cursor: pointer;">
+    <div class="d-flex align-items-center flex-grow-1 justify-content-center pe-5" style="cursor: pointer;">
       <img src="/assets/img/upperArrow.svg" alt="Upper Arrow" id="upperArrow2">
     </div>
-    <div class="d-flex align-items-center justify-content-end">
-      <a href="#"><img src="/assets/img/search.svg" alt="Search" id="searchIcon" class="me-3"></a>
-      <a href="/login"><img src="/assets/img/user.svg" alt="User" id="userIcon"></a>
+    <div class="d-flex align-items-center">
+      <a class="me-auto" href="#">
+        <img src="/assets/img/search.svg" alt="Search" id="searchIcon" class="me-2">
+      </a>
+      <a class="me-auto" href="/login">
+        <img src="/assets/img/user.svg" alt="User" id="userIcon">
+      </a>
     </div>
   </div>
 </div>

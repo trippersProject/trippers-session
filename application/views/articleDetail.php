@@ -45,8 +45,8 @@
       <!-- 프로필 텍스트 영역 -->
       <div class="profile-text-area">
         <div class="text-center profile-text">
-          <h5><strong><?= $creator['sub_name'] ?></strong></h5><BR>
-          <h3><strong><?= $creator['name'] ?></strong></h3><BR>
+          <div class="profile-text-title"><strong><?= $creator['sub_name'] ?></strong></div>
+          <div class="profile-text-subtitle"><strong><?= $creator['name'] ?></strong></div><BR>
           <?= $creator['description'] ?>
           <!-- sns 아이콘이미지 -->
           <div class="sns-img-container">
@@ -140,18 +140,20 @@
     <!-- 글 본문 영역 -->
     <div class="content-area">
       <?= $info['content']; ?>
-
-      <div class="flex-row article-from">
-        <div class="article-from-item-title"><strong>글</strong></div>
-        <div class="col-md-11 article-from-item"><?=$info['article_by']?></div>
-      </div>
-      <div class="article-from">
-        <div class="article-from-item-title"><strong>사진</strong></div>
-        <div class="article-from-item"><?=$info['picture_by']?></div>
-      </div>
-      <div class="article-from">
-        <div class="article-from-item-title"><strong>장소</strong></div>
-        <div class="article-from-item"><?=$info['place_by']?></div>
+    
+      <div class="article-from-area">
+        <div class="flex-row article-from">
+          <div class="article-from-item-title"><strong>글</strong></div>
+          <div class="col-md-11 article-from-item"><?=$info['article_by']?></div>
+        </div>
+        <div class="article-from">
+          <div class="article-from-item-title"><strong>사진</strong></div>
+          <div class="article-from-item"><?=$info['picture_by']?></div>
+        </div>
+        <div class="article-from">
+          <div class="article-from-item-title"><strong>장소</strong></div>
+          <div class="article-from-item"><?=$info['place_by']?></div>
+        </div>
       </div>
     </div>
     <!-- //글 본문 영역 -->
@@ -180,7 +182,7 @@
       </ul>
       <div class="row mt-2">
         <p>
-          위 버튼을 누르면 FIND POINT가 적립됩니다. <a href="#" class="fw-bold" title="FIND ITEM에 응모할수 있는 포인트에요!">FIND POINT란?</a>
+          위 버튼을 누르면 FIND POINT가 적립됩니다. <a href="#" class="fw-bold" title="FIND ITEM에 응모할수 있는 포인트에요!"><span onclick="showFindfointModal()">FIND POINT란?</span></a>
         </p>
       </div>
     </div>
@@ -197,7 +199,7 @@
     <div class="col-md-7 p-4 d-flex align-items-center">
       <div class="event-banner-text-area">
         <?=$info['event_banner_text']?>
-        <a class="btn btn-dark" role="button" href="<?= $list['event_banner_link'] ?>">신청하기</a>
+        <a class="btn btn-dark" href="<?= $info['event_banner_link'] ?>">신청하기</a>
       </div>
     </div>
   </div>
@@ -205,7 +207,7 @@
   <!-- //이벤트배너 -->
 
   <div class="relation-content-area mt-8">
-    <div class="relation-content-title"><strong>연관 콘텐츠</strong></div>
+    <div class="relation-content-title"><strong>RELATE CONTENTS</strong></div>
   </div>
   <!-- Slider main container -->
   <div class="mt-5 swiper related-swiper">
@@ -237,6 +239,35 @@
     <!-- <div class="swiper-pagination related-pagination"></div> -->
   </div>
 </div>
+
+<!-- FIND FOINT란? 설명팝업 -->
+<div class="modal fade modal w-100" id="mainFindItemModal" tabindex="-1" aria-labelledby="mainFindItemModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg d-flex justify-content-center align-items-center">
+    <div class="modal-content">
+      <div class="modal-body d-flex align-items-center justify-content-center">
+        <div class="row gy-4 mx-auto text-center" style="width: 100%;">
+          <div class="d-md-flex justify-content-center align-items-md-center">
+            <div class="modal-inner-content" style="margin: 0 auto;">
+              <div class="centered-text-find-item-container">
+                <div class="centered-text-find-item">FIND FOINT</div>
+              </div>
+              <div class="find_item_text">
+                <h5 class="mt-2">
+                  트리퍼 플랫폼에서 콘텐츠와 관련된<BR>
+                  모든 활동은 FIND POINT로 적립됩니다.<BR>
+                  해당 포인트는 트리퍼에서 제공하는 FIND SHOP<BR>
+                  제품 및 서비스를 구매할 수 있습니다.
+                </h5>
+                <img src="/assets/img/upperArrow.svg" alt="Upper Arrow" onclick="modalClose()">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- //FIND FOINT란? 설명팝업 -->
 
   <input type="hidden" name="a_id" id="a_id" value="<?= $info['id']?>">
   <?php include_once("layout/footer_company_info.php")?>
@@ -340,6 +371,15 @@
         }
       });
     }
+
+  function showFindfointModal() {
+    $('#mainFindItemModal').modal('show');
+  }
+
+  function modalClose(){
+    $('#mainFindItemModal').modal('hide');
+  }
+
   </script>
   <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
