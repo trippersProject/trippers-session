@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html data-bs-theme="light" lang="ko">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <title>trippers</title>
-  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css">
-  <link rel="stylesheet" href="/assets/css/Navbar-Centered-Brand-icons.css">
-
-  <link rel="stylesheet" href="/assets/css/styles.css">
-  <link rel="stylesheet" href="/assets/css/swiper.css" />
-
+<?php include_once("layout/header.php");?>
   <style>
     .modal-content {
       border-radius: 0;
@@ -156,16 +143,6 @@
       margin: 0 auto;
     }
 
-    .badge-container {
-      display: flex;
-      gap: 5px;
-      /* 배지 간의 간격 조절 */
-    }
-
-    .badge-container h6 {
-      margin: 0;
-    }
-
     /* 카드 스타일 */
     .card {
       width: 100%;
@@ -202,36 +179,51 @@
       font-size: 1.0rem;
     }
 
-    @media (max-width: 768px) {
+  @media (max-width: 576px) {
       .card {
-        width: 14rem;
+        width: 24rem !important;
+      }
+
+      .fixed-size {
+        width: 100%; /* 부모 요소의 가로 크기에 맞게 */
+        height: 650px; /* 원하는 고정 높이 */
+        object-fit: cover; /* 이미지가 고정된 영역을 덮도록 비율 조정 */
+        object-position: center; /* 이미지의 중앙 부분을 표시 */
       }
     }
 
-    @media (max-width: 576px) {
-      .card {
-        width: 12rem;
+    @media (max-width: 600px) {
+      .responsive-image {
+        content: url('/assets/img/moTripletter.svg');
+      }
+    }
+
+    @media (min-width: 601px) {
+      .responsive-image {
+        content: url('/assets/img/tripletter.png');
       }
     }
 
     .badge-container {
+      width: 100%;
       display: flex;
-      gap: 5px; /* 배지 간의 간격 조절 */
+      justify-content:center;
+      gap: 0.5em; /* 폰트 크기에 따라 간격이 조절됨 */
     }
-    
+
     .badge-container h6 {
       margin: 0;
     }
 
     .badge {
       display: inline-block;
-      padding: 5px 10px;
-      margin: 2px;
-      background-color: #f0f0f0; /* Light grey background */
-      border: 1px solid #ccc; /* Light grey border */
-      border-radius: 4px; /* Slightly rounded corners, adjust as needed */
-      font-size: 14px;
-      color: #000; /* Black text color */
+      padding: 0.3em 0.6em; /* 폰트 크기에 따라 조절되는 패딩 */
+      margin: 0.2em;
+      background-color: #f0f0f0; /* 밝은 회색 배경색 */
+      border: 1px solid #ccc; /* 밝은 회색 테두리 */
+      border-radius: 0.2em; /* 폰트 크기에 따라 조절되는 둥근 모서리 */
+      font-size: 0.7em; /* 부모 요소 폰트 크기에 맞춰 조절 */
+      color: #000; /* 검은색 글자 색상 */
     }
   </style>
 </head>
@@ -241,11 +233,11 @@
     <?php include_once("layout/navbar.php")?>
 
     <div class="container d-flex justify-content-center align-items-center mt-6 mb-7">
-      <div class="border-0">
+      <div class="">
         <div class="container text-center mt-6 fw-bold fs-4">
-          <button id="findBtn" class="text-uppercase">find</button>
-          <button id="yourBtn" class="text-uppercase">your</button>
-          <button id="tripBtn" class="text-uppercase">trip</button>
+          <button id="findBtn" class="text-uppercase"><strong>find</strong></button>
+          <button id="yourBtn" class="text-uppercase"><strong>your</strong></button>
+          <button id="tripBtn" class="text-uppercase"><strong>trip</strong></button>
         </div>
         <div class="container text-center mt-3 fs-5 fixed-content">
           <!-- 각 콘텐츠 영역에 d-none 클래스를 사용하여 기본적으로 숨김 -->

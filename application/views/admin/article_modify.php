@@ -10,7 +10,7 @@
                 <?php /*foreach($category1 as $item):?>
                     <option value="<?= $item['id']?>" <?= ($item['id'] == $info['category1']) ? "selected" : ""?>><?= $item['name']?></option>
                 <?php endforeach; */?>
-                <option value="">---선택---</option>
+                <option value="0">---선택---</option>
                 <option value="1" <?= ($info['category1'] == '1') ? "selected" : ""?>>CREATOR</option>
                 <option value="2" <?= ($info['category1'] == '2') ? "selected" : ""?>>SPACE</option>
                 <option value="16" <?= ($info['category1'] == '16') ? "selected" : ""?>>NEWS</option>
@@ -21,7 +21,7 @@
 
             <h4>소분류 카테고리</h4>
             <select name="category2" id="category2" class="form-control w-25">
-                <option value=''>---선택---</option>
+                <option value='0'>---선택---</option>
                 <?php foreach($category2 as $item):?>
                     <option value="<?= $item['id']?>" <?= ($item['id'] == $info['category2']) ? "selected" : ""?>><?= $item['name']?></option>
                 <?php endforeach; ?>
@@ -32,7 +32,7 @@
             <div id="creator_area" style="display:none">
                 <h4>크리에이터</h4>
                 <select name="c_id" id="c_id" class="form-control w-25">
-                    <option value="">---선택---</option>
+                    <option value="0">---선택---</option>
                     <?php foreach($creator as $list):?>
                         <option value="<?= $list['id']?>" <?= ($list['id'] == $info['c_id']) ? "selected" : ""?>><?= $list['name']?></option>
                     <?php endforeach;?>

@@ -84,54 +84,57 @@
       </div>
       <!-- //프로필 텍스트 영역 -->
     </div>
-    <?php elseif(!empty($place['profile_image']) && $info['category1'] == '1') : ?>
-    <div class="container custom-container mt-5 py-4 py-xl-5">
-      <div class="row gy-4 gy-md-0 creator-info">
-        <div class="col-md-6">
-          <div class="p-xl-5 m-xl-5">
-            <div class="image-container">
-              <img class="rounded-circle img-fluid" src="<?= get_place_upload_path(). $place['profile_image'] ?>" />
-            </div>
-          </div>
+    <?php elseif(!empty($place['profile_image']) && $info['category1'] == '2') : ?>
+      <div class="profile-container">
+      <!-- 프로필이미지 영역 -->
+      <div class="profile-image-area">
+        <div class="profile-image profile-item">
+          <img class="rounded-circle img-fluid" src="<?= get_place_upload_path(). $place['profile_image'] ?>" />
         </div>
-        <div class="col-md-6 d-md-flex align-items-md-center">
-          <div class="text-center creator-description">
-            <?= $place['description'] ?>
-
-            <div class="sns-img-container">
-              <?php if($place['homepage_url']) : ?>
-              <a class="text-decoration-none me-2" href="<?=$place['homepage_url']?>" target="_blank">
-                <img src="/assets/img/Home.svg" alt="" class="img-icon">
-              </a>
-              <?php endif;?>
-              <?php if($place['sns_url_1']) : ?>
-              <a class="text-decoration-none me-2" href="<?=$place['sns_url_1']?>" target="_blank">
-                <img src="/assets/img/Instagram.svg" alt="" class="img-icon">
-              </a>
-              <?php endif;?>
-              <?php if($place['sns_url_2']) : ?>
-              <a class="text-decoration-none me-2" href="<?=$place['sns_url_2']?>" target="_blank">
-                <img src="/assets/img/Instagram.svg" alt="" class="img-icon">
-              </a>
-              <?php endif;?>
-              <?php if($place['sns_url_3']) : ?>
-              <a class="text-decoration-none me-2" href="<?=$place['sns_url_3']?>" target="_blank">
-                <img src="/assets/img/Instagram.svg" alt="" class="img-icon">
-              </a>
-              <?php endif;?>
-            </div>
-
-            <div class="badge-container">
-              <?php 
-                  $tags = explode("#", $place['tag']);
-                  for($i = 1; $i < count($tags); $i++): 
-                ?>
-              <h6><span class="badge"><?= $tags[$i]; ?></span></h6>
-              <?php endfor; ?>
-            </div>
+      </div>
+      <!-- //프로필이미지 영역 -->
+      
+      <!-- 프로필 텍스트 영역 -->
+      <div class="profile-text-area">
+        <div class="text-center profile-text">
+          <div class="profile-text-title"><strong><?= $place['sub_name'] ?></strong></div>
+          <div class="profile-text-subtitle"><strong><?= $place['name'] ?></strong></div><BR>
+          <?= $place['description'] ?>
+          <!-- sns 아이콘이미지 -->
+          <div class="sns-img-container">
+            <?php if($place['homepage_url']) :?>
+            <a class="text-decoration-none me-2" href="<?=$place['homepage_url']?>" target="_blank">
+              <img src="/assets/img/Home.svg" alt="" class="img-icon">
+            </a>
+            <?php endif;?>
+            <?php if($place['sns_url_1']) : ?>
+            <a class="text-decoration-none me-2" href="<?=$place['sns_url_1']?>" target="_blank">
+              <img src="/assets/img/Instagram.svg" alt="" class="img-icon">
+            </a>
+            <?php endif;?>
+            <?php if($place['sns_url_2']) : ?>
+            <a class="text-decoration-none me-2" href="<?=$place['sns_url_2']?>" target="_blank">
+              <img src="/assets/img/Instagram.svg" alt="" class="img-icon">
+            </a>
+            <?php endif;?>
+            <?php if($place['sns_url_3']) : ?>
+            <a class="text-decoration-none me-2" href="<?=$place['sns_url_3']?>" target="_blank">
+              <img src="/assets/img/Instagram.svg" alt="" class="img-icon">
+            </a>
+            <?php endif;?>
+          </div>
+          <!-- 프로필 태그  -->
+          <div class="badge-container">
+            <?php 
+                    $tags = explode("#", $place['tag']);
+                    for($i = 1; $i < count($tags); $i++): 
+                  ?>
+            <h6><span class="badge"><?= $tags[$i]; ?></span></h6>
+            <?php endfor; ?>
           </div>
         </div>
       </div>
+      <!-- //프로필 텍스트 영역 -->
     </div>
     <?php endif; ?>
     <!-- //크리에이터, 매장 소개영역 -->

@@ -10,7 +10,7 @@
                 <?php /*foreach($category1 as $item):?>
                     <option value="<?php echo $item['id']?>" <?php echo ($item['id'] == $info['category1']) ? "selected" : ""?>><?php echo $item['name']?></option>
                 <?php endforeach; */?>
-                <option value="">---선택---</option>
+                <option value="0">---선택---</option>
                 <option value="1">CREATOR</option>
                 <option value="2">SPACE</option>
                 <option value="16">NEWS</option>
@@ -32,7 +32,7 @@
             <div id="creator_area" style="display:none">
                 <h4>크리에이터</h4>
                 <select name="c_id" id="c_id" class="form-control w-25">
-                    <option value="">---선택---</option>
+                    <option value="0">---선택---</option>
                     <?php foreach($creator as $list):?>
                         <option value="<?php echo $list['id']?>"><?php echo $list['name']?></option>
                     <?php endforeach;?>
@@ -44,7 +44,7 @@
             <div id="place_area" style="display:none">
                 <h4>매장</h4>
                 <select name="p_id" id="p_id" class="form-control w-25">
-                    <option value="">---선택---</option>
+                    <option value="0">---선택---</option>
                     <?php foreach($place as $list):?>
                         <option value="<?php echo $list['id']?>"><?php echo $list['name']?></option>
                     <?php endforeach;?>

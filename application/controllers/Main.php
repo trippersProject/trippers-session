@@ -42,7 +42,7 @@ class Main extends MY_Controller {
 		$where = [
 			'a.title' => $keyword,
 			'a.content' => $keyword,
-			'a.tag' => $keyword
+			'a.tag' => $keyword,
 		];
 
 		$list = $this->Main_mdl->get_search_article_list($where);
@@ -86,7 +86,7 @@ class Main extends MY_Controller {
 		//p_id(매장 아이디)가 있으면
 		}else if($data['info']['p_id'] != '0'){
 			//글 매장 정보 조회
-			$data['place'] = $this->Main_mdl->get_palce_info($data['info']['p_id']);
+			$data['place'] = $this->Main_mdl->get_place_info($data['info']['p_id']);
 			//매장 연관콘텐츠 리스트 조회
 			$data['article_list'] = $this->Main_mdl->get_article_list('2', '', $data['info']['p_id']);
 		}

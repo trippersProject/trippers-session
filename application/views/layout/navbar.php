@@ -167,6 +167,11 @@
     }
   }
 
+  .swiper-wrapper {
+    min-height: auto;
+  }
+
+
   .centered-text-overlay-container {
     display: flex;
     justify-content: center; /* 가로 방향 중앙 정렬 */

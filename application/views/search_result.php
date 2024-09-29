@@ -74,12 +74,25 @@
 
 
     .badge-container {
+      width: 100%;
       display: flex;
-      gap: 5px; /* 배지 간의 간격 조절 */
+      justify-content:center;
+      gap: 0.5em; /* 폰트 크기에 따라 간격이 조절됨 */
     }
-    
+
     .badge-container h6 {
       margin: 0;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.3em 0.6em; /* 폰트 크기에 따라 조절되는 패딩 */
+      margin: 0.2em;
+      background-color: #f0f0f0; /* 밝은 회색 배경색 */
+      border: 1px solid #ccc; /* 밝은 회색 테두리 */
+      border-radius: 0.2em; /* 폰트 크기에 따라 조절되는 둥근 모서리 */
+      font-size: 0.7em; /* 부모 요소 폰트 크기에 맞춰 조절 */
+      color: #000; /* 검은색 글자 색상 */
     }
 
     /* Swiper 카드 슬라이드 스타일 */
@@ -118,12 +131,25 @@
       margin: 0 auto; /* 이미지 중앙 정렬 */
     }
 
-    .article-truncate {
+    .card-text {
+      font-size: 0.9rem;
+    }
+
+    .card-title-sub {
+      font-size: 1.0rem;
+    }
+
+    /* .article-truncate {
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3; /* 최대 줄 수 */
+      -webkit-line-clamp: 3;
       overflow: hidden;
       text-overflow: ellipsis;
+    } */
+
+    .sub-categoey {
+      font-size: 1.2rem;
+      margin-top: 5vw;
     }
 
     .responsive-image {
@@ -174,24 +200,29 @@
       height: 400px;
       object-fit: cover;
     }
+
+    .on-title{
+      color:#F36523;
+      border-bottom: solid 2px #F36523;
+    }
   </style>
 </head>
 
 <body>
   <div class="content-container">
     <?php include_once("layout/navbar.php")?>
-    <!-- 글 리스트(ALL)-->
-    <div class="container mt-6 w-95">
-      <div class="row mb-5 g-4"> <!-- 행 사이 간격과 카드 사이 간격을 조정 -->
+    <div class="container mt-6 w-100" id="article-list-all">
+      <div class="row mb-5 g-4 d-flex"> <!-- 행 사이 간격과 카드 사이 간격을 조정 -->
         <!-- 카테고리 값이 있으면 해당카테고리와 일치하는글만 노출 -->
           <?php foreach($article as $list): ?>
+          <?php if($list['use_yn'] == 'Y'): ?>
           <div class="col-md-3">
             <div class="card" onclick="articleDetail('<?= $list['id'] ?>')">
               <img src="<?= get_article_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
               <div class="card-body">
                 <h6 class="card-title"><strong><?= $list['c_name']; ?></strong></h6>
-                <h4 class="card-title"><strong><?= $list['title']; ?></strong></h4>
-                <p class="card-text article-truncate"><?= strip_tags($list['content']); ?></p>
+                <h4 class="card-title-sub"><strong><?= $list['title']; ?></strong></h4>
+                <p class="card-text article-truncate"><?= $list['content_sub']; ?></p>
                 <div class="badge-container">
                 <?php 
                   $tags = explode("#", $list['tag']);
@@ -203,10 +234,10 @@
               </div>
             </div>
           </div>
+          <?php endif; ?>
           <?php endforeach; ?>
       </div>
     </div>
-    <!--// 글 리스트(ALL)-->
 
     <div class="container mt-8">
       <a href="https://page.stibee.com/subscriptions/240273">

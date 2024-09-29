@@ -266,8 +266,8 @@
       <!-- If we need pagination -->
       <div class="swiper-pagination creator-pagination"></div>
     </div>
-
-
+    
+    <?php if($mb_banners):?>
     <!-- Slider main container -->
     <div class="mt-8 swiper swiper-main2">
       <!-- Additional required wrapper -->
@@ -283,6 +283,7 @@
       <!-- If we need pagination -->
       <div class="swiper-pagination swiper-main-pagination2"></div>
     </div>
+    <?php endif; ?>
 
     <div class="centered-text-container">
       <div class="centered-text">WEEKLY SPACE</div>

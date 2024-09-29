@@ -66,14 +66,20 @@
     justify-content: center;
     align-items: center;
     height: 300vw;
-} 
+}
+
+.swiper-wrapper{
+    /* height: 100vh; */
+    min-height: 700px;
+    max-height: 900px;
+}
 
 .creator-swiper, .dongnae-swiper {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    max-height:60vw;
+    max-height:70vw;
 }
 
 /* Swiper 카드 슬라이드 스타일 */
@@ -131,7 +137,7 @@
 
 .creator-pagination, .dongnae-pagination {
     position: absolute;
-    bottom: 1px; /* Adjust this value to move pagination up or down */
+    bottom: 5px; /* Adjust this value to move pagination up or down */
     left: 0;
     right: 0;
     z-index: 10; /* Ensure pagination is above slides */

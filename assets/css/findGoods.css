@@ -1,6 +1,4 @@
-html {
-    font-family: "Pretendard Variable-Medium", Helvetica;
-}
+
 
 .find-title {
     display: flex;
@@ -9,18 +7,21 @@ html {
     font-size: 1.2rem;
     margin-bottom: 10vw;
     margin-top: 7vw;
+    font-weight: bold;
 }
 
 .find-title-line1 {
     text-align: right;
     border-bottom: solid 3px #000;
     min-height: 2.5vw;
+    font-weight: bold;
 }
 
 .find-title-line2 {
     text-align: left;
     border-bottom: solid 3px #000;
     min-height: 2.5vw;
+    font-weight: bold;
 }
 
 
@@ -50,6 +51,7 @@ html {
         display: block;
         margin-bottom: 20vw;
         margin-top: 15vw;
+        font-weight: bold;
     }
     
     .find-title-line1 {

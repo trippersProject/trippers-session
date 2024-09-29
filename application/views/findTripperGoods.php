@@ -122,6 +122,18 @@
       padding: 10px; /* 카드 간격 조정 */
     }
 
+    @media (max-width: 600px) {
+      .responsive-image {
+        content: url('/assets/img/moTripletter.svg');
+      }
+    }
+
+    @media (min-width: 601px) {
+      .responsive-image {
+        content: url('/assets/img/tripletter.png');
+      }
+    }
+
 
   </style>
 </head>
@@ -180,8 +192,8 @@
     </div>
 
     <div class="find-title">
-      <div class="find-title-line1"><strong>트리퍼가 만든&nbsp;</strong></div>
-      <div class="find-title-line2"><strong>지역의 굿즈를 소개합니다</strong></div>
+      <div class="find-title-line1"><h4><strong>트리퍼가 만든</strong>&nbsp;</h4></div>
+      <div class="find-title-line2"><h4><strong>지역의 굿즈를 소개합니다</strong></h4></div>
     </div>
 
     <div class="goods-area">
@@ -210,7 +222,9 @@
     </div>
 
     <div class="container mt-8">
-      <img src="/assets/img/tripletter.png" alt="Trip Letter Image" class="img-fluid d-block mx-auto">
+      <a href="https://page.stibee.com/subscriptions/240273">
+        <img src="assets/img/tripletter.png" class="responsive-image img-fluid d-block mx-auto" style="cursor:pointer;"/>
+      </a>
     </div>
   </div>
 

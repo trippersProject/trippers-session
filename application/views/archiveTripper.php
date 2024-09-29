@@ -60,25 +60,34 @@
       object-fit: cover;
     }
 
+    .row-item > * {
+      flex-shrink: 0;
+      width: 100%;
+      max-width: 100%;
+      margin-top: var(--bs-gutter-y);
+    }
+
 
     .badge-container {
+      width: 100%;
       display: flex;
-      gap: 5px; /* 배지 간의 간격 조절 */
+      justify-content:center;
+      gap: 0.5em; /* 폰트 크기에 따라 간격이 조절됨 */
     }
-    
+
     .badge-container h6 {
       margin: 0;
     }
 
     .badge {
       display: inline-block;
-      padding: 5px 10px;
-      margin: 2px;
-      background-color: #f0f0f0; /* Light grey background */
-      border: 1px solid #ccc; /* Light grey border */
-      border-radius: 4px; /* Slightly rounded corners, adjust as needed */
-      font-size: 14px;
-      color: #000; /* Black text color */
+      padding: 0.3em 0.6em; /* 폰트 크기에 따라 조절되는 패딩 */
+      margin: 0.2em;
+      background-color: #f0f0f0; /* 밝은 회색 배경색 */
+      border: 1px solid #ccc; /* 밝은 회색 테두리 */
+      border-radius: 0.2em; /* 폰트 크기에 따라 조절되는 둥근 모서리 */
+      font-size: 0.7em; /* 부모 요소 폰트 크기에 맞춰 조절 */
+      color: #000; /* 검은색 글자 색상 */
     }
 
     /* Swiper 카드 슬라이드 스타일 */
@@ -146,6 +155,7 @@
     @media (max-width: 768px) {
       .card {
         width: 24rem !important;
+        max-width: 88vw;
       }
 
       .fixed-size {
@@ -225,8 +235,8 @@
     </div>
 
     <!-- 글 리스트(ALL)-->
-    <div class="container mt-6 w-95" id="article-list-all">
-      <div class="row mb-5 g-4"> <!-- 행 사이 간격과 카드 사이 간격을 조정 -->
+    <div class="container mt-6 w-100" id="article-list-all">
+      <div class="row mb-5 g-4 d-flex"> <!-- 행 사이 간격과 카드 사이 간격을 조정 -->
         <!-- 카테고리 값이 있으면 해당카테고리와 일치하는글만 노출 -->
           <?php foreach($article as $list): ?>
           <div class="col-md-3">
@@ -253,7 +263,7 @@
     <!--// 글 리스트(ALL)-->
 
     <!-- 글 리스트(크리에이터)-->
-    <div class="container mt-6 w-95" id="article-list-creator" style="display:none;">
+    <div class="container mt-6 w-100" id="article-list-creator" style="display:none;">
       <div class="row mb-5 g-4"> <!-- 행 사이 간격과 카드 사이 간격을 조정 -->
         <!-- 카테고리 값이 있으면 해당카테고리와 일치하는글만 노출 -->
           <?php foreach($article_creator as $list): ?>
@@ -281,7 +291,7 @@
     <!--// 글 리스트(크리에이터)-->
 
     <!-- 글 리스트(동네)-->
-    <div class="container mt-6 w-95" id="article-list-dongnae" style="display:none;">
+    <div class="container mt-6 w-100" id="article-list-dongnae" style="display:none;">
       <div class="row mb-5 g-4"> <!-- 행 사이 간격과 카드 사이 간격을 조정 -->
         <!-- 카테고리 값이 있으면 해당카테고리와 일치하는글만 노출 -->
           <?php foreach($article_dongnae as $list): ?>
@@ -309,7 +319,9 @@
     <!--// 글 리스트(동네)-->
 
     <div class="container mt-8">
-      <img src="/assets/img/tripletter.png" alt="Trip Letter Image" class="responsive-image img-fluid d-block mx-auto">
+      <a href="https://page.stibee.com/subscriptions/240273">
+        <img src="assets/img/tripletter.png" class="responsive-image img-fluid d-block mx-auto" style="cursor:pointer;"/>
+      </a>
     </div>
   </div>
 
