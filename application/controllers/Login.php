@@ -112,10 +112,12 @@ class Login extends MY_Controller {
             // 메인 페이지로 리디렉션
             redirect('/main');
         } else {
-            // 로그인 실패
-            echo "<script>alert('이메일또는 비밀번호가 일치하지 않습니다.'); return;</script>";
-            redirect('/login'); // 로그인 페이지로 리디렉션
-            return;
+            // 로그인 실패 시 에러 메시지와 함께 다시 로그인 페이지로
+            echo "<script>
+                    alert('이메일 또는 비밀번호가 다릅니다.');
+                    window.location.href = '".site_url('/login')."';
+                </script>";
+            exit;
         }
     }
 
@@ -144,8 +146,11 @@ class Login extends MY_Controller {
 			}
 
             // 성공 메시지 출력
-            echo "<script>alert('임시비밀번호가 메일로 발송되었습니다.');</script>";
-			redirect('/login'); // 로그인 페이지로 리디렉션
+			echo "<script>
+					alert('임시비밀번호가 이메일로 발송되었습니다.');
+					window.location.href = '".site_url('/login')."';
+				</script>";
+				exit;
         } else {
             // 실패 메시지 출력
             echo "<script>alert('회원정보 조회에 실패하였습니다.'); history.back();</script>";
@@ -178,7 +183,12 @@ class Login extends MY_Controller {
         $this->email->from('admin@trippers.com', '트리퍼스 관리자');
         $this->email->to($to_email);
         $this->email->subject('트리퍼스 임시 비밀번호 안내');
-        $this->email->message("발급된 임시 비밀번호는 다음과 같습니다: " . $temp_password . "\n로그인 후 비밀번호를 변경해주세요.");
+        $this->email->message("발급된 임시 비밀번호는 다음과 같습니다: <strong>". $temp_password ."</strong><br/>".
+							  "로그인 후 비밀번호를 변경해주세요.<br/><br/>".
+							  "사이트이름: tripper<br/>".
+							  "사용자 아이디: ".$to_email."<br/><br/>".
+							  "본인이 아닌 사람이 요청한 경우, 이 이메일을 무시하세요."
+							);
 
         return $this->email->send();
     }

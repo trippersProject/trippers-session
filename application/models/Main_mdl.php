@@ -51,6 +51,7 @@ class Main_mdl extends CI_Model {
     {
         $this->db->select('a.*, c.id as c_id, c.name as c_name');
         $this->db->from('tp_articles a');
+        $this->db->where('a.use_yn =', 'Y');
         $this->db->join('tp_category c', 'c.id = a.category1');
 
         if($where != '')

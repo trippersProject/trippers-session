@@ -34,8 +34,11 @@ class Login extends CI_Controller {
             redirect('admin/home');
         } else {
             // 로그인 실패 시 에러 메시지와 함께 다시 로그인 페이지로
-            echo "<script>alert('이메일또는 비밀번호가 다릅니다.');return;</script>";
-            redirect('admin/login');
+            echo "<script>
+                    alert('이메일 또는 비밀번호가 다릅니다.');
+                    window.location.href = '".site_url('admin/login')."';
+                </script>";
+            exit;
         }
 
     }

@@ -20,8 +20,8 @@
       cursor: pointer; /* 버튼 클릭 시 커서 모양 변경 */
     }
 
-    .container button:hover {
-      color: #F36523;
+    .active-category {
+      color: #F36523 !important;
       text-decoration: underline;
     }
 
@@ -226,11 +226,11 @@
     </div>
 */ ?>
     
-    <div class="container sub-categoey">
+    <div class="sub-categoey">
       <div class="d-flex flex-nowrap justify-content-center p-1">
-        <button class="text-uppercase filter-btn p-3" onclick="changeCategory('all')"><strong>all.</strong></button>
-        <button class="text-uppercase filter-btn p-3" onclick="changeCategory('dongnae')"><strong>dongnae.</strong></button>
-        <button class="text-uppercase filter-btn p-3" onclick="changeCategory('creator')"><strong>creator.</strong></button>
+        <button class="text-uppercase btn" onclick="changeCategory('all')"><strong>all.</strong></button>
+        <button class="text-uppercase btn" onclick="changeCategory('dongnae')"><strong>dongnae.</strong></button>
+        <button class="text-uppercase btn" onclick="changeCategory('creator')"><strong>creator.</strong></button>
       </div>
     </div>
 
@@ -370,6 +370,11 @@
           $("#article-list-creator").hide();
           $("#article-list-dongnae").hide();
         }
+
+        // 모든 버튼에서 active 클래스 제거
+        $('.sub-categoey button').removeClass('active-category');
+        // 클릭된 버튼에 active 클래스 추가
+        $(`button[onclick="changeCategory('${category}')"]`).addClass('active-category');
     }
 
   </script>

@@ -138,7 +138,7 @@
             <h2 class="text-uppercase fw-bold mb-3 text-secondary">find your trip</h2>
             <h2 class="fw-bold mb-3">일상속 새로운 국내여행의 가치 발견</h2>
 
-            <img src="/assets/img/aboutTripper.svg" alt="" class="mt-4 mb-4 img-fluid">
+            <img src="/assets/img/aboutTripper_textonly.svg" alt="" class="mt-4 mb-4 img-fluid">
             
             <p class="text-center fs-5">
               트리퍼는 국내 여행 크리에이터들과 함께

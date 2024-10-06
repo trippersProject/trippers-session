@@ -1,4 +1,4 @@
-/*FIND아이템 응모 모달*/
+/*FIND아이템 응모 모달(사용X)*/
 .find-item-area{
     width: 100%;
     margin-top: 20vw;
@@ -16,7 +16,8 @@
     height: 100%;
 }
 
-.find-item-img-area > img{
+.swiper-find-item-detail-slide img {
+    object-fit: cover; /* 이미지가 꽉 차도록 설정, 비율 유지하며 넘치는 부분은 자름 */
     width: 100%;
     height: 100%;
 }
@@ -61,7 +62,7 @@
     text-align: left;
 }
 
- .swiper-find-item-detail .swiper-wrapper{
+.swiper-find-item-detail .swiper-wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -124,8 +125,8 @@
 
 .finditem-btn {
     background-color: #000;
-    width: 20vw;
-    height: 3vw;
+    width: 50%;
+    height: auto;
     border-radius: 0%;
     color: #fff;
     margin-top: 3%;
@@ -165,6 +166,13 @@
         width: 100%;
         min-height: 200vw;
         background-color: #E2E2E2;
+    }
+
+    .swiper-find-item-detail .swiper-wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
     }
 
     .find-item-img-area {
@@ -216,10 +224,20 @@
 
     .finditem-btn {
         background-color: #000;
-        width: 40%;
+        width: 90%;
         height: 7%;
         border-radius: 0%;
         color: #fff;
         margin-top: 10vw;
     }
+}
+
+/* FINDITEM 모달 스타일 */
+.find-item-img-area > img{
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-find-item-detail-slide {
+    height: 100%;
 }

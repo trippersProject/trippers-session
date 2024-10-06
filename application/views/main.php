@@ -146,15 +146,38 @@
   .card img {
     margin: 0 auto; /* 이미지 중앙 정렬 */
   }
+
+  .creator-swiper, .dongnae-swiper, .find-swiper {
+    position: relative; /* 자식 요소의 위치를 기준으로 삼을 수 있게 설정 */
+    padding-bottom: 40px; /* 슬라이드 아래 여백을 추가하여 페이지네이션을 위한 공간 확보 */
+  }
+
+  .creator-pagination, .dongnae-pagination, .find-pagination {
+    position: absolute;
+    bottom: 50px; /* 부모 요소의 하단에서 조금 위로 위치 */
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
   
 
   @media (max-width: 768px) {
-    .creator-swiper,.dongnae-swiper {
-      height: 170vw;
+    .creator-swiper, .dongnae-swiper, .find-swiper {
+      /* height: 170vw; */
       min-height: 400px;
+      position: relative; /* 자식 요소의 위치를 기준으로 삼을 수 있게 설정 */
+      padding-bottom: 40px; /* 슬라이드 아래 여백을 추가하여 페이지네이션을 위한 공간 확보 */
     }
 
-    .creator-swiper .card, .dongnae-swiper .card {
+    .creator-pagination, .dongnae-pagination, .find-pagination {
+      position: absolute;
+      bottom: 50px; /* 부모 요소의 하단에서 조금 위로 위치 */
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+
+    .creator-swiper .card, .dongnae-swiper .card, .find-swiper .card {
       width: 24rem !important;
     }
 
@@ -166,18 +189,6 @@
     }
   }
 
-  @media (max-width: 576px) {
-    .creator-swiper .card, .dongnae-swiper .card {
-      width: 24rem !important;
-    }
-
-    .fixed-size {
-      width: 100%; /* 부모 요소의 가로 크기에 맞게 */
-      height: 650px; /* 원하는 고정 높이 */
-      object-fit: cover; /* 이미지가 고정된 영역을 덮도록 비율 조정 */
-      object-position: center; /* 이미지의 중앙 부분을 표시 */
-    }
-  }
 
   .responsive-image {
     display: block;
@@ -318,6 +329,32 @@
       <!-- If we need pagination -->
       <div class="swiper-pagination dongnae-pagination"></div>
     </div>
+
+    <div class="centered-text-container">
+      <div class="centered-text">FIND ITEM</div>
+    </div>
+
+    <!-- FINDITEM 슬라이드 -->
+    <!-- Slider main container -->
+    <div class="swiper find-swiper">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <?php foreach($find_item as $list): ?>
+        <div class="swiper-slide swiper-find-item-detail-slide">
+          <div class="card" onclick="showEventModal('<?= $list['id'] ?>')">
+            <img src="<?= get_find_item_upload_path() . $list['thumbnail']; ?>" class="card-img-top" alt="Card Image">
+            <div class="card-body">
+              <h6 class="card-title"><strong><?= $list['name']; ?></strong></h6>
+              <a href="#" class="btn finditem-btn" onclick="showEventModal('<?= $list['id'] ?>')">응모하기</a>
+            </div>
+          </div>
+        </div>
+        <?php endforeach; ?>
+      </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination find-pagination"></div>
+    </div>
 <?php /*
 *FIND ITEM 논의후에 작업후 적용예정
     <div class="find-item-area">
@@ -360,8 +397,9 @@
           <div class="swiper-button-next swiper-find-item-next"></div>
         <?php } ?>
       </div>
-    
     </div>
+ */ ?>   
+
     <!-- 응모하기 모달 step1 -->
     <div class="modal fade w-100" id="mainFindItemModal" tabindex="-1" aria-labelledby="mainFindItemModalLabel" aria-hidden="true">
       <div class="modal-dialog d-flex justify-content-center align-items-center" style="max-width: 100%;">
@@ -372,8 +410,8 @@
                 <div class="swiper swiper-find-item-detail" style="overflow: hidden;">
                   <div class="swiper-wrapper">
                     <!-- TODO: FINDITEM 썸네일 이미지 현재는 하나만 가능, 이후에 여러개로 슬라이드 노출하기 -->
-                    <div class="swiper-slide">
-                      <img src="assets/img/mainFindItem.svg" alt="" class="rounded img-fluid w-100">
+                    <div class="swiper-slide swiper-find-item-detail-slide">
+                      <img src="assets/img/mainFindItem.svg" alt="" class="rounded img-fluid w-100 h-100">
                     </div>
                   </div>
 
@@ -465,7 +503,7 @@
       </div>
     </div>
     <!-- //응모하기 모달 step3 -->
-*/?>
+
     <div class="container mt-8">
       <a href="https://page.stibee.com/subscriptions/240273">
         <img src="assets/img/tripletter.png" class="responsive-image img-fluid d-block mx-auto" style="cursor:pointer;"/>
@@ -537,30 +575,50 @@
         }
       });
 
-      let swiperFindItem = new Swiper('.swiper-find-item', {
-        slidesPerView: 1, // 한 번에 보여줄 슬라이드 수
-        spaceBetween: 30, // 슬라이드 간의 간격
-        loop: true, // 무한 루프
-        direction: 'horizontal',
+      let findSwiper = new Swiper('.find-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
         pagination: {
-          el: '.swiper-find-item-pagination',
-        },
-        navigation: {
-          nextEl: '.swiper-find-item-next',
-          prevEl: '.swiper-find-item-prev',
-        },
-      });
-
-      let swiperFindItemDetail = new Swiper('.swiper-find-item-detail', {
-        slidesPerView: 1, // 한 번에 보여줄 슬라이드 수
-        spaceBetween: 30, // 슬라이드 간의 간격
-        loop: true, // 무한 루프
-        direction: 'horizontal',
-        pagination: {
-          el: '.swiper-find-item-detail-pagination',
+          el: '.find-pagination',
           clickable: true,
         },
+        breakpoints: {
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 10,
+          },
+          576: {
+            slidesPerView: 1,
+            spaceBetween: 5,
+          }
+        }
       });
+
+      // let swiperFindItem = new Swiper('.swiper-find-item', {
+      //   slidesPerView: 1, // 한 번에 보여줄 슬라이드 수
+      //   spaceBetween: 30, // 슬라이드 간의 간격
+      //   loop: true, // 무한 루프
+      //   direction: 'horizontal',
+      //   pagination: {
+      //     el: '.swiper-find-item-pagination',
+      //   },
+      //   navigation: {
+      //     nextEl: '.swiper-find-item-next',
+      //     prevEl: '.swiper-find-item-prev',
+      //   },
+      // });
+
+      // let swiperFindItemDetail = new Swiper('.swiper-find-item-detail', {
+      //   slidesPerView: 1, // 한 번에 보여줄 슬라이드 수
+      //   spaceBetween: 30, // 슬라이드 간의 간격
+      //   loop: true, // 무한 루프
+      //   direction: 'horizontal',
+      //   pagination: {
+      //     el: '.swiper-find-item-detail-pagination',
+      //     clickable: true,
+      //   },
+      // });
 
       //FIND ITEM 자세히보기 클릭시 팝업노출 
       // function showEventModal() {

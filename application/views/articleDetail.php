@@ -196,13 +196,13 @@
   <?php if($info['event_banner_text'] != '' && $info['event_banner_img'] != ''): ?>
   <div class="event-banner-area">
     <div class="event-banner-img-area">
-      <img src="<?=get_article_upload_path(). $info['event_banner_img']?>"
+      <img src="<?= get_article_upload_path(). $info['event_banner_img'] ?>"
         width="444" height="300" />
     </div>
-    <div class="col-md-7 p-4 d-flex align-items-center">
-      <div class="event-banner-text-area">
+    <div class="event-banner-text-area">
+      <div class="event-banner-text">
         <?=$info['event_banner_text']?>
-        <a class="btn btn-dark" href="<?= $info['event_banner_link'] ?>">신청하기</a>
+        <a class="btn btn-dark" href="<?= $info['event_banner_link'] ?>">자세히 보기</a>
       </div>
     </div>
   </div>

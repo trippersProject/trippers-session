@@ -30,7 +30,6 @@
     padding: 20px; /* 상하좌우 여백 */
   }
 
-
   /* 버튼 그룹 스타일 */
   .button-group {
     display: flex;
@@ -377,22 +376,24 @@
     </div>
   </div>
 
-  <div class="container d-flex align-items-center justify-content-between" style="height: 30vh;">
-    <a class="me-auto align-items-center" href="/main">
-      <img src="/assets/img/menuTripperLogo.svg" alt="Logo" style="width: 50%; height: 28px;">
-    </a>
-    <div class="d-flex align-items-center flex-grow-1 justify-content-center pe-5" style="cursor: pointer;">
+  <!-- 하단 로고, 접기버튼, 아이콘 -->
+  <div class="col-12 container d-flex">
+    <div class="col-4 align-items-left">
+      <a href="/main"><img src="/assets/img/menuTripperLogo.svg" alt="Logo" style="width: 50%; height: 28px;"></a>
+    </div>
+    <div class="col-4 d-flex align-items-center flex-grow-1 justify-content-center" style="cursor: pointer;">
       <img src="/assets/img/upperArrow.svg" alt="Upper Arrow" id="upperArrow1">
     </div>
-    <div class="d-flex align-items-center">
-      <a class="me-auto" href="#">
+    <div class="col-4 d-flex justify-content-end">
+      <a href="#">
         <img src="/assets/img/search.svg" alt="Search" id="searchIcon" class="me-2">
       </a>
-      <a class="me-auto" href="/login">
+      <a href="/login">
         <img src="/assets/img/user.svg" alt="User" id="userIcon">
       </a>
     </div>
   </div>
+  <!-- //하단 로고, 접기버튼, 아이콘 -->
 </div>
 
 <div id="search-overlay" class="search-overlay">
@@ -460,23 +461,25 @@
       <div class="swiper-pagination views-pagination"></div>
     </div>
   </div>
-
-  <div class="container d-flex align-items-center justify-content-between" style="height: 30vh;">
-    <a class="me-auto align-items-center" href="/main">
-      <img src="/assets/img/menuTripperLogo.svg" alt="Logo" style="width: 50%; height: 28px;">
-    </a>
-    <div class="d-flex align-items-center flex-grow-1 justify-content-center pe-5" style="cursor: pointer;">
+  
+  <!-- 하단 로고, 접기버튼, 아이콘 -->
+  <div class="col-12 container d-flex">
+    <div class="col-4 align-items-left">
+      <a href="/main"><img src="/assets/img/menuTripperLogo.svg" alt="Logo" style="width: 50%; height: 28px;"></a>
+    </div>
+    <div class="col-4 d-flex align-items-center flex-grow-1 justify-content-center" style="cursor: pointer;">
       <img src="/assets/img/upperArrow.svg" alt="Upper Arrow" id="upperArrow2">
     </div>
-    <div class="d-flex align-items-center">
-      <a class="me-auto" href="#">
+    <div class="col-4 d-flex justify-content-end">
+      <a href="#">
         <img src="/assets/img/search.svg" alt="Search" id="searchIcon" class="me-2">
       </a>
-      <a class="me-auto" href="/login">
+      <a href="/login">
         <img src="/assets/img/user.svg" alt="User" id="userIcon">
       </a>
     </div>
   </div>
+  <!-- //하단 로고, 접기버튼, 아이콘 -->
 </div>
 
 <script src="/assets/js/swiper.js"></script>
