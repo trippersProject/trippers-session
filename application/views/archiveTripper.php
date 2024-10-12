@@ -229,7 +229,7 @@
     <div class="sub-categoey">
       <div class="d-flex flex-nowrap justify-content-center p-1">
         <button class="text-uppercase btn" onclick="changeCategory('all')"><strong>all.</strong></button>
-        <button class="text-uppercase btn" onclick="changeCategory('dongnae')"><strong>dongnae.</strong></button>
+        <button class="text-uppercase btn" onclick="changeCategory('space')"><strong>space.</strong></button>
         <button class="text-uppercase btn" onclick="changeCategory('creator')"><strong>creator.</strong></button>
       </div>
     </div>
@@ -291,7 +291,7 @@
     <!--// 글 리스트(크리에이터)-->
 
     <!-- 글 리스트(동네)-->
-    <div class="container mt-6 w-100" id="article-list-dongnae" style="display:none;">
+    <div class="container mt-6 w-100" id="article-list-space" style="display:none;">
       <div class="row mb-5 g-4"> <!-- 행 사이 간격과 카드 사이 간격을 조정 -->
         <!-- 카테고리 값이 있으면 해당카테고리와 일치하는글만 노출 -->
           <?php foreach($article_dongnae as $list): ?>
@@ -360,15 +360,15 @@
         if(category == 'creator'){
           $("#article-list-all").hide();
           $("#article-list-creator").show();
-          $("#article-list-dongnae").hide();
-        }else if(category == 'dongnae'){
+          $("#article-list-space").hide();
+        }else if(category == 'space'){
           $("#article-list-all").hide();
           $("#article-list-creator").hide();
-          $("#article-list-dongnae").show();
+          $("#article-list-space").show();
         }else{
           $("#article-list-all").show();
           $("#article-list-creator").hide();
-          $("#article-list-dongnae").hide();
+          $("#article-list-space").hide();
         }
 
         // 모든 버튼에서 active 클래스 제거

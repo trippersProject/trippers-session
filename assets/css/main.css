@@ -23,32 +23,27 @@
 }
 
 .find-item-text-area {
-    display: flex;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-    width: 50%;
-    height: 100%;
-    padding: 3% 0 3% 8%;
-    line-height: 1.8;
-}
-
-.find-item-text-area div {
-    flex: 1;
-    max-width: 100%;
-}
-
-.find-item-text-area p {
-    font-size: 1vw;
+    width: auto;
+    margin-left: 5%;
 }
 
 .find-item-title {
-    width: 28%;
-    height: 10%;
-    font-size: 1.2rem;
-    text-align: center;
-    font-weight: bold;
-    border-bottom: solid 5px #000;
-    margin-bottom: 3vw;
+    position: relative; /* 밑줄을 위한 상대 위치 지정 */
+    display: inline-block; /* 텍스트 길이에 맞게 밑줄 적용 */
+    padding-bottom: 5px; /* 밑줄과 텍스트 간격 조정 */
+    font-weight: 800;
+    font-size: 24px;
+}
+
+.find-item-title::after {
+    content: ""; /* 가상 요소 생성 */
+    display: block;
+    width: 100%; /* 밑줄의 길이 */
+    height: 4px; /* 밑줄의 두께 */
+    background-color: black; /* 밑줄 색상 */
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 .find_item_text > h5 {
@@ -186,16 +181,11 @@
     }
 
     .find-item-text-area {
-        width: 100%;
-        height: auto;
-        text-align: center;
-        padding: 5%;
-        line-height: 1.8;
-        margin-top: 5vw;
+        margin-left: 0;
     }
 
     .find-item-title {
-        width: 45%;
+        /* width: 45%;
         height: 20%;
         margin: 0 auto;
         font-size: 2rem;
@@ -203,7 +193,8 @@
         font-weight: bold;
         margin-top: 20vw;
         border-bottom: solid 2px #000;
-        margin-bottom: 10vw;
+        margin-bottom: 10vw; */
+        font-size: 1.2rem;
     }
 
     .centered-text-find-item {
@@ -240,4 +231,21 @@
 
 .swiper-find-item-detail-slide {
     height: 100%;
+}
+
+.modal-body {
+    margin-top: 20px;
+}
+
+.close-btn {
+    z-index: 10;
+    cursor: pointer;
+    width: 30px;
+    font-size: 30px;
+}
+
+@media (max-width: 768px) {
+    .modal-body {
+        margin-top: 40px;
+    }
 }

@@ -64,7 +64,7 @@
   .fixed-size {
     width: 100%;
     height: auto;
-    max-height: 1000px; /* 최대 높이 설정 */
+    max-height: 1200px; /* 최대 높이 설정 */
     object-fit: cover;
   }
 
@@ -404,7 +404,11 @@
     <div class="modal fade w-100" id="mainFindItemModal" tabindex="-1" aria-labelledby="mainFindItemModalLabel" aria-hidden="true">
       <div class="modal-dialog d-flex justify-content-center align-items-center" style="max-width: 100%;">
         <div class="modal-content">
-          <div class="modal-body d-flex align-items-center mt-2 mb-2">
+          <!-- 닫기 버튼 추가 -->
+          <button type="button" class="close-btn" aria-label="Close" data-bs-dismiss="modal" style="position: absolute; top: 10px; right: 15px; border: none; background: none;" onclick="modalClose('mainFindItemModal')">
+            &times;
+          </button>
+          <div class="modal-body d-flex align-items-center mb-2">
             <div class="row gy-4 gy-md-0 mx-auto" style="width: 100%;">
               <div class="col-md-6">
                 <div class="swiper swiper-find-item-detail" style="overflow: hidden;">
@@ -418,14 +422,14 @@
                   <div class="swiper-pagination swiper-find-item-detail-pagination"></div>
                 </div>
               </div>
-              <div class="col-md-6 d-md-flex align-items-md-center">
-                <div style="max-width: 350px;">
+              <div class="find-item-text-area md-10 d-md-flex align-items-md-center">
+                <div style="col-12">
                   <div class="centered-text-find-item-container mb-4">
-                    <div class="centered-text-find-item">FIND 아이템</div>
+                    <div class="find-item-title">FIND 아이템</div>
                   </div>
                   <div id="find_item_content">
                   </div>
-                  <button type="button" class="btn custom-btn w-50" onclick="showEventModalStep2()">
+                  <button type="button" class="btn custom-btn w-50 mt-3" onclick="showEventModalStep2()">
                     응모하기
                   </button>
                 </div>
@@ -641,7 +645,7 @@
                 $('#mainFindItemModal .swiper-slide img').attr('src', "<?= get_find_item_upload_path();?>"+data.thumbnail);
 
                 // 텍스트 업데이트
-                $('#mainFindItemModal .centered-text-find-item').text(data.name);
+                $('#mainFindItemModal .find-item-title').text(data.name);
                 $('#find_item_content').html(data.content);
 
                 //finditme아이디 세팅(응모하기시 아이디 넘김)
@@ -703,6 +707,10 @@
           $('.modal-backdrop').remove(); // 오버레이(회색 배경) 제거
       }
     });
+
+    function modalClose(mn){
+      $(`#${mn}`).modal('hide');
+    }
 
     </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
