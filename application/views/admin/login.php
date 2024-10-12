@@ -126,7 +126,7 @@
 
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
     <main class="form-signin w-100 m-auto">
-        <form action="/login/authenticate" method="post">
+        <form action="/admin/login/authenticate" method="post">
             <h1 class="h3 mb-3 fw-normal">TRIPPER ADMIN</h1>
 
             <div class="form-floating">
