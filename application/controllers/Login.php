@@ -173,8 +173,8 @@ class Login extends MY_Controller {
 			'protocol' => 'smtp',
 			'smtp_host' => 'ssl://smtp.googlemail.com',
 			'smtp_port' => 465,
-			'smtp_user' => 'rbfla48@gmail.com',
-			'smtp_pass' => 'gdqwyomfuavmapgh',
+			'smtp_user' => 'trippers.me0@gmail.com',
+			'smtp_pass' => 'zwrudvvohygxdsjl',
 			'mailtype'  => 'html',
 			'charset'   => 'utf-8',
 			'newline'   => "\r\n"
