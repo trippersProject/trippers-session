@@ -125,10 +125,11 @@
     border-radius: 0%;
     color: #fff;
     margin-top: 3%;
+    font-weight: bold;
 }
 
 .finditem-btn:hover {
-    background-color: lightgray;
+    background-color: #F36523;
 }
 
 .creator-pagination, .dongnae-pagination {

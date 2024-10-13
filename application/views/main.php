@@ -22,7 +22,8 @@
   }
 
   .custom-btn:hover {
-    background-color: #333; /* Slightly lighter black on hover */
+    /* background-color: #333; Slightly lighter black on hover */
+    background-color: #F36523;
   }
 
   a {
@@ -30,7 +31,7 @@
     text-decoration: underline;
   }
   a:hover {
-    color: darkgray; /* 마우스를 올렸을 때 색깔을 어두운 회색으로 변경 (선택 사항) */
+    color: darkgray; /*마우스를 올렸을 때 색깔을 어두운 회색으로 변경 (선택 사항) */
   }
 
   .mt-8 { 
@@ -183,7 +184,7 @@
 
     .fixed-size {
       width: 100%; /* 부모 요소의 가로 크기에 맞게 */
-      height: 300px; /* 원하는 고정 높이 */
+      height: auto; /* 원하는 고정 높이 */
       object-fit: cover; /* 이미지가 고정된 영역을 덮도록 비율 조정 */
       object-position: center; /* 이미지의 중앙 부분을 표시 */
     }

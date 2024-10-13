@@ -40,6 +40,7 @@ class Main_mdl extends CI_Model {
         }
         if($category) $this->db->where('a.category1', $category);
         $this->db->order_by('a.sort', 'ASC');
+        $this->db->order_by('a.regdate', 'DESC');
 
         $query = $this->db->get();
 
