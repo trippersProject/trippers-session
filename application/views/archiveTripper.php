@@ -164,6 +164,12 @@
         object-fit: cover; /* 이미지가 고정된 영역을 덮도록 비율 조정 */
         object-position: center; /* 이미지의 중앙 부분을 표시 */
       }
+
+      .sub-categoey {
+        font-size: 1.2rem;
+        margin-top: 13vw;
+      }
+
     }
 
     @media (max-width: 576px) {

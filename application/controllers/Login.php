@@ -121,6 +121,38 @@ class Login extends MY_Controller {
         }
     }
 
+	public function kakao_login(){
+		// POST로 전달된 Kakao 사용자 정보를 받습니다.
+        $kakao_id = $this->input->post('id');
+        $nickname = $this->input->post('nickname');
+        $email = $this->input->post('email');
+        
+        // 사용자 정보 저장 또는 세션 처리
+        if ($kakao_id) {
+            // 예: 데이터베이스에 사용자 정보 저장 또는 업데이트
+            $user_data = array(
+                'kakao_id' => $kakao_id,
+                'nickname' => $nickname,
+                'email' => $email
+            );
+            
+            // 세션에 사용자 정보를 저장
+			$this->session->set_userdata('user_id', $kakao_id);
+            $this->session->set_userdata('email', $email);
+            $this->session->set_userdata('name', $nickname);
+            $this->session->set_userdata('auth_level', 11);
+            
+            // 성공시 리다이렉션
+            redirect('/main');
+        } else {
+            echo "<script>
+                    alert('카카오 로그인에 실패하였습니다.');
+                    window.location.href = '".site_url('/login')."';
+                </script>";
+            exit;
+        }
+	}
+
 	//비밀번호 찾기(임시비밀번호 메일전송)
 	public function reset_password() {
         $email = $this->input->post('email');

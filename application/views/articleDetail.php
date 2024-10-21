@@ -208,7 +208,8 @@
   </div>
   <?php endif; ?>
   <!-- //이벤트배너 -->
-
+  
+  <?php if($info['category1'] == '1' || $info['category1'] == '2'){?>
   <div class="relation-content-area mt-8">
     <div class="relation-content-title"><strong>RELATE CONTENTS</strong></div>
   </div>
@@ -242,6 +243,7 @@
     <!-- <div class="swiper-pagination related-pagination"></div> -->
   </div>
 </div>
+<?php }?>
 
 <!-- FIND FOINT란? 설명팝업 -->
 <div class="modal fade modal w-100" id="mainFindItemModal" tabindex="-1" aria-labelledby="mainFindItemModalLabel" aria-hidden="true">

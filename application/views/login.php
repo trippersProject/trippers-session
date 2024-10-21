@@ -83,11 +83,11 @@
             <button class="btn custom-btn w-50" onclick="location.href='/login/user_join'">회원가입</button>
             <button type="submit" class="btn custom-btn w-50">로그인</button>
           </div>
-          <!-- TODO:API키 발급시 추가예정 -->
-          <!-- <div class="mt-5 d-grid">
-            <button type="submit" class="btn custom-btn">카카오로 로그인</button>
-          </div>
           <div class="mt-5 d-grid">
+            <button type="submit" class="btn custom-btn" id="kakao-login-btn">카카오로 로그인</button>
+          </div>
+          <!-- TODO:API키 발급시 추가예정 -->
+          <!--<div class="mt-5 d-grid">
             <button type="submit" class="btn custom-btn">네이버로 로그인</button>
           </div> -->
         </form>
@@ -100,6 +100,50 @@
     <?php include_once("layout/footer_company_info.php")?>
 
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <!--카카오 로그인SDK-->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script type="text/javascript">
+      Kakao.init('56a1c900f2e28369e788af88ad6d2bd6'); // 여기에 Kakao API 키를 입력합니다.
+
+      // Kakao 로그인 버튼 클릭 시 실행될 함수
+      document.getElementById('kakao-login-btn').addEventListener('click', function() {
+        Kakao.Auth.login({
+          success: function(authObj) {
+            // 로그인이 성공하면 Kakao 사용자 정보를 가져옵니다.
+            Kakao.API.request({
+              url: '/v2/user/me',
+              success: function(res) {
+                // 로그인 성공 후 사용자 정보를 처리합니다.
+                // 예: 서버로 사용자 정보 전달
+                var userData = {
+                  id: res.id,
+                  nickname: res.properties.nickname,
+                  email: res.kakao_account.email
+                };
+                
+                // AJAX로 서버에 로그인 정보 전달
+                $.ajax({
+                  url: '/login/kakao_login',
+                  method: 'POST',
+                  data: userData,
+                  success: function(response) {
+                    // 서버 처리 성공 시 원하는 작업 수행
+                    console.log(response);
+                  }
+                });
+              },
+              fail: function(error) {
+                console.log(error);
+              }
+            });
+          },
+          fail: function(err) {
+            alert('Kakao 로그인 실패');
+            console.log(err);
+          }
+        });
+      });
+    </script>
   </body>
 
 </html>

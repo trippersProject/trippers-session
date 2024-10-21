@@ -544,6 +544,7 @@
           768: {
             slidesPerView: 4,
             spaceBetween: 10,
+            slidesPerGroup: 4, // 한 번 슬라이드할 때 4개의 슬라이드 이동
           },
           576: {
             slidesPerView: 1,
@@ -572,6 +573,7 @@
           768: {
             slidesPerView: 4,
             spaceBetween: 10,
+            slidesPerGroup: 4, // 한 번 슬라이드할 때 4개의 슬라이드 이동
           },
           576: {
             slidesPerView: 1,

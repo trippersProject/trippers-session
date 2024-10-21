@@ -24,7 +24,7 @@ class Main_mdl extends CI_Model {
     }
 
     //글 목록 조회
-    public function get_article_list($category='', $c_id='', $p_id='')
+    public function get_article_list($category='', $c_id='', $p_id='', $limit=20)
     {
         $this->db->select('a.*, c.id as c_id, c.name as c_name');
         $this->db->from('tp_articles a');
@@ -41,6 +41,9 @@ class Main_mdl extends CI_Model {
         if($category) $this->db->where('a.category1', $category);
         $this->db->order_by('a.sort', 'ASC');
         $this->db->order_by('a.regdate', 'DESC');
+        
+        $this->db->limit($limit);
+
 
         $query = $this->db->get();
 

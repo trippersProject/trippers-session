@@ -22,10 +22,17 @@ class Main extends MY_Controller {
 		//메인 하단배너
 		$data['mb_banners'] = $this->Main_mdl->get_banners('MB');
 
-		//상단 크리에이터 글목록
-		$data['article_creator'] = $this->Main_mdl->get_article_list('1');
-		//하단 우리동네 글목록
-		$data['article_dongnae'] = $this->Main_mdl->get_article_list('2');
+		if($this->agent->is_mobile()){
+			//상단 크리에이터 글목록
+			$data['article_creator'] = $this->Main_mdl->get_article_list('1','','',4);
+			//하단 우리동네 글목록
+			$data['article_dongnae'] = $this->Main_mdl->get_article_list('2','','',4);
+		}else{
+			//상단 크리에이터 글목록
+			$data['article_creator'] = $this->Main_mdl->get_article_list('1');
+			//하단 우리동네 글목록
+			$data['article_dongnae'] = $this->Main_mdl->get_article_list('2');
+		}
 
 		//FIND ITEM 목록
 		$data['find_item'] = $this->Main_mdl->get_find_item_list('main');
@@ -114,14 +121,16 @@ class Main extends MY_Controller {
 		//배너목록
 		$data['banner'] = $this->Main_mdl->get_banners('AC');
 
-		//글목록
-		$data['article'] = $this->Main_mdl->get_article_list();
-
 		//크리에이터 글목록
 		$data['article_creator'] = $this->Main_mdl->get_article_list('1');
-
+		
 		//우리동네 글목록
 		$data['article_dongnae'] = $this->Main_mdl->get_article_list('2');
+
+		//글목록
+		//$data['article'] = $this->Main_mdl->get_article_list();
+
+		$data['article'] = array_merge($data['article_creator'], $data['article_dongnae']);
 
 
 		$this->load->view('archiveTripper.php',$data);
@@ -265,23 +274,26 @@ class Main extends MY_Controller {
 	{
 		check_login(); // 로그인 여부 체크
 
-        $id = $this->input->post('id');
+        $id = $this->input->post('id');//파인드아이템 아이디
 		$data = array();     
 
         if($id) 
 		{
 			$this->load->model('user_mdl');
+			$this->load->model('main_mdl');
 			//사용자 포인트 조회
 			$user = $this->user_mdl->get_user_by_email($this->session->userdata('email'));
+			//파인드아이템 정보 조회
+			$item_info = $this->main_mdl->get_find_item_info($id);
 
-			if(!$user){
+			if(!$user || !$item_info){
 				$data['code'] = '9999';
-				$data['msg'] = '회원정보 조회에 실패하였습니다.';
+				$data['msg'] = '정보 조회에 실패하였습니다.';
 				echo json_encode($data);
 				exit;
 			}
 
-			if($user['point'] <= 0)
+			if($user['point'] <= 0 || $user['point'] < $item_info['use_point'])
 			{
 				$data['code'] = '9999';
 				$data['msg'] = '응모가능한 포인트가 부족합니다.';

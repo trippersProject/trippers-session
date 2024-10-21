@@ -191,4 +191,11 @@ class User_mdl extends CI_Model {
         return $this->db->update('tp_users', array('password' => $new_password));
     }
 
+
+    //방문자정보 저장
+    public function save_visitor($data) {
+        // 접속자 정보를 데이터베이스에 저장
+        $this->db->insert('tp_visitor', $data);
+    }
+
 }
